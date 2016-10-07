@@ -1,20 +1,39 @@
+/**
+    * App-wide Styles
+    * 1) Bower imports
+    * 2) Theme Variables
+    * 3) Global Defaults
+    * 4) Overrides
+    * 5) Grunt imports
+**/
+
+
+/*1) Bower Imports*/
+
 $icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
 @import '../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 $fa-font-path: "../bower_components/font-awesome/fonts";
 @import '../bower_components/font-awesome/scss/font-awesome';
+
+/*Custom sass styles*/
+
+@import '../assets/sass/_utility';
+@import '../assets/sass/_breakPoints';
+@import '../assets/sass/_theme';
 
 /**
  * App-wide Styles
  */
 
 .browserupgrade {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
 }
 
 // Component styles are injected through grunt
+
 /* inject:scss */
 @import 'data/data.scss';
 @import 'main/main.scss';

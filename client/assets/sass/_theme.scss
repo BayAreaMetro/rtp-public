@@ -1,0 +1,535 @@
+// //////////////////////////////////////////////////////////////
+// //  Font Variables (http://cssfontstack.com/)
+// //////////////////////////////////////////////////////////////
+// //
+// // Serif font-stacks
+// //
+// $baskerville-font-stack: "Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, serif !default;
+// $big-caslon-font-stack: "Bodoni MT", Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif !default;
+// $bodoni-mt-font-stack: "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif !default;
+// $book-antiqua-font-stack: "Calisto MT", "Bookman Old Style", Bookman, "Goudy Old Style", Garamond, "Hoefler Text", "Bitstream Charter", Georgia, serif !default;
+// $calisto-mt-font-stack: "Calisto MT", "Bookman Old Style", Bookman, "Goudy Old Style", Garamond, "Hoefler Text", "Bitstream Charter", Georgia, serif !default;
+// $cambria-font-stack: Cambria, Georgia, serif !default;
+// $didot-font-stack: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif !default;
+// $garamond-font-stack: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif !default;
+// $georgia-font-stack: Georgia, Times, "Times New Roman", serif !default;
+// $goudy-old-style-font-stack: "Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", serif !default;
+// $hoefler-text-font-stack: "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif !default;
+// $lucidia-bright-font-stack: "Lucida Bright", Georgia, serif !default;
+// $palatino-font-stack: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif !default;
+// $perpetua-font-stack: Perpetua, Baskerville, "Big Caslon", "Palatino Linotype", Palatino, "URW Palladio L", "Nimbus Roman No9 L", serif !default;
+// $rockwell-font-stack: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif !default;
+// $rockwell-bold-font-stack: "Rockwell Extra Bold", "Rockwell Bold", monospace !default;
+// $times-new-roman-font-stack: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif !default;
+// //
+// // Sans-Serif font-stacks
+// //
+// $arial-font-stack: Arial, "Helvetica Neue", Helvetica, sans-serif !default;
+$arial-font-stack: Arial,
+Helvetica,
+sans-serif !default;
+// $arial-black-font-stack: "Arial Black", "Arial Bold", Gadget, sans-serif !default;
+// $arial-narrow-font-stack: "Arial Narrow", Arial, sans-serif !default;
+// $arial-rounded-font-stack: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif !default;
+// $avant-garde-font-stack: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif !default;
+// $calibri-font-stack: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif !default;
+// $candara-font-stack: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif !default;
+// $century-gothic-font-stack: "Century Gothic", CenturyGothic, AppleGothic, sans-serif !default;
+// $frankin-gothic-font-stack: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif !default;
+// $futura-font-stack: Futura, "Trebuchet MS", Arial, sans-serif !default;
+// $geneva-font-stack: Geneva, Tahoma, Verdana, sans-serif !default;
+// $gill-sans-font-stack: "Gill Sans", "Gill Sans MT", Calibri, sans-serif !default;
+// $helvetica-font-stack: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+// $impact-font-stack: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans serif !default;
+// $lucida-grande-font-stack: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif !default;
+// //
+// // Google font-stacks
+// //
+// $lustria-font-stack: 'Lustria', serif !default;
+// $ubuntu-mono-font-stack: 'Ubuntu Mono', sans-serif !default;
+// $lato-font-stack: 'Lato', sans-serif !default;
+// $lora-font-stack: 'Lora', serif !default;
+// $ubuntu-font-stack: 'Ubuntu', sans-serif !default;
+// $ubuntu-condensed-font-stack: 'Ubuntu Condensed', sans-serif !default;
+// $roboto-font-stack: 'Roboto', sans-serif !default;
+// $roboto-condensed-font-stack: 'Roboto Condensed', sans-serif !default;
+// $roboto-slab-font-stack: 'Roboto Slab', serif !default;
+// $raleway-font-stack: 'Raleway', sans-serif !default;
+// $raleway-dots-font-stack: 'Raleway Dots', cursive !default;
+// $merriweather-font-stack: 'Merriweather', serif !default;
+// $merriweather-sans-font-stack: 'Merriweather Sans', sans-serif !default;
+// $quattrocento-font-stack: 'Quattrocento', serif !default;
+// $quattrocento-sans-font-stack: 'Quattrocento Sans', sans-serif !default;
+
+/**
+    * 2) Theme Variables
+**/
+
+
+/* Main Theme Colors */
+
+$mainColor: #336699;
+$secondaryColor: #009edd;
+$tertiaryColor: #888888;
+$mutedColor: #ddd;
+$whiteColor: #ffffff;
+$blackColor: #000;
+$lightColor: #eeeeee;
+$darkColor: #464646;
+$danger: #d9534f;
+$success: #5cb85c;
+$warning: #DB6B1E;
+$mainBgImage: url('../assets/images/1.png');
+// Background Colors
+.background-primary {
+    background-color: $mainColor;
+}
+
+Font Colors .font-primary {
+    color: $mainColor;
+}
+
+.font-secondary {
+    color: $secondaryColor;
+}
+
+
+/* Main Theme Fonts */
+
+$mainFont: Arial,
+Helvetica,
+sans-serif !default;
+$secondaryFont: proxima-nova,
+arial,
+verdana !default;
+
+/**
+    * 3) Global Defaults
+**/
+
+tml {
+    height: 100%;
+}
+
+body {
+    height: inherit;
+    width: inherit;
+    background-color: $whiteColor;
+}
+
+.viewport {
+    height: 100%;
+}
+
+.pagination {
+    a {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.button-wrappers {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+    margin: {
+        bottom: 10px;
+    }
+}
+
+.input-group {
+    .form-control {
+        padding: {
+            left: 5px !important;
+        }
+    }
+}
+
+
+/**
+    * 4) Overrides
+    * Override defaults and bower_components
+
+**/
+
+
+/** NAVIGATION **/
+
+.navbar-default {
+    background-color: #336699;
+    border-color: #000000;
+}
+
+.navbar-default .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-text {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav>li>a:focus {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-nav>li>.dropdown-menu {
+    background-color: #336699;
+}
+
+.navbar-default .navbar-nav>li>.dropdown-menu>li>a {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-nav>li>.dropdown-menu>li>a:hover,
+.navbar-default .navbar-nav>li>.dropdown-menu>li>a:focus {
+    color: #ffffff;
+    background-color: #000000;
+}
+
+.navbar-default .navbar-nav>li>.dropdown-menu>li>.divider {
+    background-color: #000000;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>.active>a,
+.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus {
+    color: #ffffff;
+    background-color: #000000;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a:focus {
+    color: #ffffff;
+    background-color: #000000;
+}
+
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:hover,
+.navbar-default .navbar-nav>.open>a:focus {
+    color: #ffffff;
+    background-color: #000000;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: #000000;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #000000;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #ffffff;
+}
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+    border-color: #ffffff;
+}
+
+.navbar-default .navbar-link {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-link:hover {
+    color: #ffffff;
+}
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+        color: #ffffff;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus {
+        color: #ffffff;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu>.active>a,
+    .navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus {
+        color: #ffffff;
+        background-color: #000000;
+    }
+}
+
+ul.nav li {
+    font-family: "proxima-nova", Arial, Verdana;
+    font-size: 12px !important;
+    font-weight: 500;
+    list-style: outside none none;
+    text-transform: uppercase;
+}
+
+
+/*Buttons*/
+
+.btn {
+    &.btn-primary {
+        background-color: $mainColor !important;
+        color: #fff !important;
+        font-family: $mainFont;
+    }
+    &.btn-danger {
+        background-color: $secondaryColor !important;
+        font-family: $mainFont;
+        color: #fff !important;
+    }
+    &.btn-warning {
+        background-color: $warning !important;
+        font-family: $mainFont;
+        color: #fff !important;
+    }
+    &.btn-muted {
+        background-color: $mutedColor !important;
+        font-family: $mainFont;
+        color: #fff !important;
+    }
+    &.btn-dark {
+        background-color: $darkColor !important;
+        font-family: $mainFont;
+        color: #fff !important;
+    }
+    &.btn-success {
+        background-color: $success !important;
+        font-family: $mainFont;
+        color: #fff !important;
+    }
+}
+
+.modal-primary {
+    .modal-header {
+        background-color: $mainColor !important;
+    }
+}
+
+
+/*Panels*/
+
+.panel-primary {
+    >.panel-heading {
+        border-color: $mainColor;
+        background-color: $mainColor !important;
+        font-family: $mainFont;
+    }
+    >.panel-body {
+        border-color: $mainColor;
+        font-family: $mainFont;
+    }
+}
+
+.dash-headers {
+    color: $mutedColor;
+}
+
+
+/*TABLES*/
+
+.table-fixed {
+    width: 100%;
+    border: 2px solid #D0D0D0;
+    background-color: #ffffff;
+}
+
+.table-fixed thead {
+    width: 100%;
+    background-color: #ECECEC;
+}
+
+.table-fixed tbody {
+    max-height: 500px;
+    overflow-y: auto;
+    width: 100%;
+    background-color: #ffffff;
+    .btn {
+        text-align: right;
+        padding-top: 5px;
+    }
+}
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+    display: block;
+}
+
+.table-fixed thead>tr>th {
+    float: left;
+    font-weight: 400;
+    text-align: left;
+    background-color: #ECECEC;
+}
+
+.table-fixed tbody tr {
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: transparent;
+}
+
+.table-fixed tbody td {
+    float: left;
+    font-weight: 500;
+    text-align: left;
+    font-size: 12px;
+    vertical-align: middle;
+    background-color: transparent;
+}
+
+.table-fixed tfoot {
+    background-color: #ECECEC;
+    height: 40px;
+    nav {
+        position: relative;
+        text-align: center;
+        ul {
+            @include box-shadow(0px 4px 3px -3px rgba(0, 0, 0, 0.64));
+            a {
+                border-radius: 0px;
+                color: $mutedColor;
+                padding: {
+                    top: 10px;
+                }
+            }
+        }
+    }
+}
+
+.ng-invalid {
+    .ng-dirty {}
+}
+
+.ng-invalid {
+    &.ng-untouched {
+        background-color: #FFFFFF;
+        +span {
+            .validation-invalid {
+                display: none;
+            }
+        }
+    }
+}
+
+.validation-valid {
+    display: none;
+}
+
+.form-group {
+    margin: {
+        top: 15px;
+    }
+}
+
+.classBreakDown {
+    .validation-invalid {
+        position: absolute;
+        margin-top: 37px;
+    }
+}
+
+.smallerScreen {
+    display: none;
+}
+
+
+/*Bootstrap Navbar Overrides*/
+
+.navbar {
+    border: 1px solid transparent;
+    margin-bottom: 0;
+    min-height: 50px;
+    position: relative;
+}
+
+.navbar {
+    &.navbar-primary {
+        background-color: $mainColor !important;
+        color: #fff !important;
+        font-family: $mainFont;
+        font-size: 8pt !important;
+        & a {
+            color: #fff !important
+        }
+    }
+    &.navbar-danger {
+        background-color: $secondaryColor !important;
+        font-family: $mainFont;
+        color: #fff !important;
+    }
+    &.navbar-warning {
+        background-color: $warning !important;
+        font-family: $mainFont;
+        color: #fff !important;
+    }
+    &.navbar-muted {
+        background-color: $mutedColor !important;
+        font-family: $mainFont;
+        color: #fff !important;
+    }
+    &.navbar-dark {
+        background-color: $darkColor !important;
+        font-family: $mainFont;
+        color: #fff !important;
+    }
+    &.navbar-success {
+        background-color: $success !important;
+        font-family: $mainFont;
+        color: #fff !important;
+    }
+}
+
+// Sections
+.section {
+    padding: 30px;
+    margin: 0;
+}
+
+.section-header {
+    background-image: url('../assets/images/bg_image.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.section-light {
+    background-color: $darkColor;
+}
+
+.section-primary {
+    background-color: $mainColor;
+    color: $whiteColor;
+}
+
+// Boxes
+.primary-box {
+    position: relative;
+    padding: 30px 15px;
+    color: $whiteColor;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    background: $mainColor;
+    font-family: $mainFont;
+}
+
+// Logo
+.logo {
+    width: 200px;
+    height: 200px;
+}
+
+//Map toolbar
+.toolbar {
+    background-color: $mainColor;
+}

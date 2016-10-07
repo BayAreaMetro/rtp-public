@@ -1,6 +1,7 @@
 'use strict';
 var mssql = require('mssql');
 
+//MsSQL configuration and connection information
 var config = {
     user: process.env.SQL_USER,
     password: process.env.SQL_PWD,
