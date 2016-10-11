@@ -132,6 +132,22 @@ export function findAll(req, res) {
     });
 }
 
+export function findAllProjects(req, res) {
+    console.log(req.params.id);
+    var request = new sql.Request(config.mssql.connection);
+    var query = "Select * From [RTP].[dbo].[map_VW]";
+    request.query(query, function(err, data) {
+        if (err) {
+            return handleError(res, err);
+        }
+        if (!data) {
+            return res.status(404).send('Not Found');
+        }
+        console.log(data[0]);
+        res.status(200).json(data);
+    });
+}
+
 export function findOne(req, res) {
     console.log(req.params.id);
     var request = new sql.Request(config.mssql.connection);

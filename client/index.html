@@ -34,7 +34,7 @@
     <navbar></navbar>
     <div ui-view=""></div>
     <footer></footer>
-
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyDj_I4ksjxsQi6GkpAqGrrGemhiM16sqGQ&libraries=drawing,places" type="text/javascript"></script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
         (function(i, s, o, g, r, a, m) {
@@ -68,22 +68,27 @@
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/Wicket/wicket.js"></script>
+    <script src="bower_components/Wicket/wicket-gmap3.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js">
-      
     </script>
     <!-- build:js(.tmp) app/app.js -->
     <script src="app/app.js"></script>
     <!-- injector:js -->
     <script src="components/util/util.module.js"></script>
-    <script src="components/footer/footer.directive.js"></script>
+    <script src="components/controllers/data.map/data.map.controller.js"></script>
     <script src="app/data/data.js"></script>
+    <script src="app/explore/explore.controller.js"></script>
+    <script src="app/explore/explore.js"></script>
     <script src="app/main/main.controller.js"></script>
     <script src="app/main/main.js"></script>
     <script src="app/map/map.controller.js"></script>
     <script src="app/map/map.js"></script>
     <script src="app/data/data.controller.js"></script>
+    <script src="components/controllers/data.view/data.view.controller.js"></script>
+    <script src="components/footer/footer.directive.js"></script>
     <script src="components/modal/modal.service.js"></script>
     <script src="components/navbar/navbar.controller.js"></script>
     <script src="components/navbar/navbar.directive.js"></script>

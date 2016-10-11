@@ -32,10 +32,17 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
     padding: 0.2em 0;
 }
 
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
 // Component styles are injected through grunt
 
 /* inject:scss */
 @import 'data/data.scss';
+@import 'explore/explore.scss';
 @import 'main/main.scss';
 @import 'map/map.scss';
 @import '../components/footer/footer.scss';

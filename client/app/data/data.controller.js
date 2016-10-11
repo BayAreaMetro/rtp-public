@@ -2,9 +2,12 @@
 (function() {
 
     class DataComponent {
-        constructor(projects) {
+        constructor(projects, $rootScope, $state, $location) {
             this.message = 'Hello';
-            this.projects = projects
+            this.projects = projects;
+            this.$rootScope = $rootScope;
+            this.$state = $state;
+            this.$location = $location;
         }
 
         $onInit() {
@@ -12,6 +15,15 @@
                 this.projectList = response.data;
 
             });
+
+        }
+
+        loadDataMap(rtpId) {
+            console.log(rtpId);
+            this.$rootScope.rtpId = rtpId;
+            this.$state.go('data.map');
+
+
         }
     }
 

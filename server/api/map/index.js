@@ -8,6 +8,7 @@ var router = express.Router();
 router.get('/', controller.index);
 router.get('/findAll', controller.findAll);
 router.get('/findOne/:id', controller.findOne);
+router.get('/findAllProjects', controller.findAllProjects);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.update);

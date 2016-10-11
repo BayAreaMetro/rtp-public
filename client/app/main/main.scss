@@ -26,3 +26,44 @@
 .navbar-text {
     margin-left: 15px;
 }
+
+
+/*=======================================
+    HOME SECTION STYLES
+==================================================*/
+
+.head-btn-one {
+    background-color: rgba(252, 64, 101, 1);
+    border: 0px solid #fff;
+}
+
+#home {
+    padding-top: 130px;
+    padding-bottom: 200px;
+    color: #fff;
+    background-image: url('/assets/images/sf.png');
+    // background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.head-main {
+    font-size: 80px;
+    font-weight: 900;
+}
+
+.head-sub-main {
+    font-size: 40px;
+    font-weight: 600;
+    padding: 5px 20px 10px 20px;
+}
+
+.head-last {
+    font-size: 20px;
+    font-weight: 300;
+    padding: 5px 20px 20px 20px;
+}
+
+.btn-lg,
+.btn-group-lg>.btn {
+    border-radius: 0px;
+}
