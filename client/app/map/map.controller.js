@@ -117,21 +117,25 @@
                         rtpPolygonLayer.addGeoJson(geoJsonObject);
                         rtpPolygonLayer.setStyle(function(feature) {
                             var polyAttr = feature.getProperty('system');
-                            var color, strokeWeight;
+                            var strokeColor, strokeWeight, fillColor, fillOpacity;
                             // console.log(lineAttr);
                             if (polyAttr === 'Public Transit') {
                                 fillColor = '#009edd';
+                                strokeColor = '#009edd';
                                 strokeWeight = 2;
                                 fillOpacity = 0.2;
                             } else {
-                                color = '#d9534f';
-                                strokeWeight = 3;
+                                fillColor = '#d9534f';
+                                strokeColor = '#d9534f';
+                                strokeWeight = 2;
+                                fillOpacity = 0.1;
                             }
 
                             return {
-                                color: color,
-                                strokeColor: color,
-                                strokeWeight: strokeWeight
+                                fillColor: fillColor,
+                                strokeColor: strokeColor,
+                                strokeWeight: strokeWeight,
+                                fillOpacity: fillOpacity
                             }
                         })
 
