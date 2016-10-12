@@ -59,10 +59,11 @@
                     }
                 });
 
-
-
-
-
+                /**
+                 * Load layers from json files
+                 * /assets/js/rtpLines.json, rtpPoints.json and rtpPolygons.json
+                 */
+                //Line Layer 
                 var getLineLayer = function() {
                     var rtpLineLayer = new google.maps.Data();
                     $.getJSON("/assets/js/rtpLines.json")
@@ -95,22 +96,19 @@
                     return rtpLineLayer;
                 }
 
-
+                //Point Layer
                 var getPointLayer = function() {
-                    var rtpPointLayer = new google.maps.Data();
-                    $.getJSON("/assets/js/rtpPoints.json", function(data) {
+                        var rtpPointLayer = new google.maps.Data();
+                        $.getJSON("/assets/js/rtpPoints.json", function(data) {
 
-                        var geoJsonObject;
-                        geoJsonObject = topojson.feature(data, data.objects.rtpPoints);
-                        rtpPointLayer.addGeoJson(geoJsonObject);
+                            var geoJsonObject;
+                            geoJsonObject = topojson.feature(data, data.objects.rtpPoints);
+                            rtpPointLayer.addGeoJson(geoJsonObject);
 
-                    });
-                    return rtpPointLayer;
-                }
-
-
-
-
+                        });
+                        return rtpPointLayer;
+                    }
+                    //Polygon Layer
                 var getPolygonLayer = function() {
                     var rtpPolygonLayer = new google.maps.Data();
                     $.getJSON("/assets/js/rtpPolygons.json", function(data) {
@@ -122,8 +120,9 @@
                             var color, strokeWeight;
                             // console.log(lineAttr);
                             if (polyAttr === 'Public Transit') {
-                                color = '#009edd';
+                                fillColor = '#009edd';
                                 strokeWeight = 2;
+                                fillOpacity = 0.2;
                             } else {
                                 color = '#d9534f';
                                 strokeWeight = 3;
@@ -140,6 +139,7 @@
                     return rtpPolygonLayer;
                 }
 
+
                 //Register layers and add to map
                 this.rtpLineLayer = getLineLayer();
                 this.rtpLineLayer.setMap(gmap);
@@ -155,12 +155,17 @@
                 return this.gmap;
             }
         }
+
+        //On page initialization, load default map
         $onInit() {
-            this.initMap();
-
-        }
-
-        rtpLinesToggle(layerName, feature) {
+                this.initMap();
+            }
+            /**
+             * Toggle layers function for RTP layers
+             * @params layerName (name of layer being turned on/off)
+             * @params feature (feature type. point, poly or line)
+             */
+        rtpLayerToggle(layerName, feature) {
             switch (feature) {
                 case 'line':
                     if (this.rtpLineCheckbox === 1) {
@@ -189,10 +194,46 @@
                 default:
                     break;
             }
-            // console.log(this.rtpLineCheckbox);
-            // console.log(this.gmap);
 
+        }
 
+        loadOverlays(layerName) {
+            console.log(this.pdasCheckbox);
+            switch (layerName) {
+                case this.pdaLayer:
+                    if (!layerName && this.pdasCheckbox === 1) {
+                        var getPDALayer = function() {
+                            var pdaLayer = new google.maps.Data();
+                            $.getJSON("/assets/js/pdas.json", function(data) {
+                                var geoJsonObject;
+                                geoJsonObject = topojson.feature(data, data.objects.pdas);
+                                pdaLayer.addGeoJson(geoJsonObject);
+                                pdaLayer.setStyle(function(feature) {
+
+                                    return {
+                                        fillColor: 'orange',
+                                        strokeColor: 'orange',
+                                        fillOpacity: 0.2,
+                                        strokeWeight: 2
+                                    }
+                                })
+
+                            });
+                            return pdaLayer;
+                        }
+
+                        this.pdaLayer = getPDALayer();
+                        this.pdaLayer.setMap(this.gmap);
+                    } else if (layerName && this.pdasCheckbox === 0) {
+                        this.pdaLayer.setMap();
+                    } else if (layerName && this.pdasCheckbox === 1) {
+                        this.pdaLayer.setMap(this.gmap);
+                    }
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         addThing() {
