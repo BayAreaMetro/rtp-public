@@ -15,6 +15,8 @@
             this.rtpPointCheckbox = 1;
             this.rtpPolygonCheckbox = 1;
 
+            var infowindow = new google.maps.InfoWindow();
+
             /**
              * iniMap function
              * initializes gmap defaults
@@ -58,6 +60,66 @@
 
                     }
                 });
+
+
+                //GOOGLE SEARCH
+                var wrappedQueryResult = document.getElementById('pac-input');
+
+                // Create the search box and link it to the UI element.
+                var searchBox = new google.maps.places.SearchBox(wrappedQueryResult);
+                // gmap.controls[google.maps.ControlPosition.TOP_LEFT].push(wrappedQueryResult);
+
+                // Bias the SearchBox results towards current map's viewport.
+                gmap.addListener('bounds_changed', function() {
+                    searchBox.setBounds(gmap.getBounds());
+                });
+
+                var markers = [];
+                // Listen for the event fired when the user selects a prediction and retrieve
+                // more details for that place.
+                searchBox.addListener('places_changed', function() {
+                    var places = searchBox.getPlaces();
+                    // //console.log(places);
+
+                    if (places.length === 0) {
+                        return;
+                    }
+
+                    // Clear out the old markers.
+                    markers.forEach(function(marker) {
+                        marker.setMap(null);
+                    });
+                    markers = [];
+
+                    // For each place, get the icon, name and location.
+                    var bounds = new google.maps.LatLngBounds();
+                    places.forEach(function(place) {
+                        var icon = {
+                            url: place.icon,
+                            size: new google.maps.Size(71, 71),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: new google.maps.Point(17, 34),
+                            scaledSize: new google.maps.Size(25, 25)
+                        };
+
+                        // Create a marker for each place.
+                        markers.push(new google.maps.Marker({
+                            map: gmap,
+                            icon: icon,
+                            title: place.name,
+                            position: place.geometry.location
+                        }));
+
+                        if (place.geometry.viewport) {
+                            // Only geocodes have viewport.
+                            bounds.union(place.geometry.viewport);
+                        } else {
+                            bounds.extend(place.geometry.location);
+                        }
+                    });
+                    gmap.fitBounds(bounds);
+                });
+                //END GOOGLE SEARCH
 
                 /**
                  * Load layers from json files
@@ -118,7 +180,6 @@
                         rtpPolygonLayer.setStyle(function(feature) {
                             var polyAttr = feature.getProperty('system');
                             var strokeColor, strokeWeight, fillColor, fillOpacity;
-                            // console.log(lineAttr);
                             if (polyAttr === 'Public Transit') {
                                 fillColor = '#009edd';
                                 strokeColor = '#009edd';
@@ -154,13 +215,18 @@
                 this.rtpPolygonLayer = getPolygonLayer();
                 this.rtpPolygonLayer.setMap(gmap);
 
+
+
+
                 //Register map object
                 this.gmap = gmap;
                 return this.gmap;
             }
         }
 
-        //On page initialization, load default map
+        /**
+         * On page initialization, load default map
+         */
         $onInit() {
                 this.initMap();
             }
@@ -201,6 +267,11 @@
 
         }
 
+        /**
+         * Toggle layers function for overlays
+         * @params layerName (name of layer being turned on/off)
+         *
+         */
         loadOverlays(layerName) {
             console.log(this.pdasCheckbox);
             switch (layerName) {
