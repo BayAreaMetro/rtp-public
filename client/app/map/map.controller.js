@@ -8,11 +8,10 @@
 
         $onInit() {
             var gmap;
-
             gmap = new google.maps.Map(document.getElementById('canvas'), {
                 center: new google.maps.LatLng(37.796966, -122.275051),
                 defaults: {
-                    //icon: '/assets/images/GenericBlueStop16.png',
+                    icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
                     //shadow: 'dot_shadow.png',                    
                     editable: false,
                     strokeColor: '#2196f3',
@@ -42,50 +41,74 @@
                 if (!this.loaded) {
                     this.loaded = true;
                     // NOTE: We start with a MULTIPOLYGON; these aren't easily deconstructed, so we won't set this object to be editable in this example
-                    document.getElementById('wkt').value = 'MULTIPOLYGON (((40 40, 20 45, 45 30, 40 40)), ((20 35, 10 30, 10 10, 30 5, 45 20, 20 35), (30 20, 20 15, 20 25, 30 20)))';
-                    app.mapIt();
+
                 }
             });
+            var rtpLineLayer = new google.maps.Data();
+            var rtpPointLayer = new google.maps.Data();
+            var rtpPolygonLayer = new google.maps.Data();
 
+            // console.log(rtpLineLayer);
 
-            google.maps.event.addListener(gmap.drawingManager, 'overlaycomplete', function(event) {
-                var wkt;
+            $.getJSON("/assets/js/rtpLines.json", function(data) {
+                var geoJsonObject;
+                geoJsonObject = topojson.feature(data, data.objects.rtpLines);
+                rtpLineLayer.addGeoJson(geoJsonObject);
+                rtpLineLayer.setStyle(function(feature) {
+                    var lineAttr = feature.getProperty('system');
+                    var color, strokeWeight;
+                    // console.log(lineAttr);
+                    if (lineAttr === 'Public Transit') {
+                        color = '#009edd';
+                        strokeWeight = 2;
+                    } else {
+                        color = '#d9534f';
+                        strokeWeight = 3;
+                    }
 
-                app.clearText();
-                app.clearMap();
-
-                // Set the drawing mode to "pan" (the hand) so users can immediately edit
-                this.setDrawingMode(null);
-
-                // Polygon drawn
-                if (event.type === google.maps.drawing.OverlayType.POLYGON || event.type === google.maps.drawing.OverlayType.POLYLINE) {
-                    // New vertex is inserted
-                    google.maps.event.addListener(event.overlay.getPath(), 'insert_at', function(n) {
-                        app.updateText();
-                    });
-
-                    // Existing vertex is removed (insertion is undone)
-                    google.maps.event.addListener(event.overlay.getPath(), 'remove_at', function(n) {
-                        app.updateText();
-                    });
-
-                    // Existing vertex is moved (set elsewhere)
-                    google.maps.event.addListener(event.overlay.getPath(), 'set_at', function(n) {
-                        app.updateText();
-                    });
-                } else if (event.type === google.maps.drawing.OverlayType.RECTANGLE) { // Rectangle drawn
-                    // Listen for the 'bounds_changed' event and update the geometry
-                    google.maps.event.addListener(event.overlay, 'bounds_changed', function() {
-                        app.updateText();
-                    });
-                }
-
-                app.features.push(event.overlay);
-                wkt = new Wkt.Wkt();
-                wkt.fromObject(event.overlay);
-                document.getElementById('wkt').value = wkt.write();
+                    return {
+                        color: color,
+                        strokeColor: color,
+                        strokeWeight: strokeWeight
+                    }
+                })
+                rtpLineLayer.setMap(gmap);
             });
-            console.log(gmap);
+
+            $.getJSON("/assets/js/rtpPoints.json", function(data) {
+                var geoJsonObject;
+                geoJsonObject = topojson.feature(data, data.objects.rtpPoints);
+                rtpPointLayer.addGeoJson(geoJsonObject);
+                console.log(rtpPointLayer);
+
+                rtpPointLayer.setMap(gmap);
+            });
+
+            $.getJSON("/assets/js/rtpPolygons.json", function(data) {
+                var geoJsonObject;
+                geoJsonObject = topojson.feature(data, data.objects.rtpPolygons);
+                rtpPolygonLayer.addGeoJson(geoJsonObject);
+                rtpPolygonLayer.setStyle(function(feature) {
+                    var polyAttr = feature.getProperty('system');
+                    var color, strokeWeight;
+                    // console.log(lineAttr);
+                    if (polyAttr === 'Public Transit') {
+                        color = '#009edd';
+                        strokeWeight = 2;
+                    } else {
+                        color = '#d9534f';
+                        strokeWeight = 3;
+                    }
+
+                    return {
+                        color: color,
+                        strokeColor: color,
+                        strokeWeight: strokeWeight
+                    }
+                })
+                rtpPolygonLayer.setMap(gmap);
+            });
+
             return gmap;
 
         }
