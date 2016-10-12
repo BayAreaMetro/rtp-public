@@ -9,3 +9,17 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="checkbox">
+        <label><input type="checkbox" name="rtpLines" ng-true-value="1" ng-false-value="0" ng-change="$ctrl.rtpLinesToggle($ctrl.rtpPointLayer,'point')"
+				ng-model="$ctrl.rtpPointCheckbox">Points</label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" name="rtpPoints" ng-true-value="1" ng-false-value="0" ng-change="$ctrl.rtpLinesToggle($ctrl.rtpLineLayer,'line')"
+				ng-model="$ctrl.rtpLineCheckbox">Lines</label>
+    </div>
+    <div class="checkbox disabled">
+        <label><input type="checkbox" name="rtpPolygons" ng-true-value="1" ng-false-value="0" ng-change="$ctrl.rtpLinesToggle($ctrl.rtpPolygonLayer,'poly')"
+				ng-model="$ctrl.rtpPolygonCheckbox">Polygons</label>
+    </div>
+</div>
