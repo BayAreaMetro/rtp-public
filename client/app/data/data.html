@@ -1,4 +1,48 @@
-<div class="container">
+<div class="container typeahead-demo">
+    <div class="row">
+        <div class="form-group row">
+            <label for="rtpIdInput" class="col-xs-2 col-form-label">Reference ID:</label>
+            <div class="col-xs-10">
+                <input class="form-control" type="text" value="Artisanal kale" id="rtpIdInput" ng-model="$ctrl.search.rtpId" uib-typeahead="id for id in $ctrl.rtpIdsList | filter:$viewValue | limitTo:8">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="fullTextInput" class="col-xs-2 col-form-label">Title</label>
+            <div class="col-xs-10">
+                <input class="form-control" type="search" value="How do I shoot web" id="fullTextInput" ng-model="$ctrl.search.fullText">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="countyInput" class="col-xs-2 col-form-label">County</label>
+            <div class="col-xs-10">
+                <select class="form-control" id="countyInput" ng-model="$ctrl.search.county">
+                    <option></option>
+                 <option ng-repeat="val in $ctrl.countiesList">{{val.county}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="modeInput" class="col-xs-2 col-form-label">Mode</label>
+            <div class="col-xs-10">
+                <select class="form-control" id="modeInput" ng-model="$ctrl.search.mode">
+                    <option ng-repeat="val in $ctrl.modeList">{{val.mode}}</option>
+                 </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="sponsorInput" class="col-xs-2 col-form-label">Sponsor</label>
+            <div class="col-xs-10">
+                <select class="form-control" id="sponsorInput" ng-model="$ctrl.search.agency">
+                     <option></option>
+                     <option ng-repeat="val in $ctrl.sponsorList">{{val.agency}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row" style="float:right;">
+            <button type="button" class="btn btn-large btn-default" ng-click="$ctrl.clearFilters()">Clear Filters</button>
+        </div>
+    </div>
+
     <div class="row">
         <div ui-view="data-content">
             <div class="col-md-12">
@@ -22,7 +66,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="list in $ctrl.projectList">
+                                    <tr ng-repeat="list in $ctrl.projectList | filter:{rtpId:$ctrl.search.rtpId, title:$ctrl.search.fullText, county: $ctrl.search.county, mode:$ctrl.search.mode, agency:$ctrl.search.agency}">
                                         <td>{{list.title}}</td>
                                         <td>{{list.description}}</td>
                                         <td>{{list.county}}</td>
@@ -30,6 +74,7 @@
                                         <td class="td-actions" style="text-align: right;">
                                             <a href="javascript:;" class="btn btn-small" ng-click="$ctrl.loadDataMap(list.rtpId)" ng-if="list.mapStatus === 'Needs Review'">
                                                 <i class="fa fa-th-list" style="font-size:30px;"></i>
+                                                <i class="fa fa-map" style="font-size:30px;"></i>
                                             </a>
                                         </td>
                                     </tr>
