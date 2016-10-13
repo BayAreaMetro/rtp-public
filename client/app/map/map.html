@@ -38,6 +38,21 @@
             <div class="checkbox">
                 <label><input type="checkbox" name="pdasLayer" ng-true-value="1" ng-false-value="0" ng-change="$ctrl.loadOverlays($ctrl.pdaLayer)"
 				ng-model="$ctrl.pdasCheckbox">Priority Development Areas</label>
+                <br>
+                <h1>Legend</h1>
+                <div>
+                    <label for="">Transit Projects</label>
+                    <div style="width:20px;height:20px;background-color:blue;"></div>
+                </div>
+                <div>
+                    <label for="">Roadway Projects</label>
+                    <div style="width:20px;height:20px;background-color:red;"></div>
+                </div>
+                <div ng-show="$ctrl.legend.pdas">
+                    <label for="">Priority Development Areas</label>
+                    <div style="width:20px;height:20px;background-color:orange;"></div>
+                </div>
+
             </div>
         </div>
     </div>

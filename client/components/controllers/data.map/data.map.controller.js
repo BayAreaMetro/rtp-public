@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('rtpApp')
-    .controller('DataMapCtrl', function($scope, projects, $rootScope, maps) {
+    .controller('DataMapCtrl', function($scope, projects, $rootScope, maps, $location) {
         var gmap; //Map object
         var features = []; //Holds gmap layer
         var obj, wkt; //Wkt variables
@@ -10,7 +10,18 @@ angular.module('rtpApp')
          * Load current project's WKT String'
          */
 
-        var rtpId = $rootScope.rtpId;
+        var rtpId;
+
+        //Check for rtpId in the url Parameter or in rootScope
+        if ($location.search().rtpId) {
+            rtpId = $location.search().rtpId;
+        } else if ($rootScope.rtpId) {
+            rtpId = $rootScope.rtpId;
+        };
+
+        //Set url paramter to current rtpId
+        $location.search('rtpId', rtpId);
+
 
 
         /**Initialize Map
@@ -151,6 +162,8 @@ angular.module('rtpApp')
         }
 
         maps.findOne(rtpId).then(response => {
+            console.log(response.data[0]);
+            $scope.currentMapProject = response.data[0];
             var wktString = response.data[0].wkt;
             console.log(response.data[0].wkt);
             init(wktString);

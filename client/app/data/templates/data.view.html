@@ -4,7 +4,36 @@
     <a ui-sref="data.map"> <button type="button" class="btn btn-large btn-primary">Project Location</button></a>
 </div>
 <div>
-    <p class="lead">Detailed view after clicking view icon on data grid</p>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Basic Information
+        </div>
+        <div class="panel-body">
+            <h3>{{projectDetail.title}}</h3>
+            <p>{{projectDetail.description}}</p>
+            <p>RTPId: {{projectDetail.rtpId}}</p>
+            <p>County: {{projectDetail.county}}</p>
+            <p>Sponsor: {{projectDetail.agency}}</p>
+            <p>Mode: {{projectDetail.mode}}</p>
+            <p>System: {{projectDetail.system}}</p>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Cost and Funding
+        </div>
+        <div class="panel-body">
 
 
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Schedule
+        </div>
+        <div class="panel-body">
+
+
+        </div>
+    </div>
 </div>

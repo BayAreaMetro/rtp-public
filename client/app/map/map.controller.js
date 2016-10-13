@@ -15,6 +15,9 @@
             this.rtpPointCheckbox = 1;
             this.rtpPolygonCheckbox = 1;
 
+            //Initialize legend object. Holds values for display in legend div
+            this.legend = {};
+
             var infowindow = new google.maps.InfoWindow();
 
             /**
@@ -373,7 +376,6 @@
          *
          */
         loadOverlays(layerName) {
-            console.log(this.pdasCheckbox);
             switch (layerName) {
                 case this.pdaLayer:
                     if (!layerName && this.pdasCheckbox === 1) {
@@ -399,10 +401,13 @@
 
                         this.pdaLayer = getPDALayer();
                         this.pdaLayer.setMap(this.gmap);
+                        this.legend.pdas = 1;
                     } else if (layerName && this.pdasCheckbox === 0) {
                         this.pdaLayer.setMap();
+                        this.legend.pdas = false;
                     } else if (layerName && this.pdasCheckbox === 1) {
                         this.pdaLayer.setMap(this.gmap);
+                        this.legend.pdas = 1;
                     }
                     break;
 

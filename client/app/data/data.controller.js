@@ -62,6 +62,7 @@
             console.log(rtpId);
             this.$rootScope.rtpId = rtpId;
             this.$state.go('data.view');
+
         }
 
         /**
