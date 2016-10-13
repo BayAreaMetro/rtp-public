@@ -21,7 +21,7 @@
         loadDataMap(rtpId) {
             console.log(rtpId);
             this.$rootScope.rtpId = rtpId;
-            this.$state.go('data.map');
+            this.$state.go('data.view');
 
 
         }

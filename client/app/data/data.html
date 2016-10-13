@@ -16,6 +16,8 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Description</th>
+                                        <th>County</th>
+                                        <th>Mode</th>
                                         <th class="td-actions"></th>
                                     </tr>
                                 </thead>
@@ -23,12 +25,11 @@
                                     <tr ng-repeat="list in $ctrl.projectList">
                                         <td>{{list.title}}</td>
                                         <td>{{list.description}}</td>
-                                        <td class="td-actions col-md-2" style="text-align: right;">
-                                            <a href="javascript:;" class="btn btn-small btn-primary">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
+                                        <td>{{list.county}}</td>
+                                        <td>{{list.mode}}</td>
+                                        <td class="td-actions" style="text-align: right;">
                                             <a href="javascript:;" class="btn btn-small" ng-click="$ctrl.loadDataMap(list.rtpId)" ng-if="list.mapStatus === 'Needs Review'">
-                                                <i class="fa fa-map"></i>
+                                                <i class="fa fa-th-list" style="font-size:30px;"></i>
                                             </a>
                                         </td>
                                     </tr>
