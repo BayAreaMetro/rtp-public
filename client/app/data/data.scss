@@ -137,3 +137,8 @@ thead {
     border-radius: 0;
     box-shadow: none;
 }
+
+.selected {
+    background-color: $mainColor !important;
+    color: white;
+}
