@@ -122,7 +122,6 @@
          * All will download all projects. Table will download currently filtered projects. Rows will download individually selected projects
          */
         exportCSV() {
-
             var exportList;
             if (this.exportType === 'all') {
                 exportList = this.projectList;
@@ -131,10 +130,13 @@
             } else if (this.exportType === 'rows') {
                 exportList = this.selectedList;
             }
-            console.log(this.selectedList);
+            //Remove unnecessary fields
+            exportList = _.map(exportList, function(o) { return _.omit(o, 'select', '$$hashKey', 'checked', 'projectId'); });
+            //Unparse array using Papa Parse library
             var str = Papa.unparse(exportList);
             var uri = 'data:text/csv;charset=utf-8,' + encodeURI(str);
 
+            //Create a href link set to download csv file
             var downloadLink = document.createElement("a");
             downloadLink.href = uri;
             downloadLink.download = "data.csv";
@@ -143,6 +145,7 @@
             downloadLink.click();
             document.body.removeChild(downloadLink);
 
+            //Clear table of selected values
             angular.forEach(this.projectList, function(values) {
                 values.checked = 0;
                 values.select = false;
