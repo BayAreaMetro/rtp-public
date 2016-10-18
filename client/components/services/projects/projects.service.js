@@ -6,6 +6,7 @@ angular.module('rtpApp')
         var mapURL = '/api/maps';
         var currentProject = {};
         var allProjects = {};
+        var mapProjectList = {};
 
         //Get all projects
         $http.get(mapURL + '/findAll').then(response => {
@@ -36,6 +37,16 @@ angular.module('rtpApp')
         //Retrieve current project
         this.getCurrentProject = function() {
             return currentProject;
+        }
+
+        //Set projects to view on Map
+        this.setViewOnMap = function(maps) {
+            mapProjectList = maps;
+        }
+
+        //Retrieve project projects to view on map
+        this.getViewOnMap = function() {
+            return mapProjectList;
         }
 
     });

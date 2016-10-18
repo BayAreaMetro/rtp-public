@@ -12,6 +12,7 @@ angular.module('rtpApp')
 
         var rtpId;
 
+
         //Check for rtpId in the url Parameter or in rootScope
         if ($location.search().rtpId) {
             rtpId = $location.search().rtpId;

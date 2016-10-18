@@ -2,18 +2,28 @@
 (function() {
 
     class MapComponent {
-        constructor() {
+        constructor(projects) {
             var gmap;
-            this.message = 'Hello';
+            this.projects = projects;
             //Initialize map layers
             this.rtpLineLayer = new google.maps.Data();
             this.rtpPointLayer = new google.maps.Data();
             this.rtpPolygonLayer = new google.maps.Data();
+            this.loadSelectedFeatures = false;
 
             //Initialize legend layer checkboxes
             this.rtpLineCheckbox = 1;
             this.rtpPointCheckbox = 1;
             this.rtpPolygonCheckbox = 1;
+
+            //Check to see whether a subset of projects has been selected from data page
+            if (projects.getViewOnMap()) {
+                this.rtpIdList = projects.getViewOnMap();
+                this.loadSelectedFeatures = true;
+            }
+
+            this.rtpIdList = projects.getViewOnMap();
+
 
             //Initialize legend object. Holds values for display in legend div
             this.legend = {};
@@ -27,6 +37,7 @@
              * returns @gmap object
              */
             this.initMap = function() {
+                var rtpIdList = this.rtpIdList;
                 gmap = new google.maps.Map(document.getElementById('canvas'), {
                     center: new google.maps.LatLng(37.796966, -122.275051),
                     defaults: {
@@ -130,12 +141,19 @@
                  */
                 //Line Layer 
                 var getLineLayer = function() {
+
                     var rtpLineLayer = new google.maps.Data();
                     $.getJSON("/assets/js/rtpLines.json")
                         .done(function(data) {
-
                             var geoJsonObject;
                             geoJsonObject = topojson.feature(data, data.objects.rtpLines);
+                            //Check for projects selected in data view. Otherwise load all projects
+                            if (rtpIdList.length > 0) {
+                                _.remove(geoJsonObject.features, function(n) {
+                                    // console.log(n.properties.rtpId);
+                                    return rtpIdList.indexOf(n.properties.rtpId) === -1;
+                                });
+                            }
                             rtpLineLayer.addGeoJson(geoJsonObject);
                             rtpLineLayer.setStyle(function(feature) {
                                 var lineAttr = feature.getProperty('system');
@@ -168,6 +186,13 @@
 
                             var geoJsonObject;
                             geoJsonObject = topojson.feature(data, data.objects.rtpPoints);
+                            //Check for projects selected in data view. Otherwise load all projects
+                            if (rtpIdList.length > 0) {
+                                _.remove(geoJsonObject.features, function(n) {
+                                    // console.log(n.properties.rtpId);
+                                    return rtpIdList.indexOf(n.properties.rtpId) === -1;
+                                });
+                            }
                             rtpPointLayer.addGeoJson(geoJsonObject);
 
                         });
@@ -179,6 +204,13 @@
                     $.getJSON("/assets/js/rtpPolygons.json", function(data) {
                         var geoJsonObject;
                         geoJsonObject = topojson.feature(data, data.objects.rtpPolygons);
+                        //Check for projects selected in data view. Otherwise load all projects
+                        if (rtpIdList.length > 0) {
+                            _.remove(geoJsonObject.features, function(n) {
+                                // console.log(n.properties.rtpId);
+                                return rtpIdList.indexOf(n.properties.rtpId) === -1;
+                            });
+                        }
                         rtpPolygonLayer.addGeoJson(geoJsonObject);
                         rtpPolygonLayer.setStyle(function(feature) {
                             var polyAttr = feature.getProperty('system');

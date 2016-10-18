@@ -12,6 +12,8 @@
                 this.$filter = $filter;
                 this.$scope = $scope;
                 this.selectedValues = [];
+                //Set download/export type to All projects
+                this.exportType === 'all';
 
             }
             /**
@@ -129,8 +131,10 @@
                 exportList = this.selectedValues;
             } else if (this.exportType === 'rows') {
                 exportList = this.selectedList;
+            } else {
+                exportList = this.projectList;
             }
-            //Remove unnecessary fields
+            //Remove unnecessary fields (lodash)
             exportList = _.map(exportList, function(o) { return _.omit(o, 'select', '$$hashKey', 'checked', 'projectId'); });
             //Unparse array using Papa Parse library
             var str = Papa.unparse(exportList);
@@ -151,6 +155,29 @@
                 values.select = false;
             });
             // window.open("data:text/csv;charset=utf-8," + encodeURI(str));
+        }
+
+        viewOnMap() {
+            var exportList;
+            if (this.exportType === 'all') {
+                exportList = this.projectList;
+            } else if (this.exportType === 'table') {
+                exportList = this.selectedValues;
+            } else if (this.exportType === 'rows') {
+                exportList = this.selectedList;
+            } else {
+                exportList = this.projectList;
+            }
+            //Remove unnecessary fields (lodash)
+            exportList = _.map(exportList, function(o) { return _.pick(o, 'rtpId'); });
+            // console.log(exportList);
+            var rtpIdArray = [];
+            exportList.forEach(function(element) {
+                rtpIdArray.push(element.rtpId);
+            }, this);
+            console.log(rtpIdArray);
+            this.projects.setViewOnMap(rtpIdArray);
+            this.$state.go('map');
         }
     }
 
