@@ -1,9 +1,177 @@
-<div class="container typeahead-demo">
-    <div class="row">
+<!--Eyebrow Directive-->
+<eyebrow></eyebrow>
+<!--End Eyebrow-->
+
+<!--Header-->
+<div class="header">
+    <!--<div id="google_translate_element"></div>-->
+    <div class="right-col">
+        <a href="https://www.facebook.com/PlanBayArea" target="_blank" class="facebook"></a>
+        <a href="https://twitter.com/PlanBayArea" target="_blank" class="twitter"></a>
+    </div>
+    <!-- right-col -->
+    <a href="/index.php" class="logo"><img src="http://planbayarea.org/images/PBA_logo_RGB.png" alt="Go to home page" width="109" border="0" height="100"></a>
+
+</div>
+<!--End Header
+
+<!--Navigation-->
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-slide-dropdown">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+            <!--<a class="navbar-brand" href="#"><i class="fa fa-search"></i>&nbsp; Tools</a>-->
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-slide-dropdown" style="padding-top:10px;padding-left:0;">
+            <ul class="nav navbar-nav">
+                <form class="navbar-form navbar-left" role="search" style="padding:0;margin:0;border-style:none;">
+                    <div class="form-group" style="margin-top:0;">
+                        <input type="text" class="form-control" style="height:36px;" placeholder="RTPID Search..." ng-model="$ctrl.search.rtpId" uib-typeahead="id for id in $ctrl.rtpIdsList | filter:$viewValue | limitTo:8">
+                    </div>
+                    <!--<button type="submit" class="btn btn-default">Submit</button>-->
+                </form>
+                <form class="navbar-form navbar-left" role="search" style="padding:0;margin:0;border-style:none;">
+                    <div class="form-group" style="margin-top:0;">
+                        <!--<select class="selectpicker" id="countyInput" name="countyInput" ng-model="$ctrl.search.county" title="Select County...">-->
+                        <!--<option default>County</option>-->
+                        <!--<option ng-repeat="val in $ctrl.countiesList">{{val.county}}</option>-->
+                        <!--</select>-->
+                        <ui-select ng-model="$ctrl.county" theme="selectize" ng-disabled="ctrl.disabled" style="width: 150px;" title="Choose a country">
+                            <ui-select-match placeholder="County">{{$select.selected.county}}</ui-select-match>
+                            <ui-select-choices repeat="county in $ctrl.countiesList | filter: $select.search">
+                                <span ng-bind-html="county.county | highlight: $select.search"></span>
+
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </form>
+                <form class="navbar-form navbar-left" role="search" style="padding:0;margin:0;border-style:none;">
+                    <div class="form-group" style="margin-top:0;">
+                        <ui-select ng-model="$ctrl.mode" theme="selectize" ng-disabled="ctrl.disabled" style="width: 120px;" title="Choose a country">
+                            <ui-select-match placeholder="Mode">{{$select.selected.mode}}</ui-select-match>
+                            <ui-select-choices repeat="val in $ctrl.modeList | filter: $select.search">
+                                <span ng-bind-html="val.mode | highlight: $select.search"></span>
+
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </form>
+                <form class="navbar-form navbar-left  hidden-sm hidden-xs" role="search" style="padding:0;margin:0;border-style:none;">
+                    <div class="form-group" style="margin-top:0;">
+                        <ui-select allow-clear ng-model="$ctrl.sponsor" theme="selectize" style="width: 230px;">
+                            <ui-select-match placeholder="Sponsor">{{$select.selected.agency}}</ui-select-match>
+                            <ui-select-choices repeat="val in $ctrl.sponsorList | filter: $select.search">
+                                <span ng-bind-html="val.agency | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+
+                    </div>
+                </form>
+                <!--<form class="navbar-form navbar-left" role="search">
+                    <span class="input-group-btn">
+                            <button type="button" ng-click="$ctrl.sponsor = undefined" class="btn btn-default">
+                                <span class="glyphicon glyphicon-trash"></span>&nbsp;Clear Filters
+                    </button>
+                    </span>
+                </form>-->
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<!--End Navigation-->
+
+<!--Main Section-->
+<div ui-view="data-content">
+    <div class="container-fluid" style="padding-left:0;">
+        <div class="row">
+            <div class="col-md-6" style="padding-right:0;">
+                <table class="table table-fixed" style="height:540px;">
+                    <thead>
+                        <tr>
+                            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="padding-left:10px;">
+                                <input type="checkbox" ng-model="projects.select" ng-checked="projects.checked" ng-click="$ctrl.selectAll(projects)">
+                            </th>
+                            <th class="col-lg-2 col-md-2 col-sm-2 col-xs-2">RTPID</th>
+                            <th class="col-lg-4 col-md-4 col-sm-6 col-xs-6">Title</th>
+                            <!--<th class="col-lg-4 col-md-4 hidden-md hidden-sm hidden-xs">Description</th>-->
+                            <th class="col-lg-2 col-md-2 hidden-sm hidden-xs">County</th>
+                            <th class="col-lg-2 col-md-2 hidden-sm hidden-xs">Mode</th>
+                            <th class="col-lg-1 col-md-1 col-sm-3 col-xs-3">&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-mouseover="$ctrl.showMapProject(list)" ng-class="{'selected': list.select}" ng-repeat="list in $ctrl.selectedValues = ($ctrl.projectList | filter:{rtpId:$ctrl.search.rtpId, title:$ctrl.search.fullText, county: $ctrl.county.county, mode:$ctrl.mode.mode, agency:$ctrl.sponsor.agency})">
+                            <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="padding-left:10px;">
+                                <div class="checkbox">
+                                    <label>
+                                                    <input type="checkbox" ng-model="list.select" ng-checked="list.checked" ng-click="$ctrl.checkSelected()">
+                                                </label>
+                                </div>
+                            </td>
+                            <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{list.rtpId}}</td>
+                            <td class="col-lg-4 col-md-4 col-sm-6 col-xs-6">{{list.title}}</td>
+                            <!--<td class="col-lg-4 col-md-4 hidden-md hidden-sm hidden-xs">{{list.description}}</td>-->
+                            <td class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{list.county}}</td>
+                            <td class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{list.mode}}</td>
+                            <td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="text-align: right;">
+                                <a href="javascript:;" class="btn btn-small" ng-click="$ctrl.loadDataMap(list.rtpId)" ng-if="list.mapStatus === 'Needs Review'">
+                                    <i class="fa fa-th-list" style="font-size:20px;"></i>
+
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6" style="padding-right:0; padding-left:0;">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix" style="padding-top:0; height:40px;">
+
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-large btn-default" ng-click="$ctrl.clearFilters()">Clear Filters</button>
+                            <button type="button" class="btn btn-large btn-default" ng-click="$ctrl.viewOnMap()">View on Map</button>
+                            <button type="button" class="btn btn-large btn-default" ng-click="$ctrl.exportCSV()">Export to CSV</button>
+                        </div>
+                    </div>
+                    <div class="panel-body map-panel">
+                        <div id="data-canvas" class="col-sm-12 mapContainer" ng-init="$ctrl.initMap()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--<div class="row">
         <div class="form-group row">
             <label for="rtpIdInput" class="col-xs-2 col-form-label">Reference ID:</label>
             <div class="col-xs-10">
-                <input class="form-control" type="text" value="Artisanal kale" id="rtpIdInput" ng-model="$ctrl.search.rtpId" uib-typeahead="id for id in $ctrl.rtpIdsList | filter:$viewValue | limitTo:8">
+                <input class="form-control" type="text" id="rtpIdInput" ng-model="$ctrl.search.rtpId" uib-typeahead="id for id in $ctrl.rtpIdsList | filter:$viewValue | limitTo:8">
             </div>
         </div>
         <div class="form-group row">
@@ -43,71 +211,12 @@
             <button type="button" class="btn btn-large btn-default" ng-click="$ctrl.viewOnMap()">View on Map</button>
             <button type="button" class="btn btn-large btn-default" ng-click="$ctrl.exportCSV()">Export to CSV</button>
         </div>
-    </div>
+    </div>-->
 
-    <div class="row">
-        <div ui-view="data-content">
-            <div class="col-md-12">
-                <div class="span7" style="padding-top:20px;">
-                    <div class="widget stacked widget-table action-table">
-                        <div class="widget-header" style="padding-bottom:5px;">
-                            <h3>Project List</h3>
-                        </div>
-                        <!-- /widget-header -->
-
-                        <div class="widget-content">
-
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" ng-model="projects.select" ng-checked="projects.checked" ng-click="$ctrl.selectAll(projects)">
-                                                </label>
-                                            </div>
-                                        </th>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Description</th>
-                                        <th>County</th>
-                                        <th>Mode</th>
-                                        <th class="td-actions"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-class="{'selected': list.select}" ng-repeat="list in $ctrl.selectedValues = ($ctrl.projectList | filter:{rtpId:$ctrl.search.rtpId, title:$ctrl.search.fullText, county: $ctrl.search.county, mode:$ctrl.search.mode, agency:$ctrl.search.agency})">
-                                        <td>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" ng-model="list.select" ng-checked="list.checked" ng-click="$ctrl.checkSelected()">
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>{{list.rtpId}}</td>
-                                        <td>{{list.title}}</td>
-                                        <td>{{list.description}}</td>
-                                        <td>{{list.county}}</td>
-                                        <td>{{list.mode}}</td>
-                                        <td class="td-actions" style="text-align: right;">
-                                            <a href="javascript:;" class="btn btn-small" ng-click="$ctrl.loadDataMap(list.rtpId)" ng-if="list.mapStatus === 'Needs Review'">
-                                                <i class="fa fa-th-list" style="font-size:30px;"></i>
-                                                <i class="fa fa-map" style="font-size:30px;"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-
-                        </div>
-                        <!-- /widget-content -->
-
-                    </div>
-                    <!-- /widget -->
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="row">
 
 </div>
+
+</div>
+
+<!--End Main Section-->

@@ -5,17 +5,7 @@ angular.module('rtpApp')
         var baseURL = "/api/projects";
         var mapURL = '/api/maps';
         var currentProject = {};
-        var allProjects = {};
         var mapProjectList = {};
-
-        //Get all projects
-        $http.get(mapURL + '/findAll').then(response => {
-            allProjects = response.data;
-            // var test = _.find(allProjects, function(val) {
-            //     return val.rtpId = '17-07-0068';
-            // });
-            // console.log(test);
-        });
 
         //Query all projects
         this.findAll = function() {

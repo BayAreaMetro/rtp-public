@@ -16,13 +16,19 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
     <!-- endbower -->
     <!-- endbuild -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
+
     <!-- build:css({.tmp,client}) app/app.css -->
     <link rel="stylesheet" href="app/app.css">
     <!-- injector:css -->
     <!-- endinjector -->
     <!-- endbuild -->
+
 </head>
 
 <body ng-app="rtpApp">
@@ -31,7 +37,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <navbar></navbar>
+
     <div ui-view=""></div>
     <footer></footer>
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyDj_I4ksjxsQi6GkpAqGrrGemhiM16sqGQ&libraries=drawing,places" type="text/javascript"></script>
@@ -71,12 +77,15 @@
     <script src="bower_components/Wicket/wicket.js"></script>
     <script src="bower_components/Wicket/wicket-gmap3.js"></script>
     <script src="bower_components/papaparse/papaparse.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
     <!--Topojson library-->
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="/assets/js/vendor/markerclusterer.js"></script>
+
     <!-- build:js(.tmp) app/app.js -->
     <script src="app/app.js"></script>
     <!-- injector:js -->
@@ -91,6 +100,7 @@
     <script src="app/map/map.js"></script>
     <script src="components/controllers/data.map/data.map.controller.js"></script>
     <script src="app/data/data.controller.js"></script>
+    <script src="components/directives/eyebrow/eyebrow.directive.js"></script>
     <script src="components/footer/footer.directive.js"></script>
     <script src="components/modal/modal.service.js"></script>
     <script src="components/navbar/navbar.controller.js"></script>
@@ -102,6 +112,7 @@
     <script src="components/util/util.service.js"></script>
     <!-- endinjector -->
     <!-- endbuild -->
+
 </body>
 
 </html>
