@@ -27,22 +27,13 @@
                 this.rtpPointCheckbox = 1;
                 this.rtpPolygonCheckbox = 1;
 
-                //Check to see whether a subset of projects has been selected from data page
-                if (projects.getViewOnMap()) {
-                    this.rtpIdList = projects.getViewOnMap();
-                    this.loadSelectedFeatures = true;
-                }
-
-                this.rtpIdList = projects.getViewOnMap();
-                console.log(this.rtpIdList);
 
 
                 //Initialize legend object. Holds values for display in legend div
                 this.legend = {};
 
-                var infowindow = new google.maps.InfoWindow();
-                console.log(infowindow);
-
+                //Info windows
+                this.infowindow = new google.maps.InfoWindow();
                 this.mouseoverInfoWindow = new google.maps.InfoWindow();
 
 
@@ -53,6 +44,16 @@
                  * returns @gmap object
                  */
                 this.initMap = function() {
+                    //Check to see whether a subset of projects has been selected from data page
+                    if (projects.getViewOnMap()) {
+                        this.rtpIdList = projects.getViewOnMap();
+                        this.loadSelectedFeatures = true;
+                    }
+
+                    this.rtpIdList = projects.getViewOnMap();
+                    console.log(this.rtpIdList);
+
+
                     // Map Variables
                     var gmap;
                     console.log('in the map');
@@ -232,72 +233,125 @@
                     this.rtpPointLayer = getPointLayer();
                     this.rtpPolygonLayer = getPolygonLayer();
 
-                    var infowindow = new google.maps.InfoWindow;
+                    var infowindow = this.infowindow;
+                    var mouseoverInfoWindow = this.mouseoverInfoWindow;
 
                     //Set Layer Infowindows
                     this.rtpLineLayer.addListener('click', function(event) {
-                        console.log(event);
-                        var contentString = '<div id="content">' +
-                            '<div id="siteNotice">' +
-                            '</div>' +
-                            '<h1 id="firstHeading" class="firstHeading">' + event.feature.getProperty('title') + '</h1>' +
-                            '<div id="bodyContent">' +
-                            '<p>' + event.feature.getProperty('agency') + '</p>' +
-                            '<p>' + event.feature.getProperty('county') + '</p>' +
-                            '</div>' +
+                        // console.log(event);
+
+                        var contentString = '<div>' +
+                            '<table class="table">' +
+                            '<thead style="background-color:blue;color:white;">' +
+                            '<h5>' + event.feature.getProperty('title') + '</h5>' +
+                            '  </thead>' +
+                            '<tbody>' +
+                            '<tr>' +
+                            '<td>' +
+                            'Agency:' +
+                            '</td>' +
+                            '<td>' +
+                            event.feature.getProperty('agency') +
+                            '</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<td>' +
+                            'County: ' +
+                            '</td>' +
+                            '<td>' +
+                            event.feature.getProperty('county') +
+                            '</td>' +
+                            '</tr>' +
+                            '</tbody>' +
+                            '</table>' +
                             '</div>';
 
                         var position = {
                             lat: event.latLng.lat(),
                             lng: event.latLng.lng()
                         };
-                        console.log(position);
+                        // console.log(position);
                         infowindow.setPosition(position);
                         infowindow.setContent(contentString);
+                        mouseoverInfoWindow.close();
                         infowindow.open(gmap);
                     });
 
                     this.rtpPointLayer.addListener('click', function(event) {
-                        console.log(event);
-                        var contentString = '<div id="content">' +
-                            '<div id="siteNotice">' +
-                            '</div>' +
-                            '<h1 id="firstHeading" class="firstHeading">' + event.feature.getProperty('title') + '</h1>' +
-                            '<div id="bodyContent">' +
-                            '<p>' + event.feature.getProperty('agency') + '</p>' +
-                            '<p>' + event.feature.getProperty('county') + '</p>' +
-                            '</div>' +
+                        // console.log(event);
+                        var contentString = '<div>' +
+                            '<table class="table">' +
+                            '<thead style="background-color:blue;color:white;">' +
+                            '<h5>' + event.feature.getProperty('title') + '</h5>' +
+                            '  </thead>' +
+                            '<tbody>' +
+                            '<tr>' +
+                            '<td>' +
+                            'Agency:' +
+                            '</td>' +
+                            '<td>' +
+                            event.feature.getProperty('agency') +
+                            '</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<td>' +
+                            'County: ' +
+                            '</td>' +
+                            '<td>' +
+                            event.feature.getProperty('county') +
+                            '</td>' +
+                            '</tr>' +
+                            '</tbody>' +
+                            '</table>' +
                             '</div>';
 
                         var position = {
                             lat: event.latLng.lat(),
                             lng: event.latLng.lng()
                         };
-                        console.log(position);
+                        // console.log(position);
                         infowindow.setPosition(position);
                         infowindow.setContent(contentString);
+                        mouseoverInfoWindow.close();
                         infowindow.open(gmap);
                     });
 
                     this.rtpPolygonLayer.addListener('click', function(event) {
-                        console.log(event);
-                        var contentString = '<div id="content">' +
-                            '<div id="siteNotice">' +
-                            '</div>' +
-                            '<h1 id="firstHeading" class="firstHeading">' + event.feature.getProperty('title') + '</h1>' +
-                            '<div id="bodyContent">' +
-                            '<p>' + event.feature.getProperty('agency') + '</p>' +
-                            '<p>' + event.feature.getProperty('county') + '</p>' +
-                            '</div>' +
+                        // console.log(event);
+                        var contentString = '<div>' +
+                            '<table class="table">' +
+                            '<thead style="background-color:blue;color:white;">' +
+                            '<h5>' + event.feature.getProperty('title') + '</h5>' +
+                            '  </thead>' +
+                            '<tbody>' +
+                            '<tr>' +
+                            '<td>' +
+                            'Agency:' +
+                            '</td>' +
+                            '<td>' +
+                            event.feature.getProperty('agency') +
+                            '</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<td>' +
+                            'County: ' +
+                            '</td>' +
+                            '<td>' +
+                            event.feature.getProperty('county') +
+                            '</td>' +
+                            '</tr>' +
+                            '</tbody>' +
+                            '</table>' +
                             '</div>';
 
                         var position = {
                             lat: event.latLng.lat(),
                             lng: event.latLng.lng()
                         };
-                        console.log(position);
+                        // console.log(position);
                         infowindow.setPosition(position);
                         infowindow.setContent(contentString);
+                        mouseoverInfoWindow.close();
                         infowindow.open(gmap);
                     });
                     //End Infowindows
@@ -365,7 +419,7 @@
          * @param rtpId
          */
         loadDataMap(rtpId) {
-            console.log(rtpId);
+            // console.log(rtpId);
             this.$rootScope.rtpId = rtpId;
             this.$state.go('data.view');
 
@@ -375,7 +429,7 @@
          * Resets all filter/search fields
          */
         clearFilters() {
-            console.log(this.$scope);
+            // console.log(this.$scope);
             this.search = {};
             this.county = undefined;
             this.mode = undefined;
@@ -398,7 +452,7 @@
         }
 
         selectAll(projects) {
-            console.log(projects);
+            // console.log(projects);
             this.exportType = 'table';
             if (projects.select) {
                 angular.forEach(this.selectedValues, function(values) {
@@ -481,32 +535,36 @@
             exportList.forEach(function(element) {
                 rtpIdArray.push(element.rtpId);
             }, this);
-            console.log(rtpIdArray);
+            // console.log(rtpIdArray);
             this.projects.setViewOnMap(rtpIdArray);
             // this.$state.go('map');
+            this.initMap();
         }
 
         showMapProject(project) {
             var gmap = this.gmap;
             var mouseoverInfoWindow = this.mouseoverInfoWindow;
+            var infowindow = this.infowindow;
+
             mouseoverInfoWindow.close();
+            infowindow.close();
             // console.log(project);
             // console.log(project.rtpId);
             var rtpId = project.rtpId;
-            console.log(project.featureType);
+            // console.log(project.featureType);
             switch (project.featureType) {
                 case 'LN':
                     this.rtpLineLayer.forEach(function(feature) {
 
                         if (feature.f.rtpId === rtpId) {
                             var geo;
-                            console.log(feature.getGeometry().b[0]);
+                            // console.log(feature.getGeometry().b[0]);
                             if (feature.getGeometry().b[0].b[0]) {
                                 geo = feature.getGeometry().b[0].b[0];
-                                console.log('multiline');
+                                // console.log('multiline');
                             } else {
                                 geo = feature.getGeometry().b[0];
-                                console.log('singleline');
+                                // console.log('singleline');
                             }
                             var contentString = '<div>' +
                                 '<table class="table">' +
@@ -538,7 +596,7 @@
                                 lat: geo.lat(),
                                 lng: geo.lng()
                             };
-                            console.log(position);
+                            // console.log(position);
                             mouseoverInfoWindow.setPosition(position);
                             mouseoverInfoWindow.setContent(contentString);
                             openInfoWindow(mouseoverInfoWindow);
@@ -549,7 +607,7 @@
                     this.rtpPointLayer.forEach(function(feature) {
 
                         if (feature.f.rtpId === rtpId) {
-                            console.log(feature.getGeometry());
+                            // console.log(feature.getGeometry());
                             var geo = feature.getGeometry().b;
                             var contentString = '<div>' +
                                 '<table class="table">' +
@@ -581,7 +639,7 @@
                                 lat: geo.lat(),
                                 lng: geo.lng()
                             };
-                            console.log(position);
+                            // console.log(position);
                             mouseoverInfoWindow.setPosition(position);
                             mouseoverInfoWindow.setContent(contentString);
                             openInfoWindow(mouseoverInfoWindow);
@@ -592,7 +650,7 @@
                     this.rtpPolygonLayer.forEach(function(feature) {
 
                         if (feature.f.rtpId === rtpId) {
-                            console.log(feature.getGeometry());
+                            // console.log(feature.getGeometry());
                             var geo = feature.getGeometry().b[0];
                             var contentString = '<div>' +
                                 '<table class="table">' +
@@ -625,7 +683,7 @@
                                 lat: geo.lat(),
                                 lng: geo.lng()
                             };
-                            console.log(position);
+                            // console.log(position);
                             mouseoverInfoWindow.setPosition(position);
                             mouseoverInfoWindow.setContent(contentString);
                             openInfoWindow(mouseoverInfoWindow);
@@ -638,7 +696,7 @@
             }
 
             function openInfoWindow(window) {
-                console.log(gmap);
+                // console.log(gmap);
                 window.open(gmap);
             }
         }
