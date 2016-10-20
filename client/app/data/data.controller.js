@@ -43,6 +43,8 @@
                 var infowindow = new google.maps.InfoWindow();
                 console.log(infowindow);
 
+                this.mouseoverInfoWindow = new google.maps.InfoWindow();
+
 
                 /**
                  * iniMap function
@@ -96,64 +98,6 @@
                     });
 
 
-                    //GOOGLE SEARCH
-                    // var wrappedQueryResult = document.getElementById('pac-input');
-
-                    // // Create the search box and link it to the UI element.
-                    // var searchBox = new google.maps.places.SearchBox(wrappedQueryResult);
-                    // // gmap.controls[google.maps.ControlPosition.TOP_LEFT].push(wrappedQueryResult);
-
-                    // // Bias the SearchBox results towards current map's viewport.
-                    // gmap.addListener('bounds_changed', function() {
-                    //     searchBox.setBounds(gmap.getBounds());
-                    // });
-
-                    // var markers = [];
-                    // // Listen for the event fired when the user selects a prediction and retrieve
-                    // // more details for that place.
-                    // searchBox.addListener('places_changed', function() {
-                    //     var places = searchBox.getPlaces();
-                    //     // //console.log(places);
-
-                    //     if (places.length === 0) {
-                    //         return;
-                    //     }
-
-                    //     // Clear out the old markers.
-                    //     markers.forEach(function(marker) {
-                    //         marker.setMap(null);
-                    //     });
-                    //     markers = [];
-
-                    //     // For each place, get the icon, name and location.
-                    //     var bounds = new google.maps.LatLngBounds();
-                    //     places.forEach(function(place) {
-                    //         var icon = {
-                    //             url: place.icon,
-                    //             size: new google.maps.Size(71, 71),
-                    //             origin: new google.maps.Point(0, 0),
-                    //             anchor: new google.maps.Point(17, 34),
-                    //             scaledSize: new google.maps.Size(25, 25)
-                    //         };
-
-                    //         // Create a marker for each place.
-                    //         markers.push(new google.maps.Marker({
-                    //             map: gmap,
-                    //             icon: icon,
-                    //             title: place.name,
-                    //             position: place.geometry.location
-                    //         }));
-
-                    //         if (place.geometry.viewport) {
-                    //             // Only geocodes have viewport.
-                    //             bounds.union(place.geometry.viewport);
-                    //         } else {
-                    //             bounds.extend(place.geometry.location);
-                    //         }
-                    //     });
-                    //     gmap.fitBounds(bounds);
-                    // });
-                    //END GOOGLE SEARCH
 
                     /**
                      * Load layers from json files
@@ -543,7 +487,160 @@
         }
 
         showMapProject(project) {
-            console.log(project);
+            var gmap = this.gmap;
+            var mouseoverInfoWindow = this.mouseoverInfoWindow;
+            mouseoverInfoWindow.close();
+            // console.log(project);
+            // console.log(project.rtpId);
+            var rtpId = project.rtpId;
+            console.log(project.featureType);
+            switch (project.featureType) {
+                case 'LN':
+                    this.rtpLineLayer.forEach(function(feature) {
+
+                        if (feature.f.rtpId === rtpId) {
+                            var geo;
+                            console.log(feature.getGeometry().b[0]);
+                            if (feature.getGeometry().b[0].b[0]) {
+                                geo = feature.getGeometry().b[0].b[0];
+                                console.log('multiline');
+                            } else {
+                                geo = feature.getGeometry().b[0];
+                                console.log('singleline');
+                            }
+                            var contentString = '<div>' +
+                                '<table class="table">' +
+                                '<thead style="background-color:blue;color:white;">' +
+                                '<h5>' + feature.f.title + '</h5>' +
+                                '  </thead>' +
+                                '<tbody>' +
+                                '<tr>' +
+                                '<td>' +
+                                'Agency:' +
+                                '</td>' +
+                                '<td>' +
+                                feature.f.agency +
+                                '</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<td>' +
+                                'County: ' +
+                                '</td>' +
+                                '<td>' +
+                                feature.f.county +
+                                '</td>' +
+                                '</tr>' +
+                                '</tbody>' +
+                                '</table>' +
+                                '</div>';
+
+                            var position = {
+                                lat: geo.lat(),
+                                lng: geo.lng()
+                            };
+                            console.log(position);
+                            mouseoverInfoWindow.setPosition(position);
+                            mouseoverInfoWindow.setContent(contentString);
+                            openInfoWindow(mouseoverInfoWindow);
+                        }
+                    })
+                    break;
+                case 'PT':
+                    this.rtpPointLayer.forEach(function(feature) {
+
+                        if (feature.f.rtpId === rtpId) {
+                            console.log(feature.getGeometry());
+                            var geo = feature.getGeometry().b;
+                            var contentString = '<div>' +
+                                '<table class="table">' +
+                                '<thead style="background-color:blue;color:white;">' +
+                                '<h5>' + feature.f.title + '</h5>' +
+                                '  </thead>' +
+                                '<tbody>' +
+                                '<tr>' +
+                                '<td>' +
+                                'Agency:' +
+                                '</td>' +
+                                '<td>' +
+                                feature.f.agency +
+                                '</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<td>' +
+                                'County: ' +
+                                '</td>' +
+                                '<td>' +
+                                feature.f.county +
+                                '</td>' +
+                                '</tr>' +
+                                '</tbody>' +
+                                '</table>' +
+                                '</div>';
+
+                            var position = {
+                                lat: geo.lat(),
+                                lng: geo.lng()
+                            };
+                            console.log(position);
+                            mouseoverInfoWindow.setPosition(position);
+                            mouseoverInfoWindow.setContent(contentString);
+                            openInfoWindow(mouseoverInfoWindow);
+                        }
+                    })
+                    break;
+                case 'PY':
+                    this.rtpPolygonLayer.forEach(function(feature) {
+
+                        if (feature.f.rtpId === rtpId) {
+                            console.log(feature.getGeometry());
+                            var geo = feature.getGeometry().b[0];
+                            var contentString = '<div>' +
+                                '<table class="table">' +
+                                '<thead style="background-color:blue;color:white;">' +
+                                '<h5>' + feature.f.title + '</h5>' +
+                                '  </thead>' +
+                                '<tbody>' +
+                                '<tr>' +
+                                '<td>' +
+                                'Agency:' +
+                                '</td>' +
+                                '<td>' +
+                                feature.f.agency +
+                                '</td>' +
+                                '</tr>' +
+                                '<tr>' +
+                                '<td>' +
+                                'County: ' +
+                                '</td>' +
+                                '<td>' +
+                                feature.f.county +
+                                '</td>' +
+                                '</tr>' +
+                                '</tbody>' +
+                                '</table>' +
+                                '</div>';
+
+
+                            var position = {
+                                lat: geo.lat(),
+                                lng: geo.lng()
+                            };
+                            console.log(position);
+                            mouseoverInfoWindow.setPosition(position);
+                            mouseoverInfoWindow.setContent(contentString);
+                            openInfoWindow(mouseoverInfoWindow);
+                        }
+                    })
+                    break;
+
+                default:
+                    break;
+            }
+
+            function openInfoWindow(window) {
+                console.log(gmap);
+                window.open(gmap);
+            }
         }
     }
 
