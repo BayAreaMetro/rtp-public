@@ -32,6 +32,9 @@
                 //Initialize legend object. Holds values for display in legend div
                 this.legend = {};
 
+
+
+
                 //Info windows
                 this.infowindow = new google.maps.InfoWindow();
                 this.mouseoverInfoWindow = new google.maps.InfoWindow();
@@ -360,6 +363,11 @@
                     this.rtpLineLayer.setMap(gmap);
                     this.rtpPointLayer.setMap(gmap);
                     this.rtpPolygonLayer.setMap(gmap);
+
+                    // Add Legend
+                    var centerControlDiv = document.getElementById('legend');
+                    // var centerControl = new CenterControl(centerControlDiv, gmap);
+                    gmap.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(centerControlDiv);
 
                     //Register map object
                     this.gmap = gmap;
