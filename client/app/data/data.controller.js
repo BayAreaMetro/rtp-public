@@ -15,6 +15,25 @@
                 //Set download/export type to All projects
                 this.exportType === 'all';
 
+                // Browser check
+                this.browserCheck = function msieversion() {
+
+                    var ua = window.navigator.userAgent;
+                    var msie = ua.indexOf("MSIE ");
+                    var isIE;
+
+                    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer, return version number
+                    {
+                        // alert(parseInt(ua.substring(msie + 5, ua.indexOf(".", msie))));
+                        isIE = true;
+                    } else // If another browser, return 0
+                    {
+                        // alert('otherbrowser');
+                        isIE = false
+                    }
+
+                    return isIE;
+                }
 
                 //Initialize map layers
                 this.rtpLineLayer = new google.maps.Data();
@@ -493,6 +512,9 @@
          */
         exportCSV() {
             var exportList;
+            this.browserCheck();
+            var isIE = this.browserCheck();
+
             if (this.exportType === 'all') {
                 exportList = this.projectList;
             } else if (this.exportType === 'table') {
@@ -508,14 +530,26 @@
             var str = Papa.unparse(exportList);
             var uri = 'data:text/csv;charset=utf-8,' + encodeURI(str);
 
-            //Create a href link set to download csv file
-            var downloadLink = document.createElement("a");
-            downloadLink.href = uri;
-            downloadLink.download = "data.csv";
 
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
-            document.body.removeChild(downloadLink);
+            if (isIE) {
+                var IEwindow = window.open();
+                IEwindow.document.write('sep=,\r\n' + str);
+                IEwindow.document.close();
+                IEwindow.document.execCommand('SaveAs', true, "data.csv");
+                IEwindow.close();
+
+            } else if (!isIE) {
+                //Create a href link set to download csv file
+                var downloadLink = document.createElement("a");
+                downloadLink.href = uri;
+                downloadLink.download = "data.csv";
+
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            }
+
+
 
             //Clear table of selected values
             angular.forEach(this.projectList, function(values) {
