@@ -1,29 +1,109 @@
 <div class="container">
-    <div>
-        <a ui-sref="data"> <button type="button" class="btn btn-large btn-default">Back to projects</button></a>
-        <!--<a ui-sref="data.view"> <button type="button" class="btn btn-large btn-primary">Project Details</button></a>
-    <a ui-sref="data.map"> <button type="button" class="btn btn-large btn-primary">Project Location</button></a>-->
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
+    <div class="panel panel-default" style="margin-top:10px;">
+        <div class="panel-heading clearfix">
             Basic Information
+            <div class="pull-right">
+                <a ui-sref="data"> <button type="button" class="btn btn-large btn-default pad-top-0">Back to projects</button></a>
+            </div>
         </div>
-        <div class="panel-body">
-            <h3>{{projectDetail.title}}</h3>
-            <p>{{projectDetail.description}}</p>
-            <p>RTPId: {{projectDetail.rtpId}}</p>
-            <p>County: {{projectDetail.county}}</p>
-            <p>Sponsor: {{projectDetail.agency}}</p>
-            <p>Mode: {{projectDetail.mode}}</p>
-            <p>System: {{projectDetail.system}}</p>
+        <div class="panel-body pad-top-0 pad-bottom-0">
+            <table class="table" style="margin-bottom:0;">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2" style="color:#336699;">
+                            <h4 style="margin-top:0;">Title:</h4>
+                        </td>
+                        <td col-md-10>
+                            <p> {{projectDetail.title}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color:#336699;">
+                            <h4 style="margin-top:0;">Description:</h4>
+                        </td>
+                        <td>
+                            <p> {{projectDetail.description}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color:#336699;">
+                            <h4 style="margin-top:0;">RTPID:</h4>
+                        </td>
+                        <td>
+                            <p> {{projectDetail.rtpId}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color:#336699;">
+                            <h4 style="margin-top:0;">County:</h4>
+                        </td>
+                        <td>
+                            <p> {{projectDetail.county}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color:#336699;">
+                            <h4 style="margin-top:0;">Agency:</h4>
+                        </td>
+                        <td>
+                            <p> {{projectDetail.agency}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color:#336699;">
+                            <h4 style="margin-top:0;">Mode:</h4>
+                        </td>
+                        <td>
+                            <p> {{projectDetail.mode}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color:#336699;">
+                            <h4 style="margin-top:0;">System:</h4>
+                        </td>
+                        <td>
+                            <p> {{projectDetail.system}}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            Cost and Funding
+            Cost and Funding (in Year-of-Expenditure)
         </div>
-        <div class="panel-body">
+        <div class="panel-body pad-top-0 pad-bottom-0">
+            <table class="table" style="margin-bottom:0;">
+                <tbody>
+                    <tr>
+                        <td class="col-md-2" style="color:#336699;">
+                            <h4 style="margin-top:0;">Total Costs (millions):</h4>
+                        </td>
+                        <td class="col-md-10">
+                            <p> {{projectDetail.totalCostYOE | currency}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2" style="color:#336699;">
+                            <h4 style="margin-top:0;">Total Committed Funding (millions):</h4>
+                        </td>
+                        <td class="col-md-10">
+                            <p> {{projectDetail.committedFundingYOE | currency}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2" style="color:#336699;">
+                            <h4 style="margin-top:0;">Total Discretionary Funding Request (millions):</h4>
+                        </td>
+                        <td class="col-md-10">
+                            <p> {{projectDetail.discretionaryFundingYOE}}</p>
+                        </td>
+                    </tr>
 
+                </tbody>
+            </table>
 
         </div>
     </div>
@@ -31,8 +111,44 @@
         <div class="panel-heading">
             Schedule
         </div>
-        <div class="panel-body">
+        <div class="panel-body pad-top-0 pad-bottom-0">
+            <table class="table" style="margin-bottom:0;">
+                <tbody>
+                    <tr>
+                        <td class="col-md-3" style="color:#336699;">
 
+                        </td>
+                        <td class="col-md-3">
+                            <h4 style="margin-top:0;">Start</h4>
+                        </td>
+                        <td class="col-md-3">
+                            <h4 style="margin-top:0;">End</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color:#336699;">
+                            <h4 style="margin-top:0;">Construction</h4>
+                        </td>
+                        <td>
+                            <p> {{projectDetail.constructionStartYr}}</p>
+                        </td>
+                        <td>
+                            <p> {{projectDetail.projectOpenYr}}</p>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Location
+        </div>
+        <div class="panel-body pad-0">
+            <div id="data-map-canvas" class="col-sm-12 mapContainer">
+            </div>
 
         </div>
     </div>

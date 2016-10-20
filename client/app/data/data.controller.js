@@ -180,7 +180,7 @@
                                     var color, strokeWeight;
                                     // console.log(lineAttr);
                                     if (lineAttr === 'Public Transit') {
-                                        color = '#009edd';
+                                        color = '#336699';
                                         strokeWeight = 2;
                                     } else {
                                         color = '#d9534f';
@@ -214,6 +214,29 @@
                                     });
                                 }
                                 rtpPointLayer.addGeoJson(geoJsonObject);
+                                rtpPointLayer.setStyle(function(feature) {
+                                    var pointAttr = feature.getProperty('system');
+                                    var color;
+
+                                    if (pointAttr === 'Public Transit') {
+                                        color = '#336699';
+
+                                    } else {
+                                        color = '#d9534f';
+
+                                    }
+
+                                    return {
+                                        icon: {
+                                            path: google.maps.SymbolPath.CIRCLE,
+                                            scale: 5,
+                                            fillColor: color,
+                                            strokeColor: 'black',
+                                            strokeWeight: 1,
+                                            fillOpacity: 1
+                                        }
+                                    }
+                                })
 
                             });
                             return rtpPointLayer;
@@ -236,8 +259,8 @@
                                 var polyAttr = feature.getProperty('system');
                                 var strokeColor, strokeWeight, fillColor, fillOpacity;
                                 if (polyAttr === 'Public Transit') {
-                                    fillColor = '#009edd';
-                                    strokeColor = '#009edd';
+                                    fillColor = '#336699';
+                                    strokeColor = '#336699';
                                     strokeWeight = 2;
                                     fillOpacity = 0.2;
                                 } else {
