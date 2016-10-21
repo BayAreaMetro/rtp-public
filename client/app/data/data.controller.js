@@ -46,18 +46,12 @@
                 this.rtpPointCheckbox = 1;
                 this.rtpPolygonCheckbox = 1;
 
-
-
                 //Initialize legend object. Holds values for display in legend div
                 this.legend = {};
-
-
-
 
                 //Info windows
                 this.infowindow = new google.maps.InfoWindow();
                 this.mouseoverInfoWindow = new google.maps.InfoWindow();
-
 
                 /**
                  * iniMap function
@@ -74,7 +68,6 @@
 
                     this.rtpIdList = projects.getViewOnMap();
                     console.log(this.rtpIdList);
-
 
                     // Map Variables
                     var gmap;
@@ -492,14 +485,8 @@
                     values.select = false;
                 });
             }
-            // console.log(this.projectList.length);
-            // console.log(this.$scope.test);
-            // console.log(this.$scope);
-            // console.log(selectedValues);
-            // console.log(this.$scope.selectedValues);
+
             console.log(this.selectedValues.length);
-            // console.log(this.filteredList);
-            // this.exportCSV();
 
         }
 
@@ -511,54 +498,54 @@
          * All will download all projects. Table will download currently filtered projects. Rows will download individually selected projects
          */
         exportCSV() {
-            var exportList;
-            this.browserCheck();
-            var isIE = this.browserCheck();
+                var exportList;
+                var isIE = this.browserCheck();
 
-            if (this.exportType === 'all') {
-                exportList = this.projectList;
-            } else if (this.exportType === 'table') {
-                exportList = this.selectedValues;
-            } else if (this.exportType === 'rows') {
-                exportList = this.selectedList;
-            } else {
-                exportList = this.projectList;
+                if (this.exportType === 'all') {
+                    exportList = this.projectList;
+                } else if (this.exportType === 'table') {
+                    exportList = this.selectedValues;
+                } else if (this.exportType === 'rows') {
+                    exportList = this.selectedList;
+                } else {
+                    exportList = this.projectList;
+                }
+                //Remove unnecessary fields (lodash)
+                exportList = _.map(exportList, function(o) { return _.omit(o, 'select', '$$hashKey', 'checked', 'projectId'); });
+                //Unparse array using Papa Parse library
+                var str = Papa.unparse(exportList);
+                var uri = 'data:text/csv;charset=utf-8,' + encodeURI(str);
+
+                //Check if browser is Internet Exploer
+                if (isIE) {
+                    var IEwindow = window.open();
+                    IEwindow.document.write('sep=,\r\n' + str);
+                    IEwindow.document.close();
+                    IEwindow.document.execCommand('SaveAs', true, "data.csv");
+                    IEwindow.close();
+
+                } else if (!isIE) {
+                    //Create a href link set to download csv file
+                    var downloadLink = document.createElement("a");
+                    downloadLink.href = uri;
+                    downloadLink.download = "data.csv";
+
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    document.body.removeChild(downloadLink);
+                }
+
+                //Clear table of selected values
+                angular.forEach(this.projectList, function(values) {
+                    values.checked = 0;
+                    values.select = false;
+                });
+                // window.open("data:text/csv;charset=utf-8," + encodeURI(str));
             }
-            //Remove unnecessary fields (lodash)
-            exportList = _.map(exportList, function(o) { return _.omit(o, 'select', '$$hashKey', 'checked', 'projectId'); });
-            //Unparse array using Papa Parse library
-            var str = Papa.unparse(exportList);
-            var uri = 'data:text/csv;charset=utf-8,' + encodeURI(str);
-
-
-            if (isIE) {
-                var IEwindow = window.open();
-                IEwindow.document.write('sep=,\r\n' + str);
-                IEwindow.document.close();
-                IEwindow.document.execCommand('SaveAs', true, "data.csv");
-                IEwindow.close();
-
-            } else if (!isIE) {
-                //Create a href link set to download csv file
-                var downloadLink = document.createElement("a");
-                downloadLink.href = uri;
-                downloadLink.download = "data.csv";
-
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-                document.body.removeChild(downloadLink);
-            }
-
-
-
-            //Clear table of selected values
-            angular.forEach(this.projectList, function(values) {
-                values.checked = 0;
-                values.select = false;
-            });
-            // window.open("data:text/csv;charset=utf-8," + encodeURI(str));
-        }
-
+            /**
+             * Takes records selected in data table and sets rtpID array via a service. 
+             * Then initializes map.
+             */
         viewOnMap() {
             var exportList;
             if (this.exportType === 'all') {
@@ -583,6 +570,11 @@
             this.initMap();
         }
 
+        /**
+         * Mouseover function for data table
+         * On mouseover, reads project rtpId, queries Google Data layers for that ID, returns the lat/lng and opens an infowindow
+         * @param project (passed from DOM)
+         */
         showMapProject(project) {
             var gmap = this.gmap;
             var mouseoverInfoWindow = this.mouseoverInfoWindow;
