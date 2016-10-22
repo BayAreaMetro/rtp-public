@@ -108,60 +108,61 @@
 <div ui-view="data-content">
     <div class="container-fluid" style="padding-left:0;">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel">
-                    <div class="panel-heading clearfix" style="padding-top:3px;; height:40px;">
+            <div class="col-md-6" style="padding-right:0;">
+                <table class="table table-fixed" style="height:540px;">
+                    <thead>
+                        <tr>
+                            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="padding-left:10px;">
+                                <input type="checkbox" ng-model="projects.select" ng-checked="projects.checked" ng-click="$ctrl.selectAll(projects)">
+                            </th>
+                            <th class="col-lg-2 col-md-2 col-sm-2 col-xs-2">RTPID</th>
+                            <th class="col-lg-4 col-md-4 col-sm-6 col-xs-6">Title</th>
+                            <!--<th class="col-lg-4 col-md-4 hidden-md hidden-sm hidden-xs">Description</th>-->
+                            <th class="col-lg-2 col-md-2 hidden-sm hidden-xs">County</th>
+                            <th class="col-lg-2 col-md-2 hidden-sm hidden-xs">Mode</th>
+                            <th class="col-lg-1 col-md-1 col-sm-3 col-xs-3">&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-mouseover="$ctrl.showMapProject(list)" ng-class="{'selected': list.select}" ng-repeat="list in $ctrl.selectedValues = ($ctrl.projectList | filter:{rtpId:$ctrl.search.rtpId, title:$ctrl.search.fullText, county: $ctrl.county.county, mode:$ctrl.mode.mode, agency:$ctrl.sponsor.agency})">
+                            <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="padding-left:10px;">
+                                <div class="checkbox">
+                                    <label>
+                                                    <input type="checkbox" ng-model="list.select" ng-checked="list.checked" ng-click="$ctrl.checkSelected()">
+                                                </label>
+                                </div>
+                            </td>
+                            <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{list.rtpId}}</td>
+                            <td class="col-lg-4 col-md-4 col-sm-6 col-xs-6">{{list.title}}</td>
+                            <!--<td class="col-lg-4 col-md-4 hidden-md hidden-sm hidden-xs">{{list.description}}</td>-->
+                            <td class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{list.county}}</td>
+                            <td class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{list.mode}}</td>
+                            <td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="text-align: right;">
+                                <a href="javascript:;" class="btn btn-small" ng-click="$ctrl.loadDataMap(list.rtpId)" ng-if="list.mapStatus === 'Needs Review'">
+                                    <i class="fa fa-th-list" style="font-size:20px;"></i>
+
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6" style="padding-right:0; padding-left:0;">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix" style="padding-top:0; height:40px;">
+
                         <div class="pull-right">
                             <button type="button" class="btn btn-large btn-default" ng-click="$ctrl.clearFilters()">Clear Filters</button>
                             <button type="button" class="btn btn-large btn-default" ng-click="$ctrl.viewOnMap()">View on Map</button>
                             <button type="button" class="btn btn-large btn-default" ng-click="$ctrl.exportCSV()">Export to CSV</button>
                         </div>
                     </div>
-                    <div class="panel-body pad-0">
-                        <table class="table table-fixed" style="height:540px;margin-bottom:0px;">
-                            <thead>
-                                <tr>
-                                    <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="padding-left:10px;">
-                                        <input type="checkbox" ng-model="projects.select" ng-checked="projects.checked" ng-click="$ctrl.selectAll(projects)">
-                                    </th>
-                                    <th class="col-lg-1 col-md-1 col-sm-2 col-xs-2">RTPID</th>
-                                    <th class="col-lg-3 col-md-3 col-sm-6 col-xs-6">Title</th>
-                                    <th class="col-lg-4 col-md-4 col-sm-6 col-xs-6">Description</th>
-                                    <!--<th class="col-lg-4 col-md-4 hidden-md hidden-sm hidden-xs">Description</th>-->
-                                    <th class="col-lg-1 col-md-1 hidden-sm hidden-xs">County</th>
-                                    <th class="col-lg-1 col-md-1 hidden-sm hidden-xs">Mode</th>
-                                    <th class="col-lg-1 col-md-1 col-sm-3 col-xs-3">&nbsp;</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-class="{'selected': list.select}" ng-repeat="list in $ctrl.selectedValues = ($ctrl.projectList | filter:{rtpId:$ctrl.search.rtpId, title:$ctrl.search.fullText, county: $ctrl.county.county, mode:$ctrl.mode.mode, agency:$ctrl.sponsor.agency})">
-                                    <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="padding-left:10px;">
-                                        <div class="checkbox">
-                                            <label>
-                                                    <input type="checkbox" ng-model="list.select" ng-checked="list.checked" ng-click="$ctrl.checkSelected()">
-                                                </label>
-                                        </div>
-                                    </td>
-                                    <td class="col-lg-1 col-md-2 col-sm-2 col-xs-2">{{list.rtpId}}</td>
-                                    <td class="col-lg-3 col-md-3 col-sm-6 col-xs-6">{{list.title}}</td>
-                                    <td class="col-lg-4 col-md-4 col-sm-6 col-xs-6">{{list.description}}</td>
-                                    <!--<td class="col-lg-4 col-md-4 hidden-md hidden-sm hidden-xs">{{list.description}}</td>-->
-                                    <td class="col-lg-1 col-md-1 hidden-sm hidden-xs">{{list.county}}</td>
-                                    <td class="col-lg-1 col-md-1 hidden-sm hidden-xs">{{list.mode}}</td>
-                                    <td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="text-align: right;">
-                                        <a href="javascript:;" class="btn btn-small" ng-click="$ctrl.loadDataMap(list.rtpId)" ng-if="list.mapStatus === 'Needs Review'">
-                                            <i class="fa fa-th-list" style="font-size:20px;"></i>
-
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="panel-body map-panel">
+                        <div id="data-canvas" class="col-sm-12 mapContainer" ng-init="$ctrl.initMap()">
+                        </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
 
     </div>
