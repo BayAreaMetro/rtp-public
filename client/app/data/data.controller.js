@@ -209,6 +209,30 @@
             }
         }
 
+        viewOnMap() {
+            var exportList;
+            if (this.exportType === 'all') {
+                exportList = this.projectList;
+            } else if (this.exportType === 'table') {
+                exportList = this.selectedValues;
+            } else if (this.exportType === 'rows') {
+                exportList = this.selectedList;
+            } else {
+                exportList = this.projectList;
+            }
+            //Remove unnecessary fields (lodash)
+            exportList = _.map(exportList, function(o) { return _.pick(o, 'rtpId'); });
+            // console.log(exportList);
+            var rtpIdArray = [];
+            exportList.forEach(function(element) {
+                rtpIdArray.push(element.rtpId);
+            }, this);
+            // console.log(rtpIdArray);
+            this.projects.setViewOnMap(rtpIdArray);
+            this.$state.go('map');
+            // this.initMap();
+        }
+
 
     }
 

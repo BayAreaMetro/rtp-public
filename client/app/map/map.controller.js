@@ -10,6 +10,7 @@
             this.rtpPointLayer = new google.maps.Data();
             this.rtpPolygonLayer = new google.maps.Data();
             this.loadSelectedFeatures = false;
+            this.showTools = false;
 
             //Initialize legend layer checkboxes
             this.rtpLineCheckbox = 1;
@@ -23,6 +24,7 @@
             }
 
             this.rtpIdList = projects.getViewOnMap();
+
 
 
             //Initialize legend object. Holds values for display in legend div
@@ -61,6 +63,7 @@
                     streetViewControl: true,
                     zoom: 10,
                     zoomControl: true,
+                    scrollwheel: false,
                     zoomControlOptions: {
                         position: google.maps.ControlPosition.LEFT_TOP,
                         style: google.maps.ZoomControlStyle.SMALL
@@ -160,7 +163,7 @@
                                 var color, strokeWeight;
                                 // console.log(lineAttr);
                                 if (lineAttr === 'Public Transit') {
-                                    color = '#009edd';
+                                    color = '#336699';
                                     strokeWeight = 2;
                                 } else {
                                     color = '#d9534f';
@@ -168,7 +171,7 @@
                                 }
 
                                 return {
-                                    color: color,
+                                    color: 'white',
                                     strokeColor: color,
                                     strokeWeight: strokeWeight
                                 }
@@ -194,6 +197,29 @@
                                 });
                             }
                             rtpPointLayer.addGeoJson(geoJsonObject);
+                            rtpPointLayer.setStyle(function(feature) {
+                                var pointAttr = feature.getProperty('system');
+                                var color;
+
+                                if (pointAttr === 'Public Transit') {
+                                    color = '#336699';
+
+                                } else {
+                                    color = '#d9534f';
+
+                                }
+
+                                return {
+                                    icon: {
+                                        path: google.maps.SymbolPath.CIRCLE,
+                                        scale: 5,
+                                        fillColor: color,
+                                        strokeColor: 'white',
+                                        strokeWeight: 1,
+                                        fillOpacity: 1
+                                    }
+                                }
+                            })
 
                         });
                         return rtpPointLayer;
@@ -216,8 +242,8 @@
                             var polyAttr = feature.getProperty('system');
                             var strokeColor, strokeWeight, fillColor, fillOpacity;
                             if (polyAttr === 'Public Transit') {
-                                fillColor = '#009edd';
-                                strokeColor = '#009edd';
+                                fillColor = '#336699';
+                                strokeColor = '#336699';
                                 strokeWeight = 2;
                                 fillOpacity = 0.2;
                             } else {
@@ -249,15 +275,32 @@
 
                 //Set Layer Infowindows
                 this.rtpLineLayer.addListener('click', function(event) {
-                    console.log(event);
-                    var contentString = '<div id="content">' +
-                        '<div id="siteNotice">' +
-                        '</div>' +
-                        '<h1 id="firstHeading" class="firstHeading">' + event.feature.getProperty('title') + '</h1>' +
-                        '<div id="bodyContent">' +
-                        '<p>' + event.feature.getProperty('agency') + '</p>' +
-                        '<p>' + event.feature.getProperty('county') + '</p>' +
-                        '</div>' +
+
+
+                    var contentString = '<div>' +
+                        '<table class="table">' +
+                        '<thead style="background-color:blue;color:white;">' +
+                        '<h5>' + event.feature.getProperty('title') + '</h5>' +
+                        '  </thead>' +
+                        '<tbody>' +
+                        '<tr>' +
+                        '<td>' +
+                        'Agency:' +
+                        '</td>' +
+                        '<td>' +
+                        event.feature.getProperty('agency') +
+                        '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>' +
+                        'County: ' +
+                        '</td>' +
+                        '<td>' +
+                        event.feature.getProperty('county') +
+                        '</td>' +
+                        '</tr>' +
+                        '</tbody>' +
+                        '</table>' +
                         '</div>';
 
                     var position = {
@@ -272,16 +315,32 @@
 
                 this.rtpPointLayer.addListener('click', function(event) {
                     console.log(event);
-                    var contentString = '<div id="content">' +
-                        '<div id="siteNotice">' +
-                        '</div>' +
-                        '<h1 id="firstHeading" class="firstHeading">' + event.feature.getProperty('title') + '</h1>' +
-                        '<div id="bodyContent">' +
-                        '<p>' + event.feature.getProperty('agency') + '</p>' +
-                        '<p>' + event.feature.getProperty('county') + '</p>' +
-                        '</div>' +
-                        '</div>';
 
+                    var contentString = '<div>' +
+                        '<table class="table">' +
+                        '<thead style="background-color:blue;color:white;">' +
+                        '<h5>' + event.feature.getProperty('title') + '</h5>' +
+                        '  </thead>' +
+                        '<tbody>' +
+                        '<tr>' +
+                        '<td>' +
+                        'Agency:' +
+                        '</td>' +
+                        '<td>' +
+                        event.feature.getProperty('agency') +
+                        '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>' +
+                        'County: ' +
+                        '</td>' +
+                        '<td>' +
+                        event.feature.getProperty('county') +
+                        '</td>' +
+                        '</tr>' +
+                        '</tbody>' +
+                        '</table>' +
+                        '</div>';
                     var position = {
                         lat: event.latLng.lat(),
                         lng: event.latLng.lng()
@@ -294,14 +353,31 @@
 
                 this.rtpPolygonLayer.addListener('click', function(event) {
                     console.log(event);
-                    var contentString = '<div id="content">' +
-                        '<div id="siteNotice">' +
-                        '</div>' +
-                        '<h1 id="firstHeading" class="firstHeading">' + event.feature.getProperty('title') + '</h1>' +
-                        '<div id="bodyContent">' +
-                        '<p>' + event.feature.getProperty('agency') + '</p>' +
-                        '<p>' + event.feature.getProperty('county') + '</p>' +
-                        '</div>' +
+
+                    var contentString = '<div>' +
+                        '<table class="table">' +
+                        '<thead style="background-color:blue;color:white;">' +
+                        '<h5>' + event.feature.getProperty('title') + '</h5>' +
+                        '  </thead>' +
+                        '<tbody>' +
+                        '<tr>' +
+                        '<td>' +
+                        'Agency:' +
+                        '</td>' +
+                        '<td>' +
+                        event.feature.getProperty('agency') +
+                        '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td>' +
+                        'County: ' +
+                        '</td>' +
+                        '<td>' +
+                        event.feature.getProperty('county') +
+                        '</td>' +
+                        '</tr>' +
+                        '</tbody>' +
+                        '</table>' +
                         '</div>';
 
                     var position = {
@@ -320,6 +396,22 @@
                 this.rtpPointLayer.setMap(gmap);
                 this.rtpPolygonLayer.setMap(gmap);
 
+                // Add Legend
+                // var centerControlDiv = document.getElementById('legend');
+                // // var centerControl = new CenterControl(centerControlDiv, gmap);
+                // gmap.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(centerControlDiv);
+
+                // // Add Layer Toggle
+                // var toggleLayerDiv = document.getElementById('toggleLayerDiv');
+                // gmap.controls[google.maps.ControlPosition.LEFT_CENTER].push(toggleLayerDiv);
+
+                // // Add Layer Toggle
+                // var toggleTools = document.getElementById('toggleTools');
+                // gmap.controls[google.maps.ControlPosition.TOP_RIGHT].push(toggleTools);
+
+
+
+
                 //Register map object
                 this.gmap = gmap;
                 return this.gmap;
@@ -330,7 +422,53 @@
          * On page initialization, load default map
          */
         $onInit() {
-                this.initMap();
+            this.initMap();
+
+
+            /*====================================
+                        SIDE MENU SCRIPTS BELOW 
+                    ======================================*/
+
+
+            // showRightPush.onclick = function() {
+            //     classie.toggle(this, 'active');
+            //     classie.toggle(body, 'cbp-spmenu-push-toleft');
+            //     classie.toggle(menuRight, 'cbp-spmenu-open');
+            //     disableOther('showRightPush');
+            // };
+
+
+        }
+
+        showTools2() {
+                var menuLeft = document.getElementById('cbp-spmenu-s1'),
+                    menuRight = document.getElementById('cbp-spmenu-s2'),
+                    showLeftPush = document.getElementById('showLeftPush'),
+                    // showRightPush = document.getElementById('showRightPush'),
+                    body = document.body;
+
+                if (this.showTools) {
+                    this.showTools = false;
+                } else if (!this.showTools) {
+                    this.showTools = true;
+                }
+                console.log(this.showTools);
+                classie.toggle(showLeftPush, 'active');
+                classie.toggle(body, 'cbp-spmenu-push-toright');
+                classie.toggle(menuLeft, 'cbp-spmenu-open');
+                disableOther('showLeftPush');
+
+                function disableOther(button) {
+
+                    if (button !== 'showLeftPush') {
+                        classie.toggle(showLeftPush, 'disabled');
+                    }
+                    // if (button !== 'showRightPush') {
+                    //     classie.toggle(showRightPush, 'disabled');
+                    // }
+                }
+
+
             }
             /**
              * Toggle layers function for RTP layers
