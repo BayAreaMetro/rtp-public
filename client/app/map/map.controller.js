@@ -12,6 +12,10 @@
             this.loadSelectedFeatures = false;
             this.showTools = false;
 
+            // Load google charts
+            // Load the Visualization API and the corechart package.
+            google.charts.load('current', { 'packages': ['corechart'] });
+
             //Initialize legend layer checkboxes
             this.rtpLineCheckbox = 1;
             this.rtpPointCheckbox = 1;
@@ -301,7 +305,9 @@
                         '</tr>' +
                         '</tbody>' +
                         '</table>' +
-                        '</div>';
+                        '</div>' +
+                        '<div id="chart_div"></div>';
+
 
                     var position = {
                         lat: event.latLng.lat(),
@@ -311,6 +317,33 @@
                     infowindow.setPosition(position);
                     infowindow.setContent(contentString);
                     infowindow.open(gmap);
+
+                    function drawChart(event) {
+                        console.log(event);
+                        console.log(event.feature.getProperty('committedFundingYOE'));
+                        console.log(event.feature.getProperty('totalCostYOE'));
+                        // Create the data table.
+                        var data = new google.visualization.DataTable();
+                        data.addColumn('string', 'Type');
+                        data.addColumn('number', 'Total ($ millions)');
+                        data.addRows([
+                            ['Committed', 25],
+                            ['Total Cost', 162],
+
+                        ]);
+
+                        // Set chart options
+                        var options = {
+                            'title': 'Total vs. Committed Funding',
+                            'width': 350,
+                            'height': 200
+                        };
+
+                        // Instantiate and draw our chart, passing in some options.
+                        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                        chart.draw(data, options);
+                    }
+                    drawChart(event);
                 });
 
                 this.rtpPointLayer.addListener('click', function(event) {
@@ -340,7 +373,8 @@
                         '</tr>' +
                         '</tbody>' +
                         '</table>' +
-                        '</div>';
+                        '</div>' +
+                        '<div id="chart_div"></div>';
                     var position = {
                         lat: event.latLng.lat(),
                         lng: event.latLng.lng()
@@ -349,6 +383,33 @@
                     infowindow.setPosition(position);
                     infowindow.setContent(contentString);
                     infowindow.open(gmap);
+
+                    function drawChart(event) {
+                        console.log(event);
+                        console.log(event.feature.getProperty('committedFundingYOE'));
+                        console.log(event.feature.getProperty('totalCostYOE'));
+                        // Create the data table.
+                        var data = new google.visualization.DataTable();
+                        data.addColumn('string', 'Type');
+                        data.addColumn('number', 'Total ($ millions)');
+                        data.addRows([
+                            ['Committed', 25],
+                            ['Total Cost', 162],
+
+                        ]);
+
+                        // Set chart options
+                        var options = {
+                            'title': 'Total vs. Committed Funding',
+                            'width': 350,
+                            'height': 200
+                        };
+
+                        // Instantiate and draw our chart, passing in some options.
+                        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                        chart.draw(data, options);
+                    }
+                    drawChart(event);
                 });
 
                 this.rtpPolygonLayer.addListener('click', function(event) {
@@ -378,7 +439,8 @@
                         '</tr>' +
                         '</tbody>' +
                         '</table>' +
-                        '</div>';
+                        '</div>' +
+                        '<div id="chart_div"></div>';
 
                     var position = {
                         lat: event.latLng.lat(),
@@ -388,6 +450,33 @@
                     infowindow.setPosition(position);
                     infowindow.setContent(contentString);
                     infowindow.open(gmap);
+
+                    function drawChart(event) {
+                        console.log(event);
+                        console.log(event.feature.getProperty('committedFundingYOE'));
+                        console.log(event.feature.getProperty('totalCostYOE'));
+                        // Create the data table.
+                        var data = new google.visualization.DataTable();
+                        data.addColumn('string', 'Type');
+                        data.addColumn('number', 'Total ($ millions)');
+                        data.addRows([
+                            ['Committed', 25],
+                            ['Total Cost', 162],
+
+                        ]);
+
+                        // Set chart options
+                        var options = {
+                            'title': 'Total vs. Committed Funding',
+                            'width': 350,
+                            'height': 200
+                        };
+
+                        // Instantiate and draw our chart, passing in some options.
+                        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                        chart.draw(data, options);
+                    }
+                    drawChart(event);
                 });
                 //End Infowindows
 
