@@ -1,7 +1,6 @@
 <!--Eyebrow Directive-->
 <eyebrow></eyebrow>
 <!--End Eyebrow-->
-
 <!--Header-->
 <div class="header">
     <!--<div id="google_translate_element"></div>-->
@@ -11,7 +10,6 @@
     </div>
     <!-- right-col -->
     <a href="/index.php" class="logo"><img src="http://planbayarea.org/images/PBA_logo_RGB.png" alt="Go to home page" width="109" border="0" height="100"></a>
-
 </div>
 <!--End Header
 
@@ -28,7 +26,6 @@
       </button>
             <!--<a class="navbar-brand" href="#"><i class="fa fa-search"></i>&nbsp; Tools</a>-->
         </div>
-
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-slide-dropdown" style="padding-top:10px;padding-left:0;">
             <ul class="nav navbar-nav">
@@ -48,7 +45,6 @@
                             <ui-select-match placeholder="County">{{$select.selected.county}}</ui-select-match>
                             <ui-select-choices repeat="county in $ctrl.countiesList | filter: $select.search">
                                 <span ng-bind-html="county.county | highlight: $select.search"></span>
-
                             </ui-select-choices>
                         </ui-select>
                     </div>
@@ -59,7 +55,6 @@
                             <ui-select-match placeholder="Mode">{{$select.selected.mode}}</ui-select-match>
                             <ui-select-choices repeat="val in $ctrl.modeList | filter: $select.search">
                                 <span ng-bind-html="val.mode | highlight: $select.search"></span>
-
                             </ui-select-choices>
                         </ui-select>
                     </div>
@@ -72,7 +67,6 @@
                                 <span ng-bind-html="val.agency | highlight: $select.search"></span>
                             </ui-select-choices>
                         </ui-select>
-
                     </div>
                 </form>
                 <!--<form class="navbar-form navbar-left" role="search">
@@ -83,7 +77,6 @@
                     </span>
                 </form>-->
             </ul>
-
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Home</a></li>
                 <li class="dropdown">
@@ -104,7 +97,6 @@
 </nav>
 <!--End Navigation-->
 <div class="cbp-spmenu-push" style="position:relative;height:100%;">
-
     <!--LEFT SLIDE MENU-->
     <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1" style="height:100%;background-color:#336699;position:absolute;">
         <!--<h3>Tools</h3>-->
@@ -129,15 +121,12 @@
             </div>
             <div class="checkbox">
                 <label class="pad-0"><input type="checkbox" name="rtpPoints" ng-true-value="1" ng-false-value="0" ng-change="$ctrl.rtpLayerToggle($ctrl.rtpLineLayer,'line')" ng-model="$ctrl.rtpLineCheckbox">Lines</label>
-
             </div>
             <div class="checkbox">
                 <label class="pad-0"><input type="checkbox" name="rtpPolygons" ng-true-value="1" ng-false-value="0" ng-change="$ctrl.rtpLayerToggle($ctrl.rtpPolygonLayer,'poly')" 	ng-model="$ctrl.rtpPolygonCheckbox">Polygons</label>
-
             </div>
             <div class="checkbox">
                 <label class="pad-0"><input type="checkbox" name="pdasLayer" ng-true-value="1" ng-false-value="0" ng-change="$ctrl.loadOverlays($ctrl.pdaLayer)" 	ng-model="$ctrl.pdasCheckbox">Priority Development Areas</label>
-
             </div>
         </div>
         <a href="#">Legend</a>
@@ -168,14 +157,11 @@
                             <div style="width:20px;height:20px;background-color:#D9534F; border:solid;border-color:white;border-width:1px;"></div>
                         </td>
                     </tr>
-
-
                 </tbody>
             </table>
-
         </div>
     </div>
-
+    <!--Map Tools Button -->
     <div id="toggleTools" ng-click="$ctrl.showTools2()" ng-show="!$ctrl.showTools" style="background-color:white !important;left:0px !important; position:absolute; top:150px;">
         <div class="row" id="icon-left" style="background-color:white !important;">
             <div class="col-md-12" style="color:black; background-color:white;">
@@ -191,15 +177,15 @@
             </div>
         </div>
     </div>
+    <!--End Map Tools -->
     <!--END LEFT SLIDE MENU-->
-
-
+    <!--Map Container-->
     <div class="panel-body map-panel" style="height:80vh !important;">
         <div id="canvas" class="col-sm-12 mapContainer" style="height:80vh;">
         </div>
     </div>
+    <!--End Map Container-->
 </div>
-
 <!--Footer-->
 <div class="container footer-container">
     <div class="footer">
@@ -224,7 +210,6 @@
                 <li><a href="/your-part/your-comments.html">Your Comments</a></li>
             </ul>
             <!-- first row -->
-
             <ul>
                 <!-- second row -->
                 <a href="/the-counties.html" class="head">The Counties</a>
@@ -239,7 +224,6 @@
                 <li><a href="/the-counties/sonoma-county.html">Sonoma County</a></li>
             </ul>
             <!-- second row -->
-
             <ul>
                 <!-- third row -->
                 <a href="/news-main.html" class="head">News</a>
@@ -258,7 +242,6 @@
                 <li><a href="/resources/PDA-Assessment-Update.html">PDA Assessment Update</a></li>
             </ul>
             <!-- third row -->
-
             <ul>
                 <!-- fourth row -->
                 <a href="/contact.html" class="head">Contact Us</a>
@@ -267,7 +250,6 @@
                 <a href="/index.php" class="head">Home</a>
             </ul>
             <!-- fourth row -->
-
             <div class="right-col">
                 <a href="https://www.facebook.com/OneBayArea" target="_blank" class="facebook"></a>
                 <a href="https://twitter.com/OneBayArea" target="_blank" class="twitter"></a>
