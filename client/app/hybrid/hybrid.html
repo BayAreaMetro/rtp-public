@@ -112,7 +112,28 @@
                             <!--<th class="col-lg-4 col-md-4 hidden-md hidden-sm hidden-xs">Description</th>-->
                             <th class="col-lg-2 col-md-2 hidden-sm hidden-xs">County</th>
                             <th class="col-lg-2 col-md-2 hidden-sm hidden-xs">Mode</th>
-                            <th class="col-lg-1 col-md-1 col-sm-3 col-xs-3">&nbsp;</th>
+                            <th class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="padding-bottom:5px;">
+                                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                    <div class="btn-group" role="group">
+                                        <!--<button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle pad-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fa fa-cog"></i>
+    </button>-->
+                                        <li class="dropdown" style="list-style-type:none;">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li>
+                                                    <a href="#" ng-click="$ctrl.clearFilters()"> Clear Filters</a></li>
+                                                <li>
+                                                    <a href="#" ng-click="$ctrl.viewOnMap()"> View on Map</a></li>
+                                                <li>
+                                                    <a href="#" ng-click="$ctrl.exportCSV()"> Export to CSV</a></li>
+
+                                            </ul>
+                                        </li>
+
+                                    </div>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody style="max-height:75vh">
@@ -145,7 +166,7 @@
                         </div>
                     </div>
                     <div class="panel-body map-panel">-->
-                <div id="data-canvas" class="col-sm-12 mapContainer" style="height:80vh" ng-init="$ctrl.initMap()">
+                <div id="data-canvas" class="col-sm-12 mapContainer" style="height:80vh;" ng-init="$ctrl.initMap()">
                 </div>
                 <!--</div>
                 </div>
