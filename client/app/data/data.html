@@ -118,23 +118,23 @@
                         </div>
                     </div>
                     <div class="panel-body pad-0" style="height:70vh;margin-bottom:0px;">
-                        <table class="table table-fixed">
+                        <table class="table table-fixed" ts-wrapper>
                             <thead>
                                 <tr>
                                     <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:center; vertical-align:middle;">
                                         <input type="checkbox" ng-model="projects.select" ng-checked="projects.checked" ng-click="$ctrl.selectAll(projects)">
                                     </th>
-                                    <th class="col-lg-1 col-md-1 col-sm-2 col-xs-2">RTPID</th>
-                                    <th class="col-lg-3 col-md-3 col-sm-6 col-xs-6">Title</th>
-                                    <th class="col-lg-4 col-md-4 col-sm-6 col-xs-6">Description</th>
+                                    <th ts-criteria="rtpId" class="col-lg-1 col-md-1 col-sm-2 col-xs-2">RTPID</th>
+                                    <th ts-criteria="title" class="col-lg-3 col-md-3 col-sm-6 col-xs-6">Title</th>
+                                    <th ts-criteria="description" class="col-lg-4 col-md-4 col-sm-6 col-xs-6">Description</th>
                                     <!--<th class="col-lg-4 col-md-4 hidden-md hidden-sm hidden-xs">Description</th>-->
-                                    <th class="col-lg-1 col-md-1 hidden-sm hidden-xs">County</th>
-                                    <th class="col-lg-1 col-md-1 hidden-sm hidden-xs">Mode</th>
+                                    <th ts-criteria="county" class="col-lg-1 col-md-1 hidden-sm hidden-xs">County</th>
+                                    <th ts-criteria="mode" class="col-lg-1 col-md-1 hidden-sm hidden-xs">Mode</th>
                                     <th class="col-lg-1 col-md-1 col-sm-3 col-xs-3">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody style="max-height:67vh;">
-                                <tr ng-class="{'selected': list.select}" ng-repeat="list in $ctrl.selectedValues = ($ctrl.projectList | filter:{rtpId:$ctrl.search.rtpId, title:$ctrl.search.fullText, county: $ctrl.county.county, mode:$ctrl.mode.mode, agency:$ctrl.sponsor.agency})">
+                                <tr ng-class="{'selected': list.select}" ts-repeat ts-hide-no-data ng-repeat="list in $ctrl.selectedValues = ($ctrl.projectList | filter:{rtpId:$ctrl.search.rtpId, title:$ctrl.search.fullText, county: $ctrl.county.county, mode:$ctrl.mode.mode, agency:$ctrl.sponsor.agency})">
                                     <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:center; vertical-align:middle;">
                                         <input type="checkbox" ng-model="list.select" ng-checked="list.checked" ng-click="$ctrl.checkSelected()">
                                     </td>

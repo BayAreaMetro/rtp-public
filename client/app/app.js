@@ -7,7 +7,8 @@ angular.module('rtpApp', [
         'ngSanitize',
         'ui.router',
         'ui.bootstrap',
-        'ui.select'
+        'ui.select',
+        'tableSort'
     ])
     .config(function($urlRouterProvider, $locationProvider) {
         $urlRouterProvider

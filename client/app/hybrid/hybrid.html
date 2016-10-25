@@ -101,17 +101,17 @@
     <div class="container-fluid" style="padding-left:0; height:80vh">
         <div class="row" style="height:80vh;">
             <div class="col-md-6" style="padding-right:0;">
-                <table class="table table-fixed" style="height:80vh;">
+                <table class="table table-fixed" style="height:80vh;" ts-wrapper>
                     <thead>
                         <tr>
                             <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="padding-left:10px;text-align:center;">
                                 <input type="checkbox" ng-model="projects.select" ng-checked="projects.checked" ng-click="$ctrl.selectAll(projects)">
                             </th>
-                            <th class="col-lg-2 col-md-2 col-sm-2 col-xs-2">RTPID</th>
-                            <th class="col-lg-4 col-md-4 col-sm-6 col-xs-6">Title</th>
+                            <th ts-criteria="rtpId" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">RTPID</th>
+                            <th ts-criteria="title" class="col-lg-4 col-md-4 col-sm-6 col-xs-6">Title</th>
                             <!--<th class="col-lg-4 col-md-4 hidden-md hidden-sm hidden-xs">Description</th>-->
-                            <th class="col-lg-2 col-md-2 hidden-sm hidden-xs">County</th>
-                            <th class="col-lg-2 col-md-2 hidden-sm hidden-xs">Mode</th>
+                            <th ts-criteria="county" class="col-lg-2 col-md-2 hidden-sm hidden-xs">County</th>
+                            <th ts-criteria="mode" class="col-lg-2 col-md-2 hidden-sm hidden-xs">Mode</th>
                             <th class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="padding-bottom:5px;">
                                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                                     <div class="btn-group" role="group">
@@ -137,7 +137,7 @@
                         </tr>
                     </thead>
                     <tbody style="max-height:75vh">
-                        <tr ng-mouseover="$ctrl.showMapProject(list)" ng-class="{'selected': list.select}" ng-repeat="list in $ctrl.selectedValues = ($ctrl.projectList | filter:{rtpId:$ctrl.search.rtpId, title:$ctrl.search.fullText, county: $ctrl.county.county, mode:$ctrl.mode.mode, agency:$ctrl.sponsor.agency})">
+                        <tr ng-mouseover="$ctrl.showMapProject(list)" ng-class="{'selected': list.select}" ts-repeat ts-hide-no-data ng-repeat="list in $ctrl.selectedValues = ($ctrl.projectList | filter:{rtpId:$ctrl.search.rtpId, title:$ctrl.search.fullText, county: $ctrl.county.county, mode:$ctrl.mode.mode, agency:$ctrl.sponsor.agency})">
                             <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="padding-left:10px; text-align:center;">
                                 <input type="checkbox" ng-model="list.select" ng-checked="list.checked" ng-click="$ctrl.checkSelected()">
                             </td>
