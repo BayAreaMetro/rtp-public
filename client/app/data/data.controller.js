@@ -14,6 +14,8 @@
                 this.selectedValues = [];
                 //Set download/export type to All projects
                 this.exportType === 'all';
+                //PreLoader
+                this.loaded = false;
 
                 // Browser check
                 this.browserCheck = function msieversion() {
@@ -51,6 +53,7 @@
         $onInit() {
             this.projects.findAll().then(response => {
                 this.projectList = response.data;
+                this.loaded = true;
             }).catch(error => {
                 console.log(error);
             });

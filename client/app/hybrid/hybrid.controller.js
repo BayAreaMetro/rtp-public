@@ -15,6 +15,9 @@
                 //Set download/export type to All projects
                 this.exportType === 'all';
 
+                //Pre loader
+                this.loaded = false;
+
                 // Browser check
                 this.browserCheck = function msieversion() {
 
@@ -381,6 +384,10 @@
                     // var centerControl = new CenterControl(centerControlDiv, gmap);
                     gmap.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(centerControlDiv);
 
+                    // google.maps.event.addListenerOnce(gmap, 'idle', function() {
+                    //     this.loading = false;
+                    // });
+
                     //Register map object
                     this.gmap = gmap;
                     return this.gmap;
@@ -399,6 +406,8 @@
         $onInit() {
             this.projects.findAll().then(response => {
                 this.projectList = response.data;
+                this.loaded = true;
+                console.log(this.loaded);
             }).catch(error => {
                 console.log(error);
             });
@@ -513,7 +522,9 @@
                     exportList = this.projectList;
                 }
                 //Remove unnecessary fields (lodash)
-                exportList = _.map(exportList, function(o) { return _.omit(o, 'select', '$$hashKey', 'checked', 'projectId'); });
+                exportList = _.map(exportList, function(o) {
+                    return _.omit(o, 'select', '$$hashKey', 'checked', 'projectId');
+                });
                 //Unparse array using Papa Parse library
                 var str = Papa.unparse(exportList);
                 var uri = 'data:text/csv;charset=utf-8,' + encodeURI(str);
@@ -560,7 +571,9 @@
                 exportList = this.projectList;
             }
             //Remove unnecessary fields (lodash)
-            exportList = _.map(exportList, function(o) { return _.pick(o, 'rtpId'); });
+            exportList = _.map(exportList, function(o) {
+                return _.pick(o, 'rtpId');
+            });
             // console.log(exportList);
             var rtpIdArray = [];
             exportList.forEach(function(element) {

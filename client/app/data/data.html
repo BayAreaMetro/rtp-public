@@ -103,7 +103,11 @@
     <!-- /.container-fluid -->
 </nav>
 <!--End Navigation-->
-
+<!--Preloader-->
+<div class="loader-container" ng-show="!$ctrl.loaded" ng-hide="$ctrl.loaded">
+    <div class="loader"></div>
+</div>
+<!--End Preloader-->
 <!--Main Section-->
 <div ui-view="data-content">
     <div class="container-fluid" style="padding-left:0;">
