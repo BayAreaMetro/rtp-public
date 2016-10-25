@@ -25,6 +25,10 @@
     background: #258ecd;
 }
 
+.cbp-spmenuClose a:hover {
+    background: #000000 !important;
+}
+
 .cbp-spmenu a:active {
     background: #afdefa;
     color: #47a3da;
