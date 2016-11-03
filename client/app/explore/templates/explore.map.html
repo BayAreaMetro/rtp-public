@@ -1,0 +1,93 @@
+<div class="cbp-spmenu-push" style="position:relative;height:100%;">
+    <!--LEFT SLIDE MENU-->
+    <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1" style="height:100%;background-color:#336699;position:absolute;">
+        <!--<h3>Tools</h3>-->
+        <div id="close" ng-click="showTools2()" class="cbp-spmenuClose">
+            <a class="pad-0 " href="#" style="border-bottom:0px;"><span style="color:white; font-size:30px;"><h1 style="margin:0; padding-left:6px;"> &#10006;</h1></span></a>
+        </div>
+        <a href="#">Search</a>
+        <form class="form-inline pad-bot-0" style="padding-left:5px;;">
+            <div class="form-group" style="margin-top:0;padding-top:10px;">
+                <input class="form-control" id="pac-input" type="text" placeholder="Search for address...">
+            </div>
+        </form>
+        <a href="#">Toggle Layers</a>
+        <!--<a href="#main-sec"><i class="fa fa-home fa-3x"></i>HOME</a>
+        <a href="#about-sec"><i class="fa fa-microphone fa-3x"></i>ABOUT</a>
+        <a href="#price-sec"><i class="fa fa-dollar fa-3x"></i>PRICING</a>
+        <a href="#services-sec"><i class="fa fa-rocket fa-3x"></i>SERVICES</a>
+        <a href="#contact-sec"><i class="fa fa-globe fa-3x"></i>CONTACT</a>-->
+        <div id="toggleLayerDiv" style="color:white; padding-left:10px;">
+            <div class="checkbox">
+                <label class="pad-0"><input type="checkbox" name="rtpLines" ng-true-value="1" ng-false-value="0" ng-change="rtpLayerToggle(rtpPointLayer,'point')" ng-model="rtpPointCheckbox">Points</label>
+            </div>
+            <div class="checkbox">
+                <label class="pad-0"><input type="checkbox" name="rtpPoints" ng-true-value="1" ng-false-value="0" ng-change="rtpLayerToggle(rtpLineLayer,'line')" ng-model="rtpLineCheckbox">Lines</label>
+            </div>
+            <div class="checkbox">
+                <label class="pad-0"><input type="checkbox" name="rtpPolygons" ng-true-value="1" ng-false-value="0" ng-change="rtpLayerToggle(rtpPolygonLayer,'poly')" 	ng-model="rtpPolygonCheckbox">Polygons</label>
+            </div>
+            <div class="checkbox">
+                <label class="pad-0"><input type="checkbox" name="pdasLayer" ng-true-value="1" ng-false-value="0" ng-change="loadOverlays(pdaLayer)" 	ng-model="pdasCheckbox">Priority Development Areas</label>
+            </div>
+        </div>
+        <a href="#">Legend</a>
+        <div id="legend" style="color:white;padding-left:10px; padding-top:10px;">
+            <table>
+                <tbody>
+                    <tr ng-show="legend.pdas">
+                        <td style="padding-bottom:5px;">
+                            Priority Development Areas
+                        </td>
+                        <td style="padding-left:5px; padding-bottom:5px;">
+                            <div style="width:20px;height:20px;background-color:orange;border:solid;border-color:white;border-width:1px;"></div>
+                        </td>
+                    </tr>
+                    <tr style="padding-bottom:5px;">
+                        <td>
+                            Transit Projects
+                        </td>
+                        <td style="padding-bottom:5px;padding-left:5px;">
+                            <div style="width:20px;height:20px;background-color:#336699; border:solid;border-color:white;border-width:1px;"></div>
+                        </td>
+                    </tr>
+                    <tr style="padding-bottom:5px;">
+                        <td>
+                            Roadway Projects
+                        </td>
+                        <td style="padding-left:5px;">
+                            <div style="width:20px;height:20px;background-color:#D9534F; border:solid;border-color:white;border-width:1px;"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--Map Tools Button -->
+    <div id="toggleTools" ng-click="showTools2()" ng-show="!showTools" style="background-color:white !important;left:0px !important; position:absolute; top:150px;">
+        <div class="row" id="icon-left" style="background-color:white !important;">
+            <div class="col-md-12" style="color:black; background-color:white;">
+                <button id="showLeftPush" class="btn btn-primary">
+                    <i class="fa fa-cogs fa-2x"></i>
+                <!--<span ng-show="showTools">&nbsp;HIDE TOOLS</span>
+                <span ng-show="!showTools">&nbsp;SHOW TOOLS</span>-->
+                </button>
+                <!--<i id="showLeftPush" class="fa fa-cogs fa-4x faa-horizontal animated" style="background-color:white;">
+                    <span ng-show="showTools">Hide Tools</span>
+                    <span ng-show="!showTools">Show Tools </span>
+                    </i>-->
+            </div>
+        </div>
+    </div>
+    <!--End Map Tools -->
+    <!--END LEFT SLIDE MENU-->
+    <!--Map Container-->
+    <div class="panel-heading" style="background-color:lightgray; pading-left:0;">
+        <button class="btn btn-default btn-large" ng-click="backtoProjects()">Back to projects</button>
+    </div>
+    <div class="panel-body map-panel" style="height:80vh !important;">
+        <div id="canvas" class="col-sm-12 mapContainer" style="height:80vh;">
+        </div>
+    </div>
+    <!--End Map Container-->
+</div>

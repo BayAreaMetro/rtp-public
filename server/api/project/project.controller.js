@@ -13,7 +13,9 @@
 
 import _ from 'lodash';
 import sql from 'mssql';
-import { Project } from '../../sqldb';
+import {
+    Project
+} from '../../sqldb';
 var config = require('./../../config/environment');
 
 
@@ -146,6 +148,50 @@ export function findOne(req, res) {
             return res.status(404).send('Not Found');
         }
         console.log(data[0]);
+        res.status(200).json(data);
+    });
+}
+
+export function search(req, res) {
+    var params = req.body;
+    console.log('the body is');
+    console.log(params);
+    console.log(params.length);
+    //Array of key pair values
+    // params = _.toPairs(params);
+
+    var queryParams = '';
+    var query = 'Select * From [RTP].[dbo].[project_VW]';
+
+    //Build query string based on number of parameters
+    if (params.length === 0) {
+        query = query;
+    } else if (params.length === 1) {
+        console.log(params[0]);
+        console.log(_.values(params[0]))
+        console.log(_.keys(params[0]));
+        query = 'Select * From [RTP].[dbo].[project_VW] Where ';
+        queryParams = _.keys(params[0]) + " = '" + _.values(params[0]) + "'";
+        query += queryParams;
+    } else if (params.length > 1) {
+        query = 'Select * From [RTP].[dbo].[project_VW] Where ';
+        for (var i = 0; i < params.length; i++) {
+            queryParams += _.keys(params[i]) + " = '" + _.values(params[i]) + "' AND ";
+        }
+        //Remove final AND from string;
+        queryParams = queryParams.substring(0, queryParams.length - 5);
+        query += queryParams;
+
+    }
+
+    var request = new sql.Request(config.mssql.connection);
+    request.query(query, function(err, data) {
+        if (err) {
+            return handleError(res, err);
+        }
+        if (!data) {
+            return res.status(404).send('Not Found');
+        }
         res.status(200).json(data);
     });
 }

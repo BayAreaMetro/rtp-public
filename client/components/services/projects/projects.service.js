@@ -6,12 +6,18 @@ angular.module('rtpApp')
         var mapURL = '/api/maps';
         var currentProject = {};
         var mapProjectList = {};
+        var searchList = [];
 
         //Query all projects
         this.findAll = function() {
             return $http.get(baseURL + '/findAll', {
                 cache: false
             });
+        };
+
+        //Query projects based on search parameters
+        this.search = function(searchParams) {
+            return $http.post(baseURL + '/search', searchParams);
         };
 
         //Find single project based on rtpId
@@ -37,6 +43,16 @@ angular.module('rtpApp')
         //Retrieve project projects to view on map
         this.getViewOnMap = function() {
             return mapProjectList;
+        }
+
+        //Set project list based on search page parameters
+        this.setSearchList = function(data) {
+            searchList = data;
+        }
+
+        //Retrieve project list based on search page parameters
+        this.getSearchList = function() {
+            return searchList;
         }
 
     });

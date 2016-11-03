@@ -1,7 +1,6 @@
 <!--Eyebrow Directive-->
 <eyebrow></eyebrow>
 <!--End Eyebrow-->
-
 <!--Header-->
 <div class="header">
     <!--<div id="google_translate_element"></div>-->
@@ -11,7 +10,6 @@
     </div>
     <!-- right-col -->
     <a href="/index.php" class="logo"><img src="http://planbayarea.org/images/PBA_logo_RGB.png" alt="Go to home page" width="109" border="0" height="100"></a>
-
 </div>
 <!--End Header
 
@@ -28,66 +26,28 @@
       </button>
             <!--<a class="navbar-brand" href="#"><i class="fa fa-search"></i>&nbsp; Tools</a>-->
         </div>
-
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-slide-dropdown" style="padding-top:10px;padding-left:0;">
-            <ul class="nav navbar-nav">
+            <!--<ul class="nav navbar-nav">
                 <form class="navbar-form navbar-left" role="search" style="padding:0;margin:0;border-style:none;">
                     <div class="form-group" style="margin-top:0;">
-                        <input type="text" class="form-control" style="height:36px;" placeholder="RTPID Search..." ng-model="$ctrl.search.rtpId" uib-typeahead="id for id in $ctrl.rtpIdsList | filter:$viewValue | limitTo:8">
+                        <input type="text" class="form-control" style="height:36px; width:250px;" placeholder="Search Projects..." ng-model="$ctrl.search">
                     </div>
-                    <!--<button type="submit" class="btn btn-default">Submit</button>-->
+                  
                 </form>
-                <form class="navbar-form navbar-left" role="search" style="padding:0;margin:0;border-style:none;">
-                    <div class="form-group" style="margin-top:0;">
-                        <!--<select class="selectpicker" id="countyInput" name="countyInput" ng-model="$ctrl.search.county" title="Select County...">-->
-                        <!--<option default>County</option>-->
-                        <!--<option ng-repeat="val in $ctrl.countiesList">{{val.county}}</option>-->
-                        <!--</select>-->
-                        <ui-select ng-model="$ctrl.county" theme="selectize" ng-disabled="ctrl.disabled" style="width: 150px;" title="Choose a country">
-                            <ui-select-match placeholder="County">{{$select.selected.county}}</ui-select-match>
-                            <ui-select-choices repeat="county in $ctrl.countiesList | filter: $select.search">
-                                <span ng-bind-html="county.county | highlight: $select.search"></span>
-
-                            </ui-select-choices>
-                        </ui-select>
-                    </div>
-                </form>
-                <form class="navbar-form navbar-left" role="search" style="padding:0;margin:0;border-style:none;">
-                    <div class="form-group" style="margin-top:0;">
-                        <ui-select ng-model="$ctrl.mode" theme="selectize" ng-disabled="ctrl.disabled" style="width: 120px;" title="Choose a country">
-                            <ui-select-match placeholder="Mode">{{$select.selected.mode}}</ui-select-match>
-                            <ui-select-choices repeat="val in $ctrl.modeList | filter: $select.search">
-                                <span ng-bind-html="val.mode | highlight: $select.search"></span>
-
-                            </ui-select-choices>
-                        </ui-select>
-                    </div>
-                </form>
-                <form class="navbar-form navbar-left  hidden-sm hidden-xs" role="search" style="padding:0;margin:0;border-style:none;">
-                    <div class="form-group" style="margin-top:0;">
-                        <ui-select allow-clear ng-model="$ctrl.sponsor" theme="selectize" style="width: 230px;">
-                            <ui-select-match placeholder="Sponsor">{{$select.selected.agency}}</ui-select-match>
-                            <ui-select-choices repeat="val in $ctrl.sponsorList | filter: $select.search">
-                                <span ng-bind-html="val.agency | highlight: $select.search"></span>
-                            </ui-select-choices>
-                        </ui-select>
-
-                    </div>
-                </form>
-                <!--<form class="navbar-form navbar-left" role="search">
-                    <span class="input-group-btn">
-                            <button type="button" ng-click="$ctrl.sponsor = undefined" class="btn btn-default">
-                                <span class="glyphicon glyphicon-trash"></span>&nbsp;Clear Filters
-                    </button>
-                    </span>
-                </form>-->
-            </ul>
-
+            </ul>-->
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/">Home</a></li>
-                <li><a href="/explore">Explore</a></li>
-
+                <li><a href="#">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a ui-sref="data">Data</a></li>
+                        <li><a ui-sref="map">Maps</a></li>
+                        <li><a ui-sref="hybrid">Hybrid</a></li>
+                        <!--<li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>-->
+                    </ul>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -106,7 +66,12 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel">
-                    <div class="panel-heading clearfix" style="padding-top:3px;; height:40px;">
+                    <div class="panel-heading clearfix" style="padding-top:3px; padding-left:0; height:40px;">
+                        <div class="pull-left">
+                            <div class="form-group" style="margin:0;padding-bottom:5px;">
+                                <input type="text" class="form-control" style="height:36px; width:250px;" placeholder="Search Projects..." ng-model="$ctrl.search">
+                            </div>
+                        </div>
                         <div class="pull-right">
                             <button type="button" class="btn btn-large btn-default" ng-click="$ctrl.clearFilters()">Clear Filters</button>
                             <button type="button" class="btn btn-large btn-default" ng-click="$ctrl.viewOnMap()">View on Map</button>
@@ -130,7 +95,7 @@
                                 </tr>
                             </thead>
                             <tbody style="max-height:67vh;">
-                                <tr ng-class="{'selected': list.select}" ts-repeat ts-hide-no-data ng-repeat="list in $ctrl.selectedValues = ($ctrl.projectList | filter:{rtpId:$ctrl.search.rtpId, title:$ctrl.search.fullText, county: $ctrl.county.county, mode:$ctrl.mode.mode, agency:$ctrl.sponsor.agency})">
+                                <tr ng-class="{'selected': list.select}" ts-repeat ts-hide-no-data ng-repeat="list in $ctrl.selectedValues = ($ctrl.projectList | filter:$ctrl.search)">
                                     <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:center; vertical-align:middle;">
                                         <input type="checkbox" ng-model="list.select" ng-checked="list.checked" ng-click="$ctrl.checkSelected()">
                                     </td>
@@ -143,7 +108,6 @@
                                     <td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="text-align: center;">
                                         <a href="javascript:;" class="btn btn-small" ng-click="$ctrl.loadDataMap(list.rtpId)" ng-if="list.mapStatus === 'Needs Review'">
                                             <i class="fa fa-th-list fa-3x" style="font-size:30px;"></i>
-
                                         </a>
                                     </td>
                                 </tr>
@@ -151,11 +115,8 @@
                         </table>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 </div>
 <!--<div class="row">
@@ -203,10 +164,7 @@
             <button type="button" class="btn btn-large btn-default" ng-click="$ctrl.exportCSV()">Export to CSV</button>
         </div>
     </div>-->
-
-
 <!--End Main Section-->
-
 <!--Footer-->
 <div class="container footer-container">
     <div class="footer">
@@ -231,7 +189,6 @@
                 <li><a href="/your-part/your-comments.html">Your Comments</a></li>
             </ul>
             <!-- first row -->
-
             <ul>
                 <!-- second row -->
                 <a href="/the-counties.html" class="head">The Counties</a>
@@ -246,7 +203,6 @@
                 <li><a href="/the-counties/sonoma-county.html">Sonoma County</a></li>
             </ul>
             <!-- second row -->
-
             <ul>
                 <!-- third row -->
                 <a href="/news-main.html" class="head">News</a>
@@ -265,7 +221,6 @@
                 <li><a href="/resources/PDA-Assessment-Update.html">PDA Assessment Update</a></li>
             </ul>
             <!-- third row -->
-
             <ul>
                 <!-- fourth row -->
                 <a href="/contact.html" class="head">Contact Us</a>
@@ -274,7 +229,6 @@
                 <a href="/index.php" class="head">Home</a>
             </ul>
             <!-- fourth row -->
-
             <div class="right-col">
                 <a href="https://www.facebook.com/OneBayArea" target="_blank" class="facebook"></a>
                 <a href="https://twitter.com/OneBayArea" target="_blank" class="twitter"></a>

@@ -28,67 +28,11 @@
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-slide-dropdown" style="padding-top:10px;padding-left:0;">
-            <ul class="nav navbar-nav">
-                <form class="navbar-form navbar-left" role="search" style="padding:0;margin:0;border-style:none;">
-                    <div class="form-group" style="margin-top:0;">
-                        <input type="text" class="form-control" style="height:36px;" placeholder="RTPID Search..." ng-model="$ctrl.search.rtpId" uib-typeahead="id for id in $ctrl.rtpIdsList | filter:$viewValue | limitTo:8">
-                    </div>
-                    <!--<button type="submit" class="btn btn-default">Submit</button>-->
-                </form>
-                <form class="navbar-form navbar-left" role="search" style="padding:0;margin:0;border-style:none;">
-                    <div class="form-group" style="margin-top:0;">
-                        <!--<select class="selectpicker" id="countyInput" name="countyInput" ng-model="$ctrl.search.county" title="Select County...">-->
-                        <!--<option default>County</option>-->
-                        <!--<option ng-repeat="val in $ctrl.countiesList">{{val.county}}</option>-->
-                        <!--</select>-->
-                        <ui-select ng-model="$ctrl.county" theme="selectize" ng-disabled="ctrl.disabled" style="width: 150px;" title="Choose a country">
-                            <ui-select-match placeholder="County">{{$select.selected.county}}</ui-select-match>
-                            <ui-select-choices repeat="county in $ctrl.countiesList | filter: $select.search">
-                                <span ng-bind-html="county.county | highlight: $select.search"></span>
-                            </ui-select-choices>
-                        </ui-select>
-                    </div>
-                </form>
-                <form class="navbar-form navbar-left" role="search" style="padding:0;margin:0;border-style:none;">
-                    <div class="form-group" style="margin-top:0;">
-                        <ui-select ng-model="$ctrl.mode" theme="selectize" ng-disabled="ctrl.disabled" style="width: 120px;" title="Choose a country">
-                            <ui-select-match placeholder="Mode">{{$select.selected.mode}}</ui-select-match>
-                            <ui-select-choices repeat="val in $ctrl.modeList | filter: $select.search">
-                                <span ng-bind-html="val.mode | highlight: $select.search"></span>
-                            </ui-select-choices>
-                        </ui-select>
-                    </div>
-                </form>
-                <form class="navbar-form navbar-left  hidden-sm hidden-xs" role="search" style="padding:0;margin:0;border-style:none;">
-                    <div class="form-group" style="margin-top:0;">
-                        <ui-select allow-clear ng-model="$ctrl.sponsor" theme="selectize" style="width: 230px;">
-                            <ui-select-match placeholder="Sponsor">{{$select.selected.agency}}</ui-select-match>
-                            <ui-select-choices repeat="val in $ctrl.sponsorList | filter: $select.search">
-                                <span ng-bind-html="val.agency | highlight: $select.search"></span>
-                            </ui-select-choices>
-                        </ui-select>
-                    </div>
-                </form>
-                <!--<form class="navbar-form navbar-left" role="search">
-                    <span class="input-group-btn">
-                            <button type="button" ng-click="$ctrl.sponsor = undefined" class="btn btn-default">
-                                <span class="glyphicon glyphicon-trash"></span>&nbsp;Clear Filters
-                    </button>
-                    </span>
-                </form>-->
-            </ul>
+
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Home</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a ui-sref="data">Data</a></li>
-                        <li><a ui-sref="map">Maps</a></li>
-                        <li><a ui-sref="hybrid">Hybrid</a></li>
-                        <!--<li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>-->
-                    </ul>
-                </li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/explore">Explore</a></li>
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -166,7 +110,7 @@
         <div class="row" id="icon-left" style="background-color:white !important;">
             <div class="col-md-12" style="color:black; background-color:white;">
                 <button id="showLeftPush" class="btn btn-primary">
-                    <i class="fa fa-cogs fa-2x faa-horizontal animated"></i>
+                    <i class="fa fa-cogs fa-2x"></i>
                 <!--<span ng-show="$ctrl.showTools">&nbsp;HIDE TOOLS</span>
                 <span ng-show="!$ctrl.showTools">&nbsp;SHOW TOOLS</span>-->
                 </button>

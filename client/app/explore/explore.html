@@ -1,15 +1,236 @@
-<div class="section section-default">
-    <div class="row">
-        <div class="col-md-6">
-            Map Div
-            <br>
-            <a href="/map"> <button type="button" class="btn btn-large btn-default">View Map</button></a>
+<!--Eyebrow Directive-->
+<eyebrow></eyebrow>
+<!--End Eyebrow-->
+<!--Header-->
+<div class="header">
+    <!--<div id="google_translate_element"></div>-->
+    <div class="right-col">
+        <a href="https://www.facebook.com/PlanBayArea" target="_blank" class="facebook"></a>
+        <a href="https://twitter.com/PlanBayArea" target="_blank" class="twitter"></a>
+    </div>
+    <!-- right-col -->
+    <a href="/index.php" class="logo"><img src="http://planbayarea.org/images/PBA_logo_RGB.png" alt="Go to home page" width="109" border="0" height="100"></a>
+</div>
+<!--End Header
 
+<!--Navigation-->
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-slide-dropdown">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+            <!--<a class="navbar-brand" href="#"><i class="fa fa-search"></i>&nbsp; Tools</a>-->
         </div>
-        <div class="col-md-6">
-            Data Div
-            <br>
-            <a href="/data"><button type="button" class="btn btn-large btn-default">View Data</button></a>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-slide-dropdown" style="padding-top:10px;padding-left:0;">
+            <ul class="nav navbar-nav">
+                <!--<form class="navbar-form navbar-left" role="search">
+                    <span class="input-group-btn">
+                            <button type="button" ng-click="$ctrl.sponsor = undefined" class="btn btn-default">
+                                <span class="glyphicon glyphicon-trash"></span>&nbsp;Clear Filters
+                    </button>
+                    </span>
+                </form>-->
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/explore">Explore</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<!--End Navigation-->
+<!--Main Section-->
+<div ui-view="explore-content">
+    <div class="section searchDiv" style="padding-left:0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-block center-block" style="padding-top:30px;">
+                        <h2 class="title">Search for Projects</h2>
+                        <p>Use the search criteria below, or just click search!</p>
+                        <hr>
+                        <form class="form-horizontal">
+                            <div class="form-group has-feedback pad-top-30">
+                                <label for="rtpInputSearch" class="col-sm-3 control-label">RTPID</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="rtpInputSearch" class="form-control" style="height:36px;" placeholder="RTPID Search..." ng-model="$ctrl.rtpId" uib-typeahead="id for id in $ctrl.rtpIdsList | filter:$viewValue | limitTo:8">
+
+                                </div>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <label for="countyInputSearch" class="col-sm-3 control-label">County</label>
+                                <div class="col-sm-8">
+                                    <ui-select ng-model="$ctrl.county" id="countyInputSearch" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a country">
+                                        <ui-select-match placeholder="County">{{$select.selected.county}}</ui-select-match>
+                                        <ui-select-choices repeat="county in $ctrl.countiesList | filter: $select.search">
+                                            <span ng-bind-html="county.county | highlight: $select.search"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+
+                                </div>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <label for="modeInputSearch" class="col-sm-3 control-label">Mode</label>
+                                <div class="col-sm-8">
+                                    <ui-select id="modeInputSearch" ng-model="$ctrl.mode" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a country">
+                                        <ui-select-match placeholder="Mode">{{$select.selected.mode}}</ui-select-match>
+                                        <ui-select-choices repeat="val in $ctrl.modeList | filter: $select.search">
+                                            <span ng-bind-html="val.mode | highlight: $select.search"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+
+                                </div>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <label for="sponsorInputSearch" class="col-sm-3 control-label">Sponsor</label>
+                                <div class="col-sm-8">
+                                    <ui-select id="sponsorInputSearch" allow-clear ng-model="$ctrl.sponsor" theme="selectize">
+                                        <ui-select-match placeholder="Sponsor">{{$select.selected.agency}}</ui-select-match>
+                                        <ui-select-choices repeat="val in $ctrl.sponsorList | filter: $select.search">
+                                            <span ng-bind-html="val.agency | highlight: $select.search"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group has-feedback">
+                                <div class="col-sm-11 text-right">
+                                    <button class="btn btn-default" ng-click="$ctrl.clearSearch()"><i class="fa fa-refresh"></i>&nbsp; Reset</button>
+                                </div>
+                            </div>
+
+                        </form>
+                        <div class="row">
+                            <!-- Boxes de Acoes -->
+
+
+                            <div class="col-xs-12 col-sm-6 col-lg-6">
+                                <div class="box">
+                                    <div class="icon">
+                                        <div class="image" ng-click="$ctrl.searchProjects('data')"><i class="fa fa-list"></i></div>
+                                        <div class="info">
+                                            <h3 class="title">View Data</h3>
+                                            <p>
+                                                Displays data in a table with options to export results, view individual project details and more... </p>
+                                            <div class="more">
+                                                <button ng-click="$ctrl.searchProjects('explore.data')" class="btn btn-primary btn-hover">Search <i class="fa fa-angle-double-right"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="space"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-lg-6">
+                                <div class="box">
+                                    <div class="icon">
+                                        <div class="image" ng-click="$ctrl.searchProjects('map')"><i class="fa fa-map-marker"></i></div>
+                                        <div class="info">
+                                            <h3 class="title">View Map</h3>
+                                            <p>
+                                                Displays data on Google Maps with options to view different basemaps, overlays and more... </p>
+                                            <div class="more">
+                                                <button ng-click="$ctrl.searchProjects('explore.map')" class="btn btn-primary">Search <i class="fa fa-angle-double-right"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="space"></div>
+                                </div>
+                            </div>
+                            <!-- /Boxes de Acoes -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+
+<!--Footer-->
+<div class="container footer-container">
+    <div class="footer">
+        <div class="footer-nav">
+            <ul>
+                <!-- first row -->
+                <a href="/the-plan.html" class="head">The Plan</a>
+                <li><a href="/the-plan/the-context.html">The Context</a></li>
+                <li><a href="/the-plan/Timeline.html">Timeline</a></li>
+                <li><a href="/the-plan/plan-details.html">Plan Details</a></li>
+                <li><a href="/the-plan/Draft-Preferred-Scenario.html">Draft Preferred Scenario</a></li>
+                <li><a href="/the-plan/environmental-impact-report.html">Environmental Impact Report</a></li>
+                <li><a href="/the-plan/quick-facts.html">Quick Facts</a></li>
+                <li><a href="/the-plan/adopted-plan-bay-area-2013.html">Adopted Plan Bay Area 2013</a></li>
+                <li><a href="/the-plan/Document-Archive-2013-PBA.html">Document Archive: Plan Bay Area 2013</a></li>
+                <a href="/your-part.html" class="head">Your Part</a>
+                <li><a href="/your-part/get-involved.html">Get Involved</a></li>
+                <li><a href="/your-part/Language-Assistance.html">Language Assistance</a></li>
+                <li><a href="/your-part/meetings-events.html">Meetings &amp; Events</a></li>
+                <li><a href="/your-part/PlanBayArea2040-2016-Meeting-Materials.html">Open House and Meeting Materials</a></li>
+                <li><a href="/your-part/open-forum.html">Plan Bay Area Open Forum</a></li>
+                <li><a href="/your-part/your-comments.html">Your Comments</a></li>
+            </ul>
+            <!-- first row -->
+            <ul>
+                <!-- second row -->
+                <a href="/the-counties.html" class="head">The Counties</a>
+                <li><a href="/the-counties/alameda-county.html">Alameda County</a></li>
+                <li><a href="/the-counties/contra-costa-county.html">Contra Costa County</a></li>
+                <li><a href="/the-counties/marin-county.html">Marin County</a></li>
+                <li><a href="/the-counties/napa-county.html">Napa County</a></li>
+                <li><a href="/the-counties/san-francisco-county.html">San Francisco County</a></li>
+                <li><a href="/the-counties/san-mateo-county.html">San Mateo County</a></li>
+                <li><a href="/the-counties/santa-clara-county.html">Santa Clara County</a></li>
+                <li><a href="/the-counties/solano-county.html">Solano County</a></li>
+                <li><a href="/the-counties/sonoma-county.html">Sonoma County</a></li>
+            </ul>
+            <!-- second row -->
+            <ul>
+                <!-- third row -->
+                <a href="/news-main.html" class="head">News</a>
+                <li><a href="/news/news-features.html">News Features</a></li>
+                <li><a href="/news/in-the-news.html">In the Media</a></li>
+                <li><a href="/news/news-releases.html">News Releases</a></li>
+                <li><a href="/news/Video-Index.html">Video Index</a></li>
+                <li><a href="/news/plan-bay-area-e-newsletters.html">Plan Bay Area eNewsletter</a></li>
+                <a href="/resources.html" class="head">Resources</a>
+                <li><a href="/resources/CEQA-Streamlining-Opportunities.html">CEQA Streamlining Opportunities</a></li>
+                <li><a href="/resources/vital-signs.html">Vital Signs</a></li>
+                <li><a href="/resources/Bay-Area-tranportation-project-mapper.html">Project Mapper</a></li>
+                <li><a href="/resources/state-of-the-region-2015-report.html">State of the Region 2015 Report</a></li>
+                <li><a href="/resources/Bay-Area-Travel-Map.html">Bay Area Travel Map</a></li>
+                <li><a href="/resources/Bay-Area-Prosperity-Plan.html">Bay Area Prosperity Plan</a></li>
+                <li><a href="/resources/PDA-Assessment-Update.html">PDA Assessment Update</a></li>
+            </ul>
+            <!-- third row -->
+            <ul>
+                <!-- fourth row -->
+                <a href="/contact.html" class="head">Contact Us</a>
+                <li><a href="mailto:info@planbayarea.org">info@planbayarea.org</a></li>
+                <li>Phone: (415) 778-6757</li>
+                <a href="/index.php" class="head">Home</a>
+            </ul>
+            <!-- fourth row -->
+            <div class="right-col">
+                <a href="https://www.facebook.com/OneBayArea" target="_blank" class="facebook"></a>
+                <a href="https://twitter.com/OneBayArea" target="_blank" class="twitter"></a>
+                <p>
+                    <a href="/misc/request-accessibility-assistance.html"><br>Request accessibility assistance</a>
+                </p>
+                <p class="small">&copy; 2014 Association of Bay Area Governments, Metropolitan Transportation Commission, Bay Area Air Quality Management District, Bay Conservation and Development Commission. All Rights Reserved.</p>
+            </div>
+            <!-- right-col -->
+        </div>
+        <!-- footer-nav -->
+    </div>
+    <!-- footer -->
+    <div class="clear-float"> </div>
 </div>

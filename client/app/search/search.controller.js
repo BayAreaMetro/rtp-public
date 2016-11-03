@@ -1,7 +1,7 @@
 'use strict';
 (function() {
 
-    class DataComponent {
+    class SearchComponent {
         constructor(projects, $rootScope, $state, $location, lookUp, $filter, $scope) {
                 //    Data Variables
                 this.projects = projects;
@@ -51,24 +51,12 @@
              * Loads a list of counties
              */
         $onInit() {
-            if (this.projects.getSearchList().length > 0) {
-                this.projectList = this.projects.getSearchList();
+            this.projects.findAll().then(response => {
+                this.projectList = response.data;
                 this.loaded = true;
-            } else {
-                this.projects.findAll().then(response => {
-                    this.projectList = response.data;
-                    this.loaded = true;
-                }).catch(error => {
-                    console.log(error);
-                });
-            }
-            // this.projects.getSearchList().then(response => {
-            //     this.projectList = response.data;
-            //     this.loaded = true;
-            // }).catch(error => {
-            //     console.log(error);
-            // });
-
+            }).catch(error => {
+                console.log(error);
+            });
 
             this.lookUp.rtpIds().then(response => {
                     this.rtpIdsList = response.data;
@@ -116,10 +104,10 @@
          */
         clearFilters() {
             // console.log(this.$scope);
-            this.search = {};
-            this.county = undefined;
-            this.mode = undefined;
-            this.sponsor = undefined;
+            this.search = '';
+            // this.county = undefined;
+            // this.mode = undefined;
+            // this.sponsor = undefined;
 
 
         }
@@ -248,13 +236,12 @@
             // this.initMap();
         }
 
-
     }
 
     angular.module('rtpApp')
-        .component('data', {
-            templateUrl: 'app/data/data.html',
-            controller: DataComponent
+        .component('search', {
+            templateUrl: 'app/search/search.html',
+            controller: SearchComponent
         });
 
 })();

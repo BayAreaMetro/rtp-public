@@ -8,7 +8,8 @@ angular.module('rtpApp', [
         'ui.router',
         'ui.bootstrap',
         'ui.select',
-        'tableSort'
+        'tableSort',
+        'angular.filter'
     ])
     .config(function($urlRouterProvider, $locationProvider) {
         $urlRouterProvider
