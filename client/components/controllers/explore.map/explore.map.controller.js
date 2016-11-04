@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('rtpApp')
-    .controller('ExploreMapCtrl', function($scope, projects, $state) {
+    .controller('ExploreMapCtrl', function($scope, projects, $state, $window) {
         $scope.message = 'Hello';
 
         var gmap;
@@ -45,6 +45,15 @@ angular.module('rtpApp')
          * returns @gmap object
          */
         $scope.initMap = function() {
+
+            var myStyles = [{
+                featureType: "poi",
+                elementType: "labels",
+                stylers: [
+                    { visibility: "off" }
+                ]
+            }];
+
             var rtpIdList = $scope.rtpIdList;
             gmap = new google.maps.Map(document.getElementById('canvas'), {
                 center: new google.maps.LatLng(37.796966, -122.275051),
@@ -60,20 +69,22 @@ angular.module('rtpApp')
                 },
                 disableDefaultUI: true,
                 mapTypeControl: true,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeId: google.maps.MapTypeId.GoogleEarthAPI,
                 mapTypeControlOptions: {
                     position: google.maps.ControlPosition.TOP_LEFT,
                     style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
                 },
                 panControl: true,
                 streetViewControl: true,
+                rotateControl: true,
                 zoom: 10,
                 zoomControl: true,
                 scrollwheel: false,
                 zoomControlOptions: {
                     position: google.maps.ControlPosition.LEFT_TOP,
                     style: google.maps.ZoomControlStyle.SMALL
-                }
+                },
+                styles: myStyles
             });
 
             google.maps.event.addListener(gmap, 'tilesloaded', function() {
@@ -509,6 +520,20 @@ angular.module('rtpApp')
         }
 
         $scope.initMap();
+
+        function rotate90() {
+            var heading = $scope.gmap.getHeading() || 0;
+            $scope.gmap.setHeading(heading + 90);
+        }
+
+        $scope.autoRotate = function() {
+            // Determine if we're showing aerial imagery.
+            if ($scope.gmap.getTilt() !== 0) {
+                $window.setInterval(rotate90, 3000);
+            }
+        }
+
+
 
         $scope.showTools2 = function() {
                 var menuLeft = document.getElementById('cbp-spmenu-s1'),
