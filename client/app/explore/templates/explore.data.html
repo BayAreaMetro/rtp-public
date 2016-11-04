@@ -62,32 +62,17 @@
 
 
         </div>
-        <!--Map Tools Button -->
-        <div id="toggleTools" ng-click="showFilters()" ng-show="!showTools" style="background-color:white !important;left:0px !important; position:absolute; top:150px;">
-            <div class="row" id="icon-left" style="background-color:white !important;">
-                <div class="col-md-12" style="color:black; background-color:white;">
-                    <button id="showLeftPush" class="btn btn-primary">
-                    <i class="fa fa-filter fa-2x"></i>
-                <!--<span ng-show="showTools">&nbsp;HIDE TOOLS</span>
-                <span ng-show="!showTools">&nbsp;SHOW TOOLS</span>-->
-                </button>
-                    <!--<i id="showLeftPush" class="fa fa-cogs fa-4x faa-horizontal animated" style="background-color:white;">
-                    <span ng-show="showTools">Hide Tools</span>
-                    <span ng-show="!showTools">Show Tools </span>
-                    </i>-->
-                </div>
-            </div>
-        </div>
-        <!--End Map Tools -->
+
         <!--END LEFT SLIDE MENU-->
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2" style="padding-bottom:5px;padding-top:5px;">
                 <div style="padding-top:3px;padding-left:0;padding-bottom:30px; height:40px;">
                     <div style="padding-bottom:30px;">
+                        <a href="#" ng-click="showFilters()"> <button id="showLeftPush" type="button" class="btn btn-large btn-default"><i class="fa fa-filter"></i>&nbsp;Filter Results</button></a>
                         <a ui-sref="explore"> <button type="button" class="btn btn-large btn-default"><i class="fa fa-search"></i>&nbsp;Change Search</button></a>
-                        <button type="button" class="btn btn-large btn-default" ng-click="viewOnMap()"><i class="fa fa-map-marker"></i>&nbsp;View on Map</button>
-                        <button type="button" class="btn btn-large btn-default" ng-click="exportCSV()"><i class="fa fa-file-excel-o"></i>&nbsp;Export to CSV</button>
+                        <button type="button" class="btn btn-large btn-default" ng-click="viewOnMap()"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
+                        <button type="button" class="btn btn-large btn-default hidden-xs" ng-click="exportCSV()"><i class="fa fa-file-excel-o"></i>&nbsp;Export</button>
                     </div>
                 </div>
             </div>
@@ -100,33 +85,38 @@
                         <table class="table table-fixed" ts-wrapper>
                             <thead>
                                 <tr>
-                                    <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:center; vertical-align:middle;">
+                                    <!--<th class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:center; vertical-align:middle;">
                                         <input type="checkbox" ng-model="projects.select" ng-checked="projects.checked" ng-click="selectAll(projects)">
-                                    </th>
-                                    <th ts-criteria="rtpId" class="col-lg-1 col-md-1 col-sm-2 col-xs-2">RTPID</th>
-                                    <th ts-criteria="title" class="col-lg-3 col-md-3 col-sm-6 col-xs-6">Title</th>
-                                    <th ts-criteria="description" class="col-lg-4 col-md-4 col-sm-6 col-xs-6">Description</th>
+                                    </th>-->
+                                    <th ts-criteria="rtpId" class="col-lg-1 col-md-1 col-sm-2 col-xs-3">RTPID</th>
+                                    <th ts-criteria="title" class="col-lg-3 col-md-3 col-sm-3 col-xs-6">Title</th>
+                                    <th ts-criteria="description" class="col-lg-5 col-md-5 col-sm-5 hidden-xs">Description</th>
                                     <!--<th class="col-lg-4 col-md-4 hidden-md hidden-sm hidden-xs">Description</th>-->
                                     <th ts-criteria="county" class="col-lg-1 col-md-1 hidden-sm hidden-xs">County</th>
                                     <th ts-criteria="mode" class="col-lg-1 col-md-1 hidden-sm hidden-xs">Mode</th>
-                                    <th class="col-lg-1 col-md-1 col-sm-3 col-xs-3">&nbsp;</th>
+                                    <th class="col-lg-1 col-md-1 col-sm-2 col-xs-3" style="text-align:center;">Details</th>
                                 </tr>
                             </thead>
                             <tbody style="max-height:67vh;">
                                 <tr ng-class="{'selected': list.select}" ts-repeat ts-hide-no-data ng-repeat="list in selectedValues = (projectList | filter:{rtpId:rtpId, title:fullText, county: county, mode:mode.mode, agency:sponsor.agency})">
-                                    <td class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:center; vertical-align:middle;">
+                                    <!--<td class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:center; vertical-align:middle;">
                                         <input type="checkbox" ng-model="list.select" ng-checked="list.checked" ng-click="checkSelected()">
-                                    </td>
-                                    <td class="col-lg-1 col-md-2 col-sm-2 col-xs-2">{{list.rtpId}}</td>
-                                    <td class="col-lg-3 col-md-3 col-sm-6 col-xs-6">{{list.title}}</td>
-                                    <td class="col-lg-4 col-md-4 col-sm-6 col-xs-6">{{list.description}}</td>
+                                    </td>-->
+                                    <td class="col-lg-1 col-md-1 col-sm-2 col-xs-3">{{list.rtpId}}</td>
+                                    <td class="col-lg-3 col-md-3 col-sm-3 col-xs-6">{{list.title}}</td>
+                                    <td class="col-lg-5 col-md-5 col-sm-5 hidden-xs">{{list.description}}</td>
                                     <!--<td class="col-lg-4 col-md-4 hidden-md hidden-sm hidden-xs">{{list.description}}</td>-->
                                     <td class="col-lg-1 col-md-1 hidden-sm hidden-xs">{{list.county}}</td>
                                     <td class="col-lg-1 col-md-1 hidden-sm hidden-xs">{{list.mode}}</td>
-                                    <td class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="text-align: center;">
+                                    <td class="col-lg-1 col-md-1 col-sm-2 col-xs-3" style="text-align: center;">
                                         <a href="javascript:;" class="btn btn-small" ng-click="loadDataMap(list.rtpId)" ng-if="list.mapStatus === 'Needs Review'">
                                             <i class="fa fa-th-list fa-3x" style="font-size:30px;"></i>
-
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-small" ng-click="loadDataMap(list.rtpId)" ng-if="list.mapStatus === 'Mapped'">
+                                            <i class="fa fa-th-list fa-3x" style="font-size:30px;"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-small" ng-click="loadDataMap(list.rtpId)" ng-if="list.mapStatus !== 'Mapped' && list.mapStatus !== 'Needs Review'">
+                                            <i class="fa fa-th-list fa-3x" style="font-size:30px; color:gray;"></i>
                                         </a>
                                     </td>
                                 </tr>

@@ -5,6 +5,7 @@ angular.module('rtpApp')
         var gmap; //Map object
         var features = []; //Holds gmap layer
         var obj, wkt; //Wkt variables
+        $scope.showMap = true;
         /**
          * Load current project
          */
@@ -170,8 +171,14 @@ angular.module('rtpApp')
             console.log(response.data[0]);
             $scope.currentMapProject = response.data[0];
             var wktString = response.data[0].wkt;
+
             console.log(response.data[0].wkt);
-            init(wktString);
+
+            if (wktString) {
+                init(wktString);
+            } else {
+                $scope.showMap = false;
+            }
         });
 
     });

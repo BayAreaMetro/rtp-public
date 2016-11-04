@@ -111,7 +111,22 @@
                         </form>
                         <div class="row">
                             <!-- Boxes de Acoes -->
-
+                            <div class="col-xs-12 col-sm-6 col-lg-6">
+                                <div class="box">
+                                    <div class="icon">
+                                        <div class="image" ng-click="$ctrl.searchProjects('map')"><i class="fa fa-map-marker"></i></div>
+                                        <div class="info">
+                                            <h3 class="title">View Map</h3>
+                                            <p>
+                                                Displays data on Google Maps with options to view different basemaps, overlays and more... </p>
+                                            <div class="more">
+                                                <button ng-click="$ctrl.searchProjects('explore.map')" class="btn btn-primary">Search <i class="fa fa-angle-double-right"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="space"></div>
+                                </div>
+                            </div>
 
                             <div class="col-xs-12 col-sm-6 col-lg-6">
                                 <div class="box">
@@ -130,22 +145,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 col-sm-6 col-lg-6">
-                                <div class="box">
-                                    <div class="icon">
-                                        <div class="image" ng-click="$ctrl.searchProjects('map')"><i class="fa fa-map-marker"></i></div>
-                                        <div class="info">
-                                            <h3 class="title">View Map</h3>
-                                            <p>
-                                                Displays data on Google Maps with options to view different basemaps, overlays and more... </p>
-                                            <div class="more">
-                                                <button ng-click="$ctrl.searchProjects('explore.map')" class="btn btn-primary">Search <i class="fa fa-angle-double-right"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="space"></div>
-                                </div>
-                            </div>
+
                             <!-- /Boxes de Acoes -->
                         </div>
                     </div>
