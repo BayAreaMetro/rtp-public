@@ -166,7 +166,7 @@ angular.module('rtpApp')
                 $.getJSON("/assets/js/rtpLines.json")
                     .done(function(data) {
                         var geoJsonObject;
-                        geoJsonObject = topojson.feature(data, data.objects.rtpLines);
+                        geoJsonObject = topojson.feature(data, data.objects.linesRTP);
                         //Check for projects selected in data view. Otherwise load all projects
                         if (rtpIdList.length > 0) {
                             _.remove(geoJsonObject.features, function(n) {
@@ -179,7 +179,7 @@ angular.module('rtpApp')
                             var lineAttr = feature.getProperty('system');
                             var color, strokeWeight;
                             // console.log(lineAttr);
-                            if (lineAttr === 'Public Transit') {
+                            if (lineAttr === 'Public Transit Facility') {
                                 color = '#336699';
                                 strokeWeight = 2;
                             } else {
@@ -196,6 +196,7 @@ angular.module('rtpApp')
 
 
                     });
+                console.log(rtpLineLayer);
                 return rtpLineLayer;
             }
 
@@ -205,7 +206,7 @@ angular.module('rtpApp')
                     $.getJSON("/assets/js/rtpPoints.json", function(data) {
 
                         var geoJsonObject;
-                        geoJsonObject = topojson.feature(data, data.objects.rtpPoints);
+                        geoJsonObject = topojson.feature(data, data.objects.pointsRTP);
                         //Check for projects selected in data view. Otherwise load all projects
                         if (rtpIdList.length > 0) {
                             _.remove(geoJsonObject.features, function(n) {
@@ -218,7 +219,7 @@ angular.module('rtpApp')
                             var pointAttr = feature.getProperty('system');
                             var color;
 
-                            if (pointAttr === 'Public Transit') {
+                            if (pointAttr === 'Public Transit Facility') {
                                 color = '#336699';
 
                             } else {
@@ -239,6 +240,7 @@ angular.module('rtpApp')
                         })
 
                     });
+                    console.log(rtpPointLayer);
                     return rtpPointLayer;
                 }
                 //Polygon Layer
@@ -246,7 +248,7 @@ angular.module('rtpApp')
                 var rtpPolygonLayer = new google.maps.Data();
                 $.getJSON("/assets/js/rtpPolygons.json", function(data) {
                     var geoJsonObject;
-                    geoJsonObject = topojson.feature(data, data.objects.rtpPolygons);
+                    geoJsonObject = topojson.feature(data, data.objects.polysRTP);
                     //Check for projects selected in data view. Otherwise load all projects
                     if (rtpIdList.length > 0) {
                         _.remove(geoJsonObject.features, function(n) {
@@ -258,7 +260,7 @@ angular.module('rtpApp')
                     rtpPolygonLayer.setStyle(function(feature) {
                         var polyAttr = feature.getProperty('system');
                         var strokeColor, strokeWeight, fillColor, fillOpacity;
-                        if (polyAttr === 'Public Transit') {
+                        if (polyAttr === 'Public Transit Facility') {
                             fillColor = '#336699';
                             strokeColor = '#336699';
                             strokeWeight = 2;
@@ -279,6 +281,7 @@ angular.module('rtpApp')
                     })
 
                 });
+                console.log(rtpPolygonLayer);
                 return rtpPolygonLayer;
             }
 
@@ -316,10 +319,18 @@ angular.module('rtpApp')
                     event.feature.getProperty('county') +
                     '</td>' +
                     '</tr>' +
+                    '<tr>' +
+                    '<td>' +
+                    'Total Cost (millions): ' +
+                    '</td>' +
+                    '<td>$' +
+                    event.feature.getProperty('totalCostY') +
+                    '.0 </td>' +
+                    '</tr>' +
                     '</tbody>' +
                     '</table>' +
-                    '</div>' +
-                    '<div id="chart_div"></div>';
+                    '</div>';
+                // '<div id="chart_div"></div>';
 
 
                 var position = {
@@ -353,10 +364,10 @@ angular.module('rtpApp')
                     };
 
                     // Instantiate and draw our chart, passing in some options.
-                    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-                    chart.draw(data, options);
+                    // var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                    // chart.draw(data, options);
                 }
-                drawChart(event);
+                // drawChart(event);
             });
 
             $scope.rtpPointLayer.addListener('click', function(event) {
@@ -384,10 +395,18 @@ angular.module('rtpApp')
                     event.feature.getProperty('county') +
                     '</td>' +
                     '</tr>' +
+                    '<tr>' +
+                    '<td>' +
+                    'Total Cost (millions): ' +
+                    '</td>' +
+                    '<td>$' +
+                    event.feature.getProperty('totalCostY') +
+                    '.0 </td>' +
+                    '</tr>' +
                     '</tbody>' +
                     '</table>' +
-                    '</div>' +
-                    '<div id="chart_div"></div>';
+                    '</div>';
+                // '<div id="chart_div"></div>';
                 var position = {
                     lat: event.latLng.lat(),
                     lng: event.latLng.lng()
@@ -422,7 +441,7 @@ angular.module('rtpApp')
                     var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
                     chart.draw(data, options);
                 }
-                drawChart(event);
+                // drawChart(event);
             });
 
             $scope.rtpPolygonLayer.addListener('click', function(event) {
@@ -450,10 +469,18 @@ angular.module('rtpApp')
                     event.feature.getProperty('county') +
                     '</td>' +
                     '</tr>' +
+                    '<tr>' +
+                    '<td>' +
+                    'Total Cost (millions): ' +
+                    '</td>' +
+                    '<td>$' +
+                    event.feature.getProperty('totalCostY') +
+                    '.0 </td>' +
+                    '</tr>' +
                     '</tbody>' +
                     '</table>' +
-                    '</div>' +
-                    '<div id="chart_div"></div>';
+                    '</div>';
+                // '<div id="chart_div"></div>';
 
                 var position = {
                     lat: event.latLng.lat(),
@@ -489,7 +516,7 @@ angular.module('rtpApp')
                     var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
                     chart.draw(data, options);
                 }
-                drawChart(event);
+                // drawChart(event);
             });
             //End Infowindows
 
