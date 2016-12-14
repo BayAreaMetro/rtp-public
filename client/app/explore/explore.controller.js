@@ -21,6 +21,7 @@
 
             this.lookUp.rtpIds().then(response => {
                     this.rtpIdsList = response.data;
+                    // console.log(this.rtpIdsList);
                 })
                 .catch(error => {
                     console.log(error);
@@ -73,7 +74,7 @@
 
             if (this.rtpId)
                 paramsList.push({
-                    'rtpId': this.rtpId.rtpId
+                    'rtpId': this.rtpId
                 });
 
             console.log(paramsList);

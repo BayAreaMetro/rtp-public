@@ -11,7 +11,7 @@
 <div ui-view="explore-content" style="background-color:lightgray;">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+            <div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1 col-xs-12" style="padding:20px;">
                 <div class="form-block center-block" style="padding-top:30px;">
                     <h2 class="title">Search for Projects</h2>
                     <p>Use the search criteria below, or just click search!</p>
@@ -20,9 +20,10 @@
                         <div class="form-group has-feedback pad-top-30">
                             <label for="rtpInputSearch" class="col-sm-3 control-label">RTPID</label>
                             <div class="col-sm-8">
-                                <input type="text" id="rtpInputSearch" class="form-control" style="height:36px;" placeholder="RTPID Search..." ng-model="$ctrl.rtpId" uib-typeahead="id for id in $ctrl.rtpIdsList | filter:$viewValue | limitTo:8">
-
+                                <!--<input type="text" id="rtpInputSearch" class="form-control" style="height:36px;" placeholder="RTPID Search..." ng-model="$ctrl.rtpId" uib-typeahead="id for id in $ctrl.rtpIdsList | filter:$viewValue | limitTo:8">-->
+                                <input type="text" ng-model="$ctrl.rtpId" uib-typeahead="state for state in $ctrl.rtpIdsList | filter:$viewValue | limitTo:8" class="form-control">
                             </div>
+
                         </div>
                         <div class="form-group has-feedback">
                             <label for="countyInputSearch" class="col-sm-3 control-label">County</label>

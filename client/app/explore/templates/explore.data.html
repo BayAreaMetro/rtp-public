@@ -53,7 +53,7 @@
 
                         </div>
                     </div>
-                    <div class="form-group has-feedback">
+                    <!--<div class="form-group has-feedback">
                         <div class="col-sm-10">
                             <ui-select id="mappingStatusInput" allow-clear ng-model="filters.mapStatus" ng-change="changeFilter()" theme="selectize">
                                 <ui-select-match placeholder="Map Status">{{$select.selected.mapStatus}}</ui-select-match>
@@ -63,7 +63,7 @@
                             </ui-select>
 
                         </div>
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         <div class="col-sm-10">
                             <button class="btn btn-default" ng-click="changeFilter('clear')">Clear Filters</button>
@@ -92,7 +92,7 @@
             </div>
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
-                    <div class="panel">
+                    <div class="panel" style="margin-bottom:0px;">
                         <div class="panel-body pad-0" style="height:65vh;margin-bottom:0px; border:none;">
                             <table class="table table-fixed" ts-wrapper style="margin-bottom:0 !important;padding:0;">
                                 <thead>
@@ -136,17 +136,11 @@
 
                             </table>
                         </div>
-
-                        <!--<div class="table-container-footer">
-                            <table class="table table-striped table-hover table-condensed table-bordered">
-                                <tfoot>
-                                    <tr>
-                                        <th>Footer 1</th>
-                                        <th>Footer 2</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>-->
+                    </div>
+                    <div style="background-color:#ECECEC; height:40px;border-style:solid;border-width:1px;border-color:lightgray;margin-bottom:5px;">
+                        <div style="padding-top:5px; padding-left:10px;">
+                            Number of Records: {{projectList.length}} of 376
+                        </div>
                     </div>
 
                 </div>

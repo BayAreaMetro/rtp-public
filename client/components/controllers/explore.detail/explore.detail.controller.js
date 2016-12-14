@@ -6,6 +6,7 @@ angular.module('rtpApp')
         var features = []; //Holds gmap layer
         var obj, wkt; //Wkt variables
         $scope.showMap = true;
+        var bounds = new google.maps.LatLngBounds();
         /**
          * Load current project
          */
@@ -88,6 +89,7 @@ angular.module('rtpApp')
         function mapIt(wktFeature) {
             var i;
             wkt = new Wkt.Wkt();
+            console.log($scope.featureLength);
 
             try { // Catch any malformed WKT strings
                 wkt.read(wktFeature);
@@ -124,7 +126,7 @@ angular.module('rtpApp')
             //     }
             // }
 
-            var bounds = new google.maps.LatLngBounds();
+
 
             if (Wkt.isArray(obj)) { // Distinguish multigeometries (Arrays) from objects
                 for (i in obj) {
@@ -157,7 +159,7 @@ angular.module('rtpApp')
             // Pan the map to the feature
             gmap.fitBounds(bounds);
             //If single point, zoom out to scale 10
-            if (wkt.type === 'point') {
+            if (wkt.type === 'point' && $scope.featureLength === 1) {
                 var listener = google.maps.event.addListener(gmap, "idle", function() {
                     gmap.setZoom(16);
                     google.maps.event.removeListener(listener);
@@ -170,12 +172,14 @@ angular.module('rtpApp')
         maps.findOne(rtpId).then(response => {
             console.log(response.data[0]);
             $scope.currentMapProject = response.data[0];
-            var wktString = response.data[0].wkt;
+            $scope.featureLength = response.data.length;
 
             console.log(response.data[0].wkt);
 
-            if (wktString) {
-                init(wktString);
+            if ($scope.featureLength) {
+                for (var i in response.data) {
+                    init(response.data[i].wkt);
+                }
             } else {
                 $scope.showMap = false;
             }

@@ -23,8 +23,6 @@ angular.module('rtpApp')
         }
 
 
-
-
         $scope.showFilters = function() {
             var menuLeft = document.getElementById('cbp-spmenu-s1'),
                 menuRight = document.getElementById('cbp-spmenu-s2'),

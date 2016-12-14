@@ -160,7 +160,7 @@ export function findOne(req, res) {
         if (!data) {
             return res.status(404).send('Not Found');
         }
-        console.log(data[0]);
+        console.log(data);
         res.status(200).json(data);
     });
 }
