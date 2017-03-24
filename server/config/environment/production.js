@@ -16,7 +16,7 @@ var config = {
     }
 
 };
-
+console.log(config);
 var connection = new mssql.Connection(config, function(err) {
     if (err) {
 
@@ -25,7 +25,7 @@ var connection = new mssql.Connection(config, function(err) {
     }
 
 });
-
+console.log(connection);
 // Production specific configuration
 // =================================
 module.exports = {
@@ -43,6 +43,7 @@ module.exports = {
         config: config,
         connection: connection
     },
+
 
     sequelize: {
         uri: process.env.SEQUELIZE_URI ||

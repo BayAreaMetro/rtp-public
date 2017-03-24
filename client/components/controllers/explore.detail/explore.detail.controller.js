@@ -180,7 +180,8 @@ angular.module('rtpApp')
                 for (var i in response.data) {
                     init(response.data[i].wkt);
                 }
-            } else {
+            }
+            if (!response.data[0].wkt) {
                 $scope.showMap = false;
             }
         });

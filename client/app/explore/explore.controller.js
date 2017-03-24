@@ -21,7 +21,7 @@
 
             this.lookUp.rtpIds().then(response => {
                     this.rtpIdsList = response.data;
-                    // console.log(this.rtpIdsList);
+                    console.log(this.rtpIdsList);
                 })
                 .catch(error => {
                     console.log(error);

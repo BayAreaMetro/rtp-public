@@ -25,6 +25,9 @@ var connection = new mssql.Connection(config, function(err) {
     }
 
 });
+// connection.connect(function(err) {
+//     console.log(err);
+// });
 
 // Development specific configuration
 // ==================================
