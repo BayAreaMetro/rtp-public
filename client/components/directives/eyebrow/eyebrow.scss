@@ -1,0 +1,211 @@
+// Eyebrow
+#eyebrow {
+    -moz-user-select: none;
+    background: #000 none repeat scroll 0 0;
+    height: 28px;
+    width: 100%;
+}
+
+.eyebrow-container {
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    width: 1000px;
+}
+
+.eyebrow-panel-width {
+    border-left: 1px solid #636363;
+    border-right: 1px solid #636363;
+    cursor: pointer;
+    height: 28px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 999;
+}
+
+.eyebrow-mtc-button {
+    color: #c8c8c8;
+    font-family: "Source Sans Pro", Helvetica Neue, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    height: 28px;
+    letter-spacing: 1px;
+    padding: 0 0 0 10px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.eyebrow-mtc-button a {
+    color: #ffffff;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.eyebrow-mtc-button a:hover span.mtc-button-text {
+    text-decoration: underline;
+}
+
+.mtc-button-text {
+    display: inline-block;
+    line-height: 28px;
+    padding: 0 2px 0 5px;
+    vertical-align: top;
+}
+
+.mtc-button-icon {
+    display: inline-block;
+    height: 28px;
+    width: 28px;
+}
+
+.mtc-button-icon svg {
+    height: 28px;
+    width: 28px;
+}
+
+.mtc-button-icon svg {
+    fill: #e9e8e8;
+}
+
+.mtc-button-down {
+    display: block;
+    float: right;
+    height: 28px;
+    margin-right: 4px;
+    width: 28px;
+}
+
+.mtc-button-down svg {
+    display: block;
+    height: 28px;
+    width: 28px;
+}
+
+.mtc-button-down svg {
+    fill: #c7c7c7;
+}
+
+i.fa-chevron-circle-down {
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.eyebrow-links-panel {
+    background: #f0f0f0 none repeat scroll 0 0;
+    border: 0 solid #000000;
+    border-radius: 0 0 4px 4px;
+    float: left;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out 0s;
+}
+
+.eyebrow-panel-width:hover .eyebrow-links-panel {
+    max-height: 150px;
+    transition: all 0.2s ease-in-out 0s;
+}
+
+.eyebrow-panel-width:hover .eyebrow-mtc-button {
+    color: #ffffff;
+}
+
+a.eyebrow-item {
+    border-bottom: 1px solid #c8c8c8;
+    clear: left;
+    color: #323232;
+    float: left;
+    font-family: "Source Sans Pro", Helvetica Neue, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    height: 32px;
+    letter-spacing: 1px;
+    line-height: 26px;
+    padding: 0 15px 0 12px;
+    text-align: left;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+a.eyebrow-item:last-of-type {
+    border-bottom: medium none;
+}
+
+a.eyebrow-item:hover {
+    background: #636363 none repeat scroll 0 0;
+    color: #ffffff;
+}
+
+a.eyebrow-item:active {
+    background: #323232 none repeat scroll 0 0;
+    color: #ffffff;
+}
+
+a.eyebrow-item:hover svg {
+    fill: #ffffff;
+}
+
+a.eyebrow-item:active svg {
+    fill: #ffffff;
+}
+
+span.eyebrow-icon {
+    display: inline-block;
+    height: 22px;
+    margin-right: 6px;
+    text-align: center;
+    vertical-align: middle;
+    width: 26px;
+}
+
+.eyebrow-icon svg {
+    display: inline-block;
+    fill: #636363;
+    height: 22px;
+    max-width: 26px;
+}
+
+.eyebrow-text {
+    display: inline-block;
+    line-height: 10px;
+    vertical-align: middle;
+}
+
+.eyebrow-clearfix {
+    clear: both;
+    display: block;
+    float: none;
+    height: 0;
+    width: 100%;
+}
+
+#eyebrow span.ext {
+    display: none;
+}
+
+@media all and (min-width: 1200px) {
+    .eyebrow-container {
+        width: 1000px;
+    }
+}
+
+@media all and (max-width: 1200px) {
+    .eyebrow-container {
+        width: 970px;
+    }
+}
+
+@media all and (max-width: 992px) {
+    .eyebrow-container {
+        width: 750px;
+    }
+}
+
+@media all and (max-width: 767px) {
+    #eyebrow {
+        display: none;
+    }
+}
+
+// End Eye Brow

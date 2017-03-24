@@ -1,0 +1,211 @@
+<!--Eyebrow Directive-->
+<eyebrow></eyebrow>
+<!--End Eyebrow-->
+<!--header-->
+<div class="header">
+    <!--<div id="google_translate_element"></div>-->
+    <div class="right-col">
+        <a href="https://www.facebook.com/PlanBayArea" target="_blank" class="facebook"></a>
+        <a href="https://twitter.com/PlanBayArea" target="_blank" class="twitter"></a>
+    </div>
+    <!-- right-col -->
+    <a href="/index.php" class="logo"><img src="http://planbayarea.org/images/PBA_logo_RGB.png" alt="Go to home page" width="109" border="0" height="100"></a>
+</div>
+<!--end header-->
+
+<!--Navigation-->
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-slide-dropdown">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+            <!--<a class="navbar-brand" href="#"><i class="fa fa-search"></i>&nbsp; Tools</a>-->
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-slide-dropdown" style="padding-top:10px;padding-left:0;">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/explore">Explore</a></li>
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<!--End Navigation-->
+<div class="cbp-spmenu-push" style="position:relative;height:100%;">
+    <!--LEFT SLIDE MENU-->
+    <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1" style="height:100%;background-color:#336699;position:absolute;">
+        <!--<h3>Tools</h3>-->
+        <div id="close" ng-click="$ctrl.showTools2()" class="cbp-spmenuClose">
+            <a class="pad-0 " href="#" style="border-bottom:0px;"><span style="color:white; font-size:30px;"><h1 style="margin:0; padding-left:6px;"> &#10006;</h1></span></a>
+        </div>
+        <a href="#">Search</a>
+        <form class="form-inline pad-bot-0" style="padding-left:5px;;">
+            <div class="form-group" style="margin-top:0;padding-top:10px;">
+                <input class="form-control" id="pac-input" type="text" placeholder="Search for address...">
+            </div>
+        </form>
+        <a href="#">Toggle Layers</a>
+        <!--<a href="#main-sec"><i class="fa fa-home fa-3x"></i>HOME</a>
+        <a href="#about-sec"><i class="fa fa-microphone fa-3x"></i>ABOUT</a>
+        <a href="#price-sec"><i class="fa fa-dollar fa-3x"></i>PRICING</a>
+        <a href="#services-sec"><i class="fa fa-rocket fa-3x"></i>SERVICES</a>
+        <a href="#contact-sec"><i class="fa fa-globe fa-3x"></i>CONTACT</a>-->
+        <div id="toggleLayerDiv" style="color:white; padding-left:10px;">
+            <div class="checkbox">
+                <label class="pad-0"><input type="checkbox" name="rtpLines" ng-true-value="1" ng-false-value="0" ng-change="$ctrl.rtpLayerToggle($ctrl.rtpPointLayer,'point')" ng-model="$ctrl.rtpPointCheckbox">Points</label>
+            </div>
+            <div class="checkbox">
+                <label class="pad-0"><input type="checkbox" name="rtpPoints" ng-true-value="1" ng-false-value="0" ng-change="$ctrl.rtpLayerToggle($ctrl.rtpLineLayer,'line')" ng-model="$ctrl.rtpLineCheckbox">Lines</label>
+            </div>
+            <div class="checkbox">
+                <label class="pad-0"><input type="checkbox" name="rtpPolygons" ng-true-value="1" ng-false-value="0" ng-change="$ctrl.rtpLayerToggle($ctrl.rtpPolygonLayer,'poly')" 	ng-model="$ctrl.rtpPolygonCheckbox">Polygons</label>
+            </div>
+            <div class="checkbox">
+                <label class="pad-0"><input type="checkbox" name="pdasLayer" ng-true-value="1" ng-false-value="0" ng-change="$ctrl.loadOverlays($ctrl.pdaLayer)" 	ng-model="$ctrl.pdasCheckbox">Priority Development Areas</label>
+            </div>
+        </div>
+        <a href="#">Legend</a>
+        <div id="legend" style="color:white;padding-left:10px; padding-top:10px;">
+            <table>
+                <tbody>
+                    <tr ng-show="$ctrl.legend.pdas">
+                        <td style="padding-bottom:5px;">
+                            Priority Development Areas
+                        </td>
+                        <td style="padding-left:5px; padding-bottom:5px;">
+                            <div style="width:20px;height:20px;background-color:orange;border:solid;border-color:white;border-width:1px;"></div>
+                        </td>
+                    </tr>
+                    <tr style="padding-bottom:5px;">
+                        <td>
+                            Transit Projects
+                        </td>
+                        <td style="padding-bottom:5px;padding-left:5px;">
+                            <div style="width:20px;height:20px;background-color:#336699; border:solid;border-color:white;border-width:1px;"></div>
+                        </td>
+                    </tr>
+                    <tr style="padding-bottom:5px;">
+                        <td>
+                            Roadway Projects
+                        </td>
+                        <td style="padding-left:5px;">
+                            <div style="width:20px;height:20px;background-color:#D9534F; border:solid;border-color:white;border-width:1px;"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--Map Tools Button -->
+    <div id="toggleTools" ng-click="$ctrl.showTools2()" ng-show="!$ctrl.showTools" style="background-color:white !important;left:0px !important; position:absolute; top:150px;">
+        <div class="row" id="icon-left" style="background-color:white !important;">
+            <div class="col-md-12" style="color:black; background-color:white;">
+                <button id="showLeftPush" class="btn btn-primary">
+                    <i class="fa fa-cogs fa-2x"></i>
+                <!--<span ng-show="$ctrl.showTools">&nbsp;HIDE TOOLS</span>
+                <span ng-show="!$ctrl.showTools">&nbsp;SHOW TOOLS</span>-->
+                </button>
+                <!--<i id="showLeftPush" class="fa fa-cogs fa-4x faa-horizontal animated" style="background-color:white;">
+                    <span ng-show="$ctrl.showTools">Hide Tools</span>
+                    <span ng-show="!$ctrl.showTools">Show Tools </span>
+                    </i>-->
+            </div>
+        </div>
+    </div>
+    <!--End Map Tools -->
+    <!--END LEFT SLIDE MENU-->
+    <!--Map Container-->
+    <div class="panel-body map-panel" style="height:80vh !important;">
+        <div id="canvas" class="col-sm-12 mapContainer" style="height:80vh;">
+        </div>
+    </div>
+    <!--End Map Container-->
+</div>
+<!--Footer-->
+<div class="container footer-container">
+    <div class="footer">
+        <div class="footer-nav">
+            <ul>
+                <!-- first row -->
+                <a href="/the-plan.html" class="head">The Plan</a>
+                <li><a href="/the-plan/the-context.html">The Context</a></li>
+                <li><a href="/the-plan/Timeline.html">Timeline</a></li>
+                <li><a href="/the-plan/plan-details.html">Plan Details</a></li>
+                <li><a href="/the-plan/Draft-Preferred-Scenario.html">Draft Preferred Scenario</a></li>
+                <li><a href="/the-plan/environmental-impact-report.html">Environmental Impact Report</a></li>
+                <li><a href="/the-plan/quick-facts.html">Quick Facts</a></li>
+                <li><a href="/the-plan/adopted-plan-bay-area-2013.html">Adopted Plan Bay Area 2013</a></li>
+                <li><a href="/the-plan/Document-Archive-2013-PBA.html">Document Archive: Plan Bay Area 2013</a></li>
+                <a href="/your-part.html" class="head">Your Part</a>
+                <li><a href="/your-part/get-involved.html">Get Involved</a></li>
+                <li><a href="/your-part/Language-Assistance.html">Language Assistance</a></li>
+                <li><a href="/your-part/meetings-events.html">Meetings &amp; Events</a></li>
+                <li><a href="/your-part/PlanBayArea2040-2016-Meeting-Materials.html">Open House and Meeting Materials</a></li>
+                <li><a href="/your-part/open-forum.html">Plan Bay Area Open Forum</a></li>
+                <li><a href="/your-part/your-comments.html">Your Comments</a></li>
+            </ul>
+            <!-- first row -->
+            <ul>
+                <!-- second row -->
+                <a href="/the-counties.html" class="head">The Counties</a>
+                <li><a href="/the-counties/alameda-county.html">Alameda County</a></li>
+                <li><a href="/the-counties/contra-costa-county.html">Contra Costa County</a></li>
+                <li><a href="/the-counties/marin-county.html">Marin County</a></li>
+                <li><a href="/the-counties/napa-county.html">Napa County</a></li>
+                <li><a href="/the-counties/san-francisco-county.html">San Francisco County</a></li>
+                <li><a href="/the-counties/san-mateo-county.html">San Mateo County</a></li>
+                <li><a href="/the-counties/santa-clara-county.html">Santa Clara County</a></li>
+                <li><a href="/the-counties/solano-county.html">Solano County</a></li>
+                <li><a href="/the-counties/sonoma-county.html">Sonoma County</a></li>
+            </ul>
+            <!-- second row -->
+            <ul>
+                <!-- third row -->
+                <a href="/news-main.html" class="head">News</a>
+                <li><a href="/news/news-features.html">News Features</a></li>
+                <li><a href="/news/in-the-news.html">In the Media</a></li>
+                <li><a href="/news/news-releases.html">News Releases</a></li>
+                <li><a href="/news/Video-Index.html">Video Index</a></li>
+                <li><a href="/news/plan-bay-area-e-newsletters.html">Plan Bay Area eNewsletter</a></li>
+                <a href="/resources.html" class="head">Resources</a>
+                <li><a href="/resources/CEQA-Streamlining-Opportunities.html">CEQA Streamlining Opportunities</a></li>
+                <li><a href="/resources/vital-signs.html">Vital Signs</a></li>
+                <li><a href="/resources/Bay-Area-tranportation-project-mapper.html">Project Mapper</a></li>
+                <li><a href="/resources/state-of-the-region-2015-report.html">State of the Region 2015 Report</a></li>
+                <li><a href="/resources/Bay-Area-Travel-Map.html">Bay Area Travel Map</a></li>
+                <li><a href="/resources/Bay-Area-Prosperity-Plan.html">Bay Area Prosperity Plan</a></li>
+                <li><a href="/resources/PDA-Assessment-Update.html">PDA Assessment Update</a></li>
+            </ul>
+            <!-- third row -->
+            <ul>
+                <!-- fourth row -->
+                <a href="/contact.html" class="head">Contact Us</a>
+                <li><a href="mailto:info@planbayarea.org">info@planbayarea.org</a></li>
+                <li>Phone: (415) 778-6757</li>
+                <a href="/index.php" class="head">Home</a>
+            </ul>
+            <!-- fourth row -->
+            <div class="right-col">
+                <a href="https://www.facebook.com/OneBayArea" target="_blank" class="facebook"></a>
+                <a href="https://twitter.com/OneBayArea" target="_blank" class="twitter"></a>
+                <p>
+                    <a href="/misc/request-accessibility-assistance.html"><br>Request accessibility assistance</a>
+                </p>
+                <p class="small">&copy; 2014 Association of Bay Area Governments, Metropolitan Transportation Commission, Bay Area Air Quality Management District, Bay Conservation and Development Commission. All Rights Reserved.</p>
+            </div>
+            <!-- right-col -->
+        </div>
+        <!-- footer-nav -->
+    </div>
+    <!-- footer -->
+    <div class="clear-float"> </div>
+</div>

@@ -4,10 +4,10 @@
 
 'use strict';
 
-import express from 'express';
-import sqldb from './sqldb';
-import config from './config/environment';
-import http from 'http';
+var express = require('express');
+var sqldb = require('./sqldb');
+var config = require('./config/environment');
+var http = require('http');
 
 // Populate databases with sample data
 if (config.seedDB) { require('./config/seed'); }
@@ -20,16 +20,16 @@ require('./routes').default(app);
 
 // Start server
 function startServer() {
-  app.angularFullstack = server.listen(config.port, config.ip, function() {
-    console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
-  });
+    app.angularFullstack = server.listen(config.port, config.ip, function() {
+        console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+    });
 }
 
 sqldb.sequelize.sync()
-  .then(startServer)
-  .catch(function(err) {
-    console.log('Server failed to start due to error: %s', err);
-  });
+    .then(startServer)
+    .catch(function(err) {
+        console.log('Server failed to start due to error: %s', err);
+    });
 
 // Expose app
 exports = module.exports = app;

@@ -1,0 +1,120 @@
+<!--Eyebrow Directive-->
+<eyebrow></eyebrow>
+<!--Header Directive-->
+<header></header>
+
+<!--Navigation-->
+<navbar></navbar>
+<!--End Navigation-->
+<!--Main Section-->
+
+<div ui-view="explore-content" style="background-color:lightgray;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1 col-xs-12" style="padding:20px;">
+                <div class="form-block center-block" style="padding-top:30px;">
+                    <h2 class="title">Search for Projects</h2>
+                    <p>Use the search criteria below, or just click search!</p>
+                    <hr>
+                    <form class="form-horizontal">
+                        <div class="form-group has-feedback pad-top-30">
+                            <label for="rtpInputSearch" class="col-sm-3 control-label">RTPID</label>
+                            <div class="col-sm-8">
+                                <!--<input type="text" id="rtpInputSearch" class="form-control" style="height:36px;" placeholder="RTPID Search..." ng-model="$ctrl.rtpId" uib-typeahead="id for id in $ctrl.rtpIdsList | filter:$viewValue | limitTo:8">-->
+                                <input type="text" ng-model="$ctrl.rtpId" uib-typeahead="state for state in $ctrl.rtpIdsList | filter:$viewValue | limitTo:8" class="form-control">
+                            </div>
+
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label for="countyInputSearch" class="col-sm-3 control-label">County</label>
+                            <div class="col-sm-8">
+                                <ui-select ng-model="$ctrl.county" id="countyInputSearch" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a country">
+                                    <ui-select-match placeholder="County">{{$select.selected.county}}</ui-select-match>
+                                    <ui-select-choices repeat="county in $ctrl.countiesList | filter: $select.search">
+                                        <span ng-bind-html="county.county | highlight: $select.search"></span>
+                                    </ui-select-choices>
+                                </ui-select>
+
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label for="modeInputSearch" class="col-sm-3 control-label">Mode</label>
+                            <div class="col-sm-8">
+                                <ui-select id="modeInputSearch" ng-model="$ctrl.mode" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a country">
+                                    <ui-select-match placeholder="Mode">{{$select.selected.mode}}</ui-select-match>
+                                    <ui-select-choices repeat="val in $ctrl.modeList | filter: $select.search">
+                                        <span ng-bind-html="val.mode | highlight: $select.search"></span>
+                                    </ui-select-choices>
+                                </ui-select>
+
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label for="sponsorInputSearch" class="col-sm-3 control-label">Sponsor</label>
+                            <div class="col-sm-8">
+                                <ui-select id="sponsorInputSearch" allow-clear ng-model="$ctrl.sponsor" theme="selectize">
+                                    <ui-select-match placeholder="Sponsor">{{$select.selected.agency}}</ui-select-match>
+                                    <ui-select-choices repeat="val in $ctrl.sponsorList | filter: $select.search">
+                                        <span ng-bind-html="val.agency | highlight: $select.search"></span>
+                                    </ui-select-choices>
+                                </ui-select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <div class="col-sm-11 text-right">
+                                <button class="btn btn-default" ng-click="$ctrl.clearSearch()"><i class="fa fa-refresh"></i>&nbsp; Reset</button>
+                            </div>
+                        </div>
+
+                    </form>
+                    <div class="row">
+                        <!-- Boxes de Acoes -->
+                        <div class="col-xs-12 col-sm-6 col-lg-6">
+                            <div class="box">
+                                <div class="icon">
+                                    <div class="image" ng-click="$ctrl.searchProjects('map')"><i class="fa fa-map-marker"></i></div>
+                                    <div class="info">
+                                        <h3 class="title">View Map</h3>
+                                        <p>
+                                            Displays data on Google Maps with options to view different basemaps, overlays and more... </p>
+                                        <div class="more">
+                                            <button ng-click="$ctrl.searchProjects('explore.map')" class="btn btn-primary">Search <i class="fa fa-angle-double-right"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="space"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-lg-6">
+                            <div class="box">
+                                <div class="icon">
+                                    <div class="image" ng-click="$ctrl.searchProjects('data')"><i class="fa fa-list"></i></div>
+                                    <div class="info">
+                                        <h3 class="title">View Data</h3>
+                                        <p>
+                                            Displays data in a table with options to export results, view individual project details and more... </p>
+                                        <div class="more">
+                                            <button ng-click="$ctrl.searchProjects('explore.data')" class="btn btn-primary btn-hover">Search <i class="fa fa-angle-double-right"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="space"></div>
+                            </div>
+                        </div>
+
+
+                        <!-- /Boxes de Acoes -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!--Footer-->
+<footer></footer>

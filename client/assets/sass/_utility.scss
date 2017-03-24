@@ -1,0 +1,244 @@
+/**
+	* Utility Styles
+	* 1) Spacing
+	* 2) Grids
+	* 3) Display type
+	* 4) Positioning
+	* 5) Typography
+	* 6) Misc
+	* 7) Mixins
+ **/
+ 
+/**
+	* 1) Spacing
+**/
+.pad-0{padding:0 !important;}
+.pad-s{padding:5px;}
+.pad-m{padding:10px;}
+.pad-l{padding:20px;}
+.pad-top-0{padding-top:0;}
+.pad-top-s{padding-top:5px;}
+.pad-top-m{padding-top:10px;}
+.pad-top-l{padding-top:20px;}
+.pad-top-xl{padding-top:50px;}
+.pad-right-0{padding-right:0;}
+.pad-right-s{padding-right:5px;}
+.pad-right-m{padding-right:10px;}
+.pad-right-l{padding-right:20px;}
+.pad-bottom-0{padding-bottom:0;}
+.pad-bottom-s{padding-bottom:5px;}
+.pad-bottom-m{padding-bottom:10px;}
+.pad-bottom-l{padding-bottom:20px;}
+.pad-bottom-xl{padding-bottom:70px;}
+.pad-left-0{padding-left:0;}
+.pad-left-s{padding-left:5px;}
+.pad-left-m{padding-left:10px;}
+.pad-left-l{padding-left:20px;}
+.pad-left-large{padding-left:50px;}
+.pad-right-large{padding-right:50px;}
+.pad-top-large{padding-top:50px;}
+.pad-bottom-large{padding-bottom:50px;}
+.ma-0-auto{margin: 0 auto;}
+.ma-0{margin:0;}
+.ma-s{margin:5px;}
+.ma-m{margin:10px;}
+.ma-l{margin:20px;}
+.ma-top-0{margin-top:0;}
+.ma-top-s{margin-top:5px;}
+.ma-top-m{margin-top:10px;}
+.ma-top-l{margin-top:20px;}
+.ma-right-0{margin-right:0;}
+.ma-right-s{margin-right:5px;}
+.ma-right-m{margin-right:10px;}
+.ma-right-l{margin-right:20px;}
+.ma-left-0{margin-left:0;}
+.ma-left-s{margin-left:5px;}
+.ma-left-m{margin-left:10px;}
+.ma-left-l{margin-left:20px;}
+.ma-bottom-0{margin-bottom:0;}
+.ma-bottom-0{margin-bottom:0;}
+.ma-bottom-s{margin-bottom:5px;}
+.ma-bottom-m{margin-bottom:10px;}
+.ma-bottom-l{margin-bottom:20px;}
+
+// Custom
+.pad-left-breadcrumb{padding-left:27px;}
+
+/**
+	* 2) Grids
+**/
+.grid{display:inline-block;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
+.size1of2{width:50%;}
+.size1of3{width:33.33333%;}
+.size2of3{width:66.66666%;}
+.size1of4{width:25%;}
+.size3of4{width:75%;}
+.size1of5{width:20%;}
+.size2of5{width:40%;}
+.size3of5{width:60%;}
+.size4of5{width:80%;}
+
+/**
+	* 3) Display Types
+**/
+.inline-block{display:inline-block;}
+.block{display:block;}
+.inline{display:inline;}
+.hidden{display:none;}
+.vHidden{visibility: hidden;}
+
+/**
+	* 4) Positioning
+**/
+.text-left{text-align:left;}
+.text-right{text-align:right;}
+.text-center{text-align:center;}
+.vertical-top{vertical-align:top;}
+.vertical-middle{vertical-align:middle;}
+.vertical-bottom{vertical-align:bottom;}
+.float-left{float:left;}
+.float-right{float:right;}
+.clear{clear:both;width:0;height:0;}
+.clearfix:after{
+    display:table;
+    clear:both;
+    content:'';
+    width:0;
+    height:0;
+}
+.bold{font-weight:bold;}
+.fixed{position: fixed;}
+.absol{position: absolute;}
+.rel{position: relative;}
+
+/**
+	* 5) typography
+**/
+h1{font-size:30px;}
+h2{font-size:25px;}
+h3{font-size:20px;}
+h4{font-size:15px;}
+span, div, p, label, a {
+  font-size: 14px;
+}
+.smallFont{font-size: 75%;}
+
+/**
+	* 6) Misc
+**/
+.sticky{position: fixed; top: 0;}
+.toggle {margin: 5px 5px 0 0;}
+.stareText{color:#688bf4;}
+.btn-dark {border-radius: 0;border: 1px solid #aeaeae;color: silver;}
+.btn-dark:hover{color: rgba(52, 52, 52, 0.76);background-color: rgba(247,249,250,0.32);}
+.btn-light {border-radius: 0;color: #333;background-color: #ffffff;}
+.btn-custom {background-color: #B3B3B3 !important;color: #000 !important;}
+.btn-light:hover{color: #333;background-color: rgba(255, 255, 255, 0.8);}
+.disabledAnchor{cursor: not-allowed;pointer-events: none;}
+.disableAnchor{pointer-events: none;}
+.update{color: red;font-size: 1.5em;}
+.zTop{z-index: 10000;}
+.shadow{  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);}
+a:hover{text-decoration: none;}
+.ma-center{margin-top: 50%;}
+.panel-pad{padding-bottom: 30px;}
+.grad{background: -webkit-linear-gradient(rgba(199, 199, 199, 0.39) 0%, rgba(26, 26, 26, 0.07) 100%);background: -moz-linear-gradient(-45deg, rgba(199, 199, 199, 0.39) 0%, rgba(26, 26, 26, 0.07) 100%);}
+.erase-btn{ background-color: inherit;border: none;width: 100%;}
+.navBarFooter{height: 50px !important; min-height: 50px;}
+.borderTopNav{border-top: 1px inset rgba(0, 0, 0, 0.25);}
+.navAnchorActiveColor{background-color: #515151}
+.borderBottomAlert{border-bottom: 1px red solid;}
+.borderBottom{border-bottom: 1px solid rgb(219, 219, 219);}
+.borderBottomMsg{border-bottom: 1px solid rgba(190, 190, 190, 0.89);}
+.borderTop{border-top: 1px  #e5e5e5 solid;}
+
+/**
+	* 7) Mixin
+	To call the mixins '@include myMixIn(@PARAM);'
+**/
+@mixin box-shadow1( $horiz , $vert , $blur , $spread, $color){
+	-webkit-box-shadow: $horiz $vert $blur $spread $color;
+	-moz-box-shadow: $horiz $vert $blur $spread $color;
+	box-shadow: $horiz $vert $blur $spread $color;
+}
+@mixin border-radius ( $value: 3px ) {
+	-webkit-border-radius: $value;
+	-moz-border-radius: $value;
+	border-radius: $value;
+	// keeps background from busting out of border 
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding;
+	background-clip: padding-box;
+}
+@mixin inset-box-shadow($horizontal: 0px, $vertical: 1px, $blur: 2px, $color: #CCC) {
+  -webkit-box-shadow: inset $horizontal $vertical $blur $color;
+  -moz-box-shadow: inset $horizontal $vertical $blur $color;
+  box-shadow: inset $horizontal $vertical $blur $color;
+}
+@mixin multi-color-border($top, $sides, $bottom) {
+    border-top: 1px solid $top;
+    border-left: 1px solid $sides;
+    border-right: 1px solid $sides;
+    border-bottom: 1px solid $bottom;
+}
+@mixin multi-border-radius($topLeft: 5px, $topRight: 5px, $bottomRight: 5px, $bottomLeft: 5px) {
+    -webkit-border-top-left-radius: $topLeft;
+    -webkit-border-top-right-radius: $topRight;
+    -webkit-border-bottom-right-radius: $bottomRight;
+    -webkit-border-bottom-left-radius: $bottomLeft;
+    -moz-border-radius-topleft: $topLeft;
+    -moz-border-radius-topright: $topRight;
+    -moz-border-radius-bottomright: $bottomRight;
+    -moz-border-radius-bottomleft: $bottomLeft;
+    border-top-left-radius: $topLeft;
+    border-top-right-radius: $topRight;
+    border-bottom-right-radius: $bottomRight;
+    border-bottom-left-radius: $bottomLeft;
+}
+@mixin vertical-gradient($start: #000, $stop: #FFF) { background: ($start + $stop) / 2;
+    background: -webkit-gradient(linear, left top, left bottom, from($start), to($stop));
+    background: -moz-linear-gradient(center top, $start 0%, $stop 100%);
+    background: -moz-gradient(center top, $start 0%, $stop 100%);
+}
+@mixin vertical-gradient-with-image($image, $start: #000, $stop: #FFF) {
+    background: ($start + $stop) / 2 $image;
+    background: $image, -webkit-gradient(linear, left top, left bottom, from($start), to($stop));
+    background: $image, -moz-linear-gradient(center top, $start 0%, $stop 100%);
+    background: $image, -moz-gradient(center top, $start 0%, $stop 100%);
+}
+@mixin opacity($op) {
+    -khtml-opacity: $op;
+    -moz-opacity: $op;
+    opacity: $op;
+}
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }  
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }  
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};      
+}
