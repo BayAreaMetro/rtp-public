@@ -17,7 +17,7 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-2" style="color:#336699;">
-                                    <h4 style="margin-top:0;">Title:</h4>
+                                    <h4 style="margin-top:0;">What is this project/program?</h4>
                                 </td>
                                 <td col-md-10>
                                     <p> {{projectDetail.title}}</p>
@@ -25,7 +25,7 @@
                             </tr>
                             <tr>
                                 <td style="color:#336699;">
-                                    <h4 style="margin-top:0;">Description:</h4>
+                                    <h4 style="margin-top:0;">What would this project/program do?</h4>
                                 </td>
                                 <td>
                                     <p> {{projectDetail.description}}</p>
@@ -85,18 +85,18 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4" style="color:#336699;">
-                                    <h4 style="margin-top:0;">Total Costs (millions):</h4>
+                                    <h4 style="margin-top:0;">How much does this project/program cost?</h4>
                                 </td>
                                 <td class="col-md-8">
-                                    <p> {{projectDetail.totalCostYOE | currency}}</p>
+                                    <p> {{projectDetail.totalCostYOE | currency}} (millions)</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4" style="color:#336699;">
-                                    <h4 style="margin-top:0;">Total Committed Funding (millions):</h4>
+                                    <h4 style="margin-top:0;">How much of this project/program is covered in the Plan?</h4>
                                 </td>
                                 <td class="col-md-8">
-                                    <p> {{projectDetail.committedFundingYOE | currency}}</p>
+                                    <p> {{projectDetail.pre2017Funding | currency}} (millions)</p>
                                 </td>
                             </tr>
                             <!--<tr>
@@ -125,21 +125,21 @@
 
                                 </td>
                                 <td class="col-md-3">
-                                    <h4 style="margin-top:0;">Start</h4>
+                                    <h4 style="margin-top:0;"></h4>
                                 </td>
                                 <td class="col-md-3">
-                                    <h4 style="margin-top:0;">End</h4>
+                                    <h4 style="margin-top:0;"></h4>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="color:#336699;">
-                                    <h4 style="margin-top:0;">Construction</h4>
-                                </td>
-                                <td>
-                                    <p> {{projectDetail.constructionStartYr}}</p>
+                                    <h4 style="margin-top:0;">By when is this project/program anticipated to open?</h4>
                                 </td>
                                 <td>
                                     <p> {{projectDetail.projectOpenYr}}</p>
+                                </td>
+                                <td>
+
                                 </td>
                             </tr>
 

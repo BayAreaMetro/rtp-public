@@ -1,7 +1,7 @@
 <!--Eyebrow Directive-->
 <eyebrow></eyebrow>
 <!--Header Directive-->
-<header></header>
+<header style="background-color:#00ADEF;"></header>
 
 <!--Navigation-->
 <navbar></navbar>
@@ -26,9 +26,9 @@
 
                         </div>
                         <div class="form-group has-feedback">
-                            <label for="countyInputSearch" class="col-sm-3 control-label">County</label>
+                            <label for="countyInputSearch" class="col-sm-3 control-label">County/Sponsor</label>
                             <div class="col-sm-8">
-                                <ui-select ng-model="$ctrl.county" id="countyInputSearch" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a country">
+                                <ui-select ng-model="$ctrl.county" id="countyInputSearch" theme="selectize" ng-disabled="ctrl.disabled" title="Choose a county">
                                     <ui-select-match placeholder="County">{{$select.selected.county}}</ui-select-match>
                                     <ui-select-choices repeat="county in $ctrl.countiesList | filter: $select.search">
                                         <span ng-bind-html="county.county | highlight: $select.search"></span>
@@ -49,7 +49,7 @@
 
                             </div>
                         </div>
-                        <div class="form-group has-feedback">
+                        <!--<div class="form-group has-feedback">
                             <label for="sponsorInputSearch" class="col-sm-3 control-label">Sponsor</label>
                             <div class="col-sm-8">
                                 <ui-select id="sponsorInputSearch" allow-clear ng-model="$ctrl.sponsor" theme="selectize">
@@ -60,7 +60,7 @@
                                 </ui-select>
 
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="form-group has-feedback">
                             <div class="col-sm-11 text-right">
