@@ -188,7 +188,10 @@ angular.module('rtpApp')
                 });
             }, this);
 
-
+            //Remove unnecessary fields (lodash)
+            exportList = _.map(exportList, function(o) {
+                return _.omit(o, 'totalCostYOE', 'committedFundingYOE', 'discretionaryFundingYOE', 'pre2017Funding', 'mapStatus', 'description', 'inPlanFunding', 'projectOpenYr', 'strategy2', 'investmentStrategy', 'constructionStartYr');
+            });
             console.log(exportList);
 
             //Unparse array using Papa Parse library
