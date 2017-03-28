@@ -148,6 +148,8 @@ angular.module('rtpApp')
             var exportList;
             var isIE = $scope.browserCheck();
 
+
+
             if ($scope.exportType === 'all') {
                 exportList = $scope.projectList;
             } else if ($scope.exportType === 'table') {
@@ -161,6 +163,34 @@ angular.module('rtpApp')
             exportList = _.map(exportList, function(o) {
                 return _.omit(o, 'select', '$$hashKey', 'checked', 'projectId');
             });
+            console.log(exportList);
+            // var a = {
+            //     name: "Foo",
+            //     amount: 55,
+            //     reported: false,
+            //     date: "10/01/2001"
+            // };
+
+            var b = {};
+
+            var map = {
+                totalCostYOE: "How much does this project/program cost?",
+                inPlanFunding: "How much of the project/program is covered in the plan period?",
+                pre2017Funding: "How much of the project/program cost was included in previous plans?",
+                projectOpenYr: "By when is this project anticipated to be open?",
+                description: "What would this project/program do?"
+
+            };
+            exportList.forEach(function(element) {
+                _.each(element, function(value, key) {
+                    key = map[key] || key;
+                    element[key] = value;
+                });
+            }, this);
+
+
+            console.log(exportList);
+
             //Unparse array using Papa Parse library
             var str = Papa.unparse(exportList);
             var uri = 'data:text/csv;charset=utf-8,' + encodeURI(str);
@@ -184,12 +214,12 @@ angular.module('rtpApp')
                 document.body.removeChild(downloadLink);
             }
 
-            //Clear table of selected values
-            // angular.forEach($scope.projectList, function(values) {
-            //     values.checked = 0;
-            //     values.select = false;
-            // });
+            // Clear table of selected values
+            angular.forEach($scope.projectList, function(values) {
+                values.checked = 0;
+                values.select = false;
+            });
 
-            // window.open("data:text/csv;charset=utf-8," + encodeURI(str));
+            window.open("data:text/csv;charset=utf-8," + encodeURI(str));
         }
     });
