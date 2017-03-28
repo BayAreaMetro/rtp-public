@@ -38,6 +38,7 @@ angular.module('rtpApp')
          * returns gmap object
          */
         function init(wktString) {
+            var layer = 'toner';
             gmap = new google.maps.Map(document.getElementById('data-map-canvas'), {
                 center: new google.maps.LatLng(37.796966, -122.275051),
                 defaults: {
@@ -52,7 +53,7 @@ angular.module('rtpApp')
                 },
                 disableDefaultUI: true,
                 mapTypeControl: true,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeId: layer,
                 mapTypeControlOptions: {
                     position: google.maps.ControlPosition.TOP_LEFT,
                     style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
@@ -66,6 +67,8 @@ angular.module('rtpApp')
                     style: google.maps.ZoomControlStyle.SMALL
                 }
             });
+
+            gmap.mapTypes.set(layer, new google.maps.StamenMapType(layer));
 
             google.maps.event.addListener(gmap, 'tilesloaded', function() {
                 if (!this.loaded) {

@@ -55,6 +55,7 @@ angular.module('rtpApp')
             }];
 
             var rtpIdList = $scope.rtpIdList;
+            var layer = 'toner';
             gmap = new google.maps.Map(document.getElementById('canvas'), {
                 center: new google.maps.LatLng(37.796966, -122.275051),
                 defaults: {
@@ -69,10 +70,11 @@ angular.module('rtpApp')
                 },
                 disableDefaultUI: true,
                 mapTypeControl: true,
-                mapTypeId: google.maps.MapTypeId.GoogleEarthAPI,
+                mapTypeId: layer,
                 mapTypeControlOptions: {
                     position: google.maps.ControlPosition.TOP_LEFT,
-                    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+                    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+                    mapTypeIds: [layer, 'roadmap', 'hybrid']
                 },
                 panControl: true,
                 streetViewControl: true,
@@ -86,7 +88,8 @@ angular.module('rtpApp')
                 },
                 styles: myStyles
             });
-
+            //Add stamen basemap
+            gmap.mapTypes.set(layer, new google.maps.StamenMapType(layer));
             google.maps.event.addListener(gmap, 'tilesloaded', function() {
                 if (!$scope.loaded) {
                     $scope.loaded = true;

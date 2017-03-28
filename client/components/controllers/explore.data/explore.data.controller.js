@@ -163,16 +163,8 @@ angular.module('rtpApp')
             exportList = _.map(exportList, function(o) {
                 return _.omit(o, 'select', '$$hashKey', 'checked', 'projectId');
             });
-            console.log(exportList);
-            // var a = {
-            //     name: "Foo",
-            //     amount: 55,
-            //     reported: false,
-            //     date: "10/01/2001"
-            // };
 
-            var b = {};
-
+            //Object containing newly mapped key values
             var map = {
                 totalCostYOE: "How much does this project/program cost?",
                 inPlanFunding: "How much of the project/program is covered in the plan period?",
@@ -192,7 +184,6 @@ angular.module('rtpApp')
             exportList = _.map(exportList, function(o) {
                 return _.omit(o, 'totalCostYOE', 'committedFundingYOE', 'discretionaryFundingYOE', 'pre2017Funding', 'mapStatus', 'description', 'inPlanFunding', 'projectOpenYr', 'strategy2', 'investmentStrategy', 'constructionStartYr');
             });
-            console.log(exportList);
 
             //Unparse array using Papa Parse library
             var str = Papa.unparse(exportList);
