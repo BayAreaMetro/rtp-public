@@ -6,6 +6,7 @@
             this.lookUp = lookUp;
             this.$state = $state;
             this.projects = projects;
+            this.noresults = false;
 
         }
 
@@ -80,22 +81,31 @@
             console.log(paramsList);
             this.projects.search(paramsList)
                 .then(response => {
-                    // console.log(response.data);
-                    this.projects.setSearchList(response.data);
+                    if (response.data.length > 0) {
+                        //Hide no results notification
+                        this.noResults = false;
 
+                        //Set project search list
+                        this.projects.setSearchList(response.data);
 
-                    //Remove unnecessary fields (lodash)
-                    var exportList = _.map(response.data, function(o) {
-                        return _.pick(o, 'rtpId');
-                    });
-                    // console.log(exportList);
-                    var rtpIdArray = [];
-                    exportList.forEach(function(element) {
-                        rtpIdArray.push(element.rtpId);
-                    }, this);
-                    // console.log(rtpIdArray);
-                    this.projects.setViewOnMap(rtpIdArray);
-                    this.$state.go(type);
+                        //Limit array to just RTPIds
+                        var exportList = _.map(response.data, function(o) {
+                            return _.pick(o, 'rtpId');
+                        });
+
+                        //Populate array of RTPIds
+                        var rtpIdArray = [];
+                        exportList.forEach(function(element) {
+                            rtpIdArray.push(element.rtpId);
+                        }, this);
+
+                        //Set map view based on rtpId list, and switch page state
+                        this.projects.setViewOnMap(rtpIdArray);
+                        this.$state.go(type);
+                    } else {
+                        //Show no results alert
+                        this.noResults = true;
+                    }
                 })
                 .catch(function(err) {
                     console.log(err);

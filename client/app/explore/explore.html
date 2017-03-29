@@ -8,13 +8,14 @@
 <!--End Navigation-->
 <!--Main Section-->
 
-<div ui-view="explore-content" style="background-color:lightgray;">
+<div ui-view="explore-content" style="background-color:lightgray; height:77vh;">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-sm-10 col-sm-offset-1 col-xs-12" style="padding:20px;">
                 <div class="form-block center-block" style="padding-top:30px;">
                     <h2 class="title">Search for Projects</h2>
                     <p>Use the search criteria below, or just click search!</p>
+                    <div class="alert alert-danger" role="alert" ng-show="$ctrl.noResults">No projects were found. Please change your criteria and search again.</div>
                     <hr>
                     <form class="form-horizontal">
                         <div class="form-group has-feedback pad-top-30">

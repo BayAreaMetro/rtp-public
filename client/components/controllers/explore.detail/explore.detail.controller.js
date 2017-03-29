@@ -56,7 +56,8 @@ angular.module('rtpApp')
                 mapTypeId: layer,
                 mapTypeControlOptions: {
                     position: google.maps.ControlPosition.TOP_LEFT,
-                    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+                    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+                    mapTypeIds: [layer, 'roadmap', 'hybrid']
                 },
                 panControl: true,
                 streetViewControl: true,
