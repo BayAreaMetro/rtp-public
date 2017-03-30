@@ -74,7 +74,7 @@ angular.module('rtpApp')
                 mapTypeControlOptions: {
                     position: google.maps.ControlPosition.TOP_LEFT,
                     style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-                    mapTypeIds: [layer, 'roadmap', 'hybrid']
+                    mapTypeIds: ['toner', 'roadmap', 'hybrid']
                 },
                 panControl: true,
                 streetViewControl: true,
@@ -90,6 +90,7 @@ angular.module('rtpApp')
             });
             //Add stamen basemap
             gmap.mapTypes.set(layer, new google.maps.StamenMapType(layer));
+
             google.maps.event.addListener(gmap, 'tilesloaded', function() {
                 if (!$scope.loaded) {
                     $scope.loaded = true;
