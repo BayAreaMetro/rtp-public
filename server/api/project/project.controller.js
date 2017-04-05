@@ -167,23 +167,40 @@ export function search(req, res) {
     if (params.length === 0) {
         query = query;
     } else if (params.length === 1) {
-        console.log(params[0]);
-        console.log(_.values(params[0]))
-        console.log(_.keys(params[0]));
-        query = 'Select * From [RTP].[dbo].[project_VW] Where ';
-        queryParams = _.keys(params[0]) + " = '" + _.values(params[0]) + "'";
-        query += queryParams;
+        var paramName = _.keys(params[0]);
+        switch (paramName[0]) {
+            case 'title':
+                console.log('in the title');
+                query = "Select * From [RTP].[dbo].[project_VW] Where ";
+                queryParams = "title like '%" + _.values(params[0]) + "%'";
+                query += queryParams;
+                break;
+
+            default:
+                console.log(params[0]);
+                console.log(_.values(params[0]))
+                console.log(_.keys(params[0]));
+                query = 'Select * From [RTP].[dbo].[project_VW] Where ';
+                queryParams = _.keys(params[0]) + " = '" + _.values(params[0]) + "'";
+                query += queryParams;
+                break;
+        }
+
     } else if (params.length > 1) {
         query = 'Select * From [RTP].[dbo].[project_VW] Where ';
         for (var i = 0; i < params.length; i++) {
-            queryParams += _.keys(params[i]) + " = '" + _.values(params[i]) + "' AND ";
+            if (_.keys(params[i])[0] === 'title') {
+                queryParams += _.keys(params[i]) + " like '%" + _.values(params[i]) + "%' AND ";
+            } else {
+                queryParams += _.keys(params[i]) + " = '" + _.values(params[i]) + "' AND ";
+            }
         }
         //Remove final AND from string;
         queryParams = queryParams.substring(0, queryParams.length - 5);
         query += queryParams;
 
     }
-
+    console.log(query);
     var request = new sql.Request(config.mssql.connection);
     request.query(query, function(err, data) {
         if (err) {

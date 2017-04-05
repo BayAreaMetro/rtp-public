@@ -52,74 +52,80 @@
         }
 
         searchProjects(type) {
-            console.log(this.county);
-            console.log(this.mode);
-            console.log(this.rtpId);
-            console.log(this.sponsor);
+                console.log(this.county);
+                console.log(this.mode);
+                console.log(this.rtpId);
+                console.log(this.sponsor);
 
-            var paramsList = [];
-            if (this.county)
-                paramsList.push({
-                    'county': this.county.county
-                });
+                var paramsList = [];
+                if (this.county)
+                    paramsList.push({
+                        'county': this.county.county
+                    });
 
-            if (this.mode)
-                paramsList.push({
-                    'mode': this.mode.mode
-                });
+                if (this.mode)
+                    paramsList.push({
+                        'mode': this.mode.mode
+                    });
 
-            if (this.sponsor)
-                paramsList.push({
-                    'agency': this.sponsor.agency
-                });
+                if (this.sponsor)
+                    paramsList.push({
+                        'agency': this.sponsor.agency
+                    });
 
-            if (this.rtpId)
-                paramsList.push({
-                    'rtpId': this.rtpId
-                });
+                if (this.title)
+                    paramsList.push({
+                        'title': this.title
+                    });
 
-            console.log(paramsList);
-            this.projects.search(paramsList)
-                .then(response => {
-                    if (response.data.length > 0) {
-                        //Hide no results notification
-                        this.noResults = false;
+                if (this.rtpId)
+                    paramsList.push({
+                        'rtpId': this.rtpId
+                    });
 
-                        //Set project search list
-                        this.projects.setSearchList(response.data);
+                console.log(paramsList);
+                this.projects.search(paramsList)
+                    .then(response => {
+                        if (response.data.length > 0) {
+                            //Hide no results notification
+                            this.noResults = false;
 
-                        //Limit array to just RTPIds
-                        var exportList = _.map(response.data, function(o) {
-                            return _.pick(o, 'rtpId');
-                        });
+                            //Set project search list
+                            this.projects.setSearchList(response.data);
 
-                        //Populate array of RTPIds
-                        var rtpIdArray = [];
-                        exportList.forEach(function(element) {
-                            rtpIdArray.push(element.rtpId);
-                        }, this);
+                            //Limit array to just RTPIds
+                            var exportList = _.map(response.data, function(o) {
+                                return _.pick(o, 'rtpId');
+                            });
 
-                        //Set map view based on rtpId list, and switch page state
-                        this.projects.setViewOnMap(rtpIdArray);
-                        this.$state.go(type);
-                    } else {
-                        //Show no results alert
-                        this.noResults = true;
-                    }
-                })
-                .catch(function(err) {
-                    console.log(err);
-                });
+                            //Populate array of RTPIds
+                            var rtpIdArray = [];
+                            exportList.forEach(function(element) {
+                                rtpIdArray.push(element.rtpId);
+                            }, this);
+
+                            //Set map view based on rtpId list, and switch page state
+                            this.projects.setViewOnMap(rtpIdArray);
+                            this.$state.go(type);
+                        } else {
+                            //Show no results alert
+                            this.noResults = true;
+                        }
+                    })
+                    .catch(function(err) {
+                        console.log(err);
+                    });
 
 
 
-        }
-
+            }
+            /* Clears all inputs in search form */
         clearSearch() {
             this.county = null;
             this.mode = null;
             this.rtpId = null;
             this.sponsor = null;
+            this.title = null;
         }
 
     }
