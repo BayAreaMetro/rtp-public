@@ -12,6 +12,12 @@ angular.module('rtpApp')
         $scope.rtpPolygonLayer = new google.maps.Data();
         $scope.loadSelectedFeatures = false;
         $scope.showTools = false;
+        $scope.mappableLines = true;
+        $scope.mappablePoints = true;
+        $scope.mappablePolygons = true;
+        $scope.noMappableProjects = 'false';
+        console.log($scope.noMappableProjects);
+        $scope.mz = false;
 
         // Load google charts
         // Load the Visualization API and the corechart package.
@@ -31,12 +37,45 @@ angular.module('rtpApp')
         $scope.rtpIdList = projects.getViewOnMap();
         console.log($scope.rtpIdList);
 
+        //Check to see whether projects are mappable
+        console.log('are the projects mappable: ', projects.getIsMappable());
+        $scope.mz = projects.getIsMappable();
+
 
 
         //Initialize legend object. Holds values for display in legend div
         $scope.legend = {};
 
         var infowindow = new google.maps.InfoWindow();
+
+        $scope.checkMappableProjects = function() {
+            // $scope.mz = true;
+            var test = false;
+            // console.log('in the function');
+            console.log($scope.mappableLines, ' lines');
+            // console.log($scope.mappablePoints, ' points');
+            // console.log($scope.mappablePolygons, 'polys');
+            // if (!$scope.mappableLines && !$scope.mappablePoints && !$scope.mappablePolygons) {
+            //     // alert('nothing to map');
+            //     // console.log($scope.noMappableProjects);
+            //     // $scope.noMappableProjects = 'mz';
+            //     $scope.mz = true;
+            //     console.log($scope.mz, ' the value is mz:');
+            // } else {
+            //     // $scope.noMappableProjects = 'false';
+            //     $scope.mz = false;
+            // }
+
+            // console.log($scope.mz);
+            if (test) {
+                $scope.mz = true;
+                console.log('mz: ', $scope.mz);
+            } else {
+                $scope.mz = false;
+            }
+            // $scope.mz = true;
+
+        }
 
         /**
          * iniMap function
@@ -169,16 +208,27 @@ angular.module('rtpApp')
                 var rtpLineLayer = new google.maps.Data();
                 $.getJSON("/assets/js/rtpLines.json")
                     .done(function(data) {
-                        var geoJsonObject;
-                        geoJsonObject = topojson.feature(data, data.objects.linesRTP);
+                        var geoJsonObjectLN;
+                        geoJsonObjectLN = topojson.feature(data, data.objects.linesRTP);
                         //Check for projects selected in data view. Otherwise load all projects
                         if (rtpIdList.length > 0) {
-                            _.remove(geoJsonObject.features, function(n) {
+                            _.remove(geoJsonObjectLN.features, function(n) {
                                 // console.log(n.properties.rtpId);
                                 return rtpIdList.indexOf(n.properties.rtpId) === -1;
                             });
                         }
-                        rtpLineLayer.addGeoJson(geoJsonObject);
+                        console.log(geoJsonObjectLN.features.length)
+                        if (geoJsonObjectLN.features.length === 0) {
+                            $scope.mappableLines = false;
+                            // $scope.checkMappableProjects();
+                        }
+
+                        if (!$scope.mappableLines && !$scope.mappablePoints && !$scope.mappablePolygons) {
+                            $scope.noMappableProjects = true;
+
+                        }
+
+                        rtpLineLayer.addGeoJson(geoJsonObjectLN);
                         rtpLineLayer.setStyle(function(feature) {
                             var lineAttr = feature.getProperty('system');
                             var color, strokeWeight;
@@ -209,16 +259,27 @@ angular.module('rtpApp')
                     var rtpPointLayer = new google.maps.Data();
                     $.getJSON("/assets/js/rtpPoints.json", function(data) {
 
-                        var geoJsonObject;
-                        geoJsonObject = topojson.feature(data, data.objects.pointsRTP);
+                        var geoJsonObjectPT;
+                        geoJsonObjectPT = topojson.feature(data, data.objects.pointsRTP);
                         //Check for projects selected in data view. Otherwise load all projects
                         if (rtpIdList.length > 0) {
-                            _.remove(geoJsonObject.features, function(n) {
+                            _.remove(geoJsonObjectPT.features, function(n) {
                                 // console.log(n.properties.rtpId);
                                 return rtpIdList.indexOf(n.properties.rtpId) === -1;
                             });
                         }
-                        rtpPointLayer.addGeoJson(geoJsonObject);
+                        console.log(geoJsonObjectPT.features.length)
+                        if (geoJsonObjectPT.features.length === 0) {
+                            $scope.mappablePoints = false;
+                            // $scope.checkMappableProjects();
+                        }
+
+                        if (!$scope.mappableLines && !$scope.mappablePoints && !$scope.mappablePolygons) {
+                            $scope.noMappableProjects = true;
+
+                        }
+
+                        rtpPointLayer.addGeoJson(geoJsonObjectPT);
                         rtpPointLayer.setStyle(function(feature) {
                             var pointAttr = feature.getProperty('system');
                             var color;
@@ -251,16 +312,26 @@ angular.module('rtpApp')
             var getPolygonLayer = function() {
                 var rtpPolygonLayer = new google.maps.Data();
                 $.getJSON("/assets/js/rtpPolygons.json", function(data) {
-                    var geoJsonObject;
-                    geoJsonObject = topojson.feature(data, data.objects.polysRTP);
+                    var geoJsonObjectPY;
+                    geoJsonObjectPY = topojson.feature(data, data.objects.polysRTP);
                     //Check for projects selected in data view. Otherwise load all projects
                     if (rtpIdList.length > 0) {
-                        _.remove(geoJsonObject.features, function(n) {
+                        _.remove(geoJsonObjectPY.features, function(n) {
                             // console.log(n.properties.rtpId);
                             return rtpIdList.indexOf(n.properties.rtpId) === -1;
                         });
                     }
-                    rtpPolygonLayer.addGeoJson(geoJsonObject);
+                    console.log(geoJsonObjectPY.features.length);
+                    if (geoJsonObjectPY.features.length === 0) {
+                        $scope.mappablePolygons = false;
+                        // $scope.checkMappableProjects();
+                    }
+
+                    if (!$scope.mappableLines && !$scope.mappablePoints && !$scope.mappablePolygons) {
+                        $scope.noMappableProjects = true;
+
+                    }
+                    rtpPolygonLayer.addGeoJson(geoJsonObjectPY);
                     rtpPolygonLayer.setStyle(function(feature) {
                         var polyAttr = feature.getProperty('system');
                         var strokeColor, strokeWeight, fillColor, fillOpacity;
@@ -541,16 +612,22 @@ angular.module('rtpApp')
             // // Add Layer Toggle
             // var toggleTools = document.getElementById('toggleTools');
             // gmap.controls[google.maps.ControlPosition.TOP_RIGHT].push(toggleTools);
-
+            console.log('anything');
+            console.log($scope.mappableLines);
+            console.log($scope.mappablePoints);
+            console.log($scope.mappablePolygons);
 
 
 
             //Register map object
             $scope.gmap = gmap;
+
             return $scope.gmap;
         }
 
         $scope.initMap();
+
+        // $scope.checkMappableProjects();
 
         function rotate90() {
             var heading = $scope.gmap.getHeading() || 0;

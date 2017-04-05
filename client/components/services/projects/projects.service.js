@@ -7,6 +7,7 @@ angular.module('rtpApp')
         var currentProject = {};
         var mapProjectList = {};
         var searchList = [];
+        var isMappable = true;
 
         //Query all projects
         this.findAll = function() {
@@ -36,13 +37,20 @@ angular.module('rtpApp')
         }
 
         //Set projects to view on Map
-        this.setViewOnMap = function(maps) {
+        this.setViewOnMap = function(maps, onMap) {
+            console.log(maps);
+            isMappable = onMap;
             mapProjectList = maps;
         }
 
         //Retrieve project projects to view on map
         this.getViewOnMap = function() {
             return mapProjectList;
+        }
+
+        //Retrieve flag for whether projects are mappable or not
+        this.getIsMappable = function() {
+            return isMappable;
         }
 
         //Set project list based on search page parameters

@@ -92,6 +92,16 @@
 
                             //Set project search list
                             this.projects.setSearchList(response.data);
+                            console.log(response.data[0]);
+                            //Check to see whether any projects can be mapped
+                            var isMapped = _.find(response.data, { 'mapStatus': 'Mapped' });
+                            var isMappable;
+                            if (!isMapped) {
+                                isMappable = false;
+                            } else if (isMapped) {
+                                isMappable = true;
+                            }
+                            console.log(isMappable, ': means there is a mapped value if true');
 
                             //Limit array to just RTPIds
                             var exportList = _.map(response.data, function(o) {
@@ -105,7 +115,8 @@
                             }, this);
 
                             //Set map view based on rtpId list, and switch page state
-                            this.projects.setViewOnMap(rtpIdArray);
+                            this.projects.setViewOnMap(rtpIdArray, isMappable);
+                            console.log(rtpIdArray);
                             this.$state.go(type);
                         } else {
                             //Show no results alert

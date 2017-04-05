@@ -87,11 +87,15 @@
     <!--Map Container-->
     <div class="panel-heading" style="background-color:lightgray; padding-left:10px;border-bottom:solid;border-width:0.5px;">
         <button class="btn btn-default btn-large" ng-click="backtoProjects()"><i class="fa fa-th-list"></i>&nbsp; Data</button>
-        <button class="btn btn-default btn-large" ng-click="showTools2()"><i class="fa fa-wrench"></i>&nbsp; Tools</button>
+        <button class="btn btn-default btn-large" ng-click="showTools2()"><i class="fa fa-wrench"></i>&nbsp;  Tools</button>
         <!--<button class="btn btn-default btn-large" ng-click="autoRotate()"><i class="fa fa-wrench"></i>&nbsp; Visualize</button>-->
     </div>
     <div class="panel-body map-panel" style="height:72vh !important;">
+        <div ng-show="!mz" class="alert alert-danger text-center" role="alert">
+            No mappable projects found. Switch to <a ui-sref="explore.data">Data View</a> or change your <a ui-sref="explore">Search criteria</a>
+        </div>
         <div id="canvas" class="col-sm-12 mapContainer" style="height:100%;">
+
         </div>
     </div>
     <!--End Map Container-->
