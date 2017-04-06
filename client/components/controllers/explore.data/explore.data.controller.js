@@ -69,6 +69,17 @@ angular.module('rtpApp')
             } else {
                 exportList = $scope.projectList;
             }
+
+            //Check to see whether any projects can be mapped
+            var isMapped = _.find($scope.projectList, { 'mapStatus': 'Mapped' });
+            var isMappable;
+            if (!isMapped) {
+                isMappable = false;
+            } else if (isMapped) {
+                isMappable = true;
+            }
+            console.log(isMappable, ': means there is a mapped value if true');
+
             //Remove unnecessary fields (lodash)
             exportList = _.map(exportList, function(o) {
                 return _.pick(o, 'rtpId');
@@ -79,7 +90,7 @@ angular.module('rtpApp')
                 rtpIdArray.push(element.rtpId);
             }, this);
             // console.log(rtpIdArray);
-            projects.setViewOnMap(rtpIdArray);
+            projects.setViewOnMap(rtpIdArray, isMappable);
             $state.go('explore.map');
             // $scope.initMap();
         }

@@ -172,7 +172,7 @@ export function search(req, res) {
             case 'title':
                 console.log('in the title');
                 query = "Select * From [RTP].[dbo].[project_VW] Where ";
-                queryParams = "title like '%" + _.values(params[0]) + "%'";
+                queryParams = "title like '%" + _.values(params[0]) + "%' OR description like '%" + _.values(params[0]) + "%'";
                 query += queryParams;
                 break;
 
@@ -190,7 +190,7 @@ export function search(req, res) {
         query = 'Select * From [RTP].[dbo].[project_VW] Where ';
         for (var i = 0; i < params.length; i++) {
             if (_.keys(params[i])[0] === 'title') {
-                queryParams += _.keys(params[i]) + " like '%" + _.values(params[i]) + "%' AND ";
+                queryParams += "title like '%" + _.values(params[i]) + "%' OR description like '%" + _.values(params[i]) + "%' AND ";
             } else {
                 queryParams += _.keys(params[i]) + " = '" + _.values(params[i]) + "' AND ";
             }

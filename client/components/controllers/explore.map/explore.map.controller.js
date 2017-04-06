@@ -235,10 +235,10 @@ angular.module('rtpApp')
                             // console.log(lineAttr);
                             if (lineAttr === 'Public Transit Facility') {
                                 color = '#336699';
-                                strokeWeight = 2;
+                                strokeWeight = 5;
                             } else {
                                 color = '#d9534f';
-                                strokeWeight = 3;
+                                strokeWeight = 6;
                             }
 
                             return {
@@ -295,7 +295,7 @@ angular.module('rtpApp')
                             return {
                                 icon: {
                                     path: google.maps.SymbolPath.CIRCLE,
-                                    scale: 5,
+                                    scale: 6,
                                     fillColor: color,
                                     strokeColor: 'white',
                                     strokeWeight: 1,

@@ -85,15 +85,22 @@
                             <a ui-sref="explore"> <button type="button" class="btn btn-large btn-default"><i class="fa fa-search"></i>&nbsp;Change Search</button></a>
                             <button type="button" class="btn btn-large btn-default" ng-click="viewOnMap()"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
                             <button type="button" class="btn btn-large btn-default hidden-xs" ng-click="exportCSV()"><i class="fa fa-file-excel-o"></i>&nbsp;Export</button>
+                            <!--Key for mapped vs not mappable projects-->
+                            <span style="float: right; padding-right:3px; padding-top:5px;">Not Mappable</span>
+                            <span style="float: right; padding-right:3px;padding-top:5px;"><div style="width:20px;height:20px;background-color:gray; border:solid;border-color:white;border-width:1px;"></div></span>
+                            <span style="float: right; padding-right:3px;padding-top:5px;">Mapped</span>
+                            <span style="float: right; padding-right:3px;padding-top:5px;"><div style="width:20px;height:20px;background-color:#428BCA; border:solid;border-color:white;border-width:1px;"></div></span>
                         </div>
+
                     </div>
+
                 </div>
 
             </div>
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <div class="panel" style="margin-bottom:0px;">
-                        <div class="panel-heading">Panel Heading</div>
+
                         <div class="panel-body pad-0" style="height:65vh;margin-bottom:0px; border:none;">
                             <table class="table table-fixed" ts-wrapper style="margin-bottom:0 !important;padding:0;">
                                 <thead>
