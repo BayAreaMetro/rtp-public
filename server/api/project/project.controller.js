@@ -152,6 +152,32 @@ export function findOne(req, res) {
     });
 }
 
+export function findOneFMS(req, res) {
+    console.log(req.params.id);
+    console.log(req.params.cycle);
+    var request, query;
+    var rtpId = req.params.id;
+    var cycle = req.params.cycle;
+    if (cycle === '2035') {
+        request = new sql.Request(config.mssql.connection_2035);
+        query = "Select * From [dbo].[FMS_View] WHERE RTPID = '" + rtpId + "'";
+    } else if (cycle === '2040') {
+        request = new sql.Request(config.mssql.connection_2040);
+        query = "Select * From [dbo].[projects_master] WHERE RTPID = '" + rtpId + "'";
+    }
+
+    request.query(query, function(err, data) {
+        if (err) {
+            return handleError(res, err);
+        }
+        if (!data) {
+            return res.status(404).send('Not Found');
+        }
+        console.log(data[0]);
+        res.status(200).json(data);
+    });
+}
+
 export function search(req, res) {
     var params = req.body;
     console.log('the body is');

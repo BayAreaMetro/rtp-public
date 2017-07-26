@@ -6,8 +6,9 @@ var controller = require('./project.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
-router.get('/findAll', controller.findAll);
+router.get('/findAll/:cycle', controller.findAll);
 router.get('/findOne/:id', controller.findOne);
+router.get('/findOne/fms/:id/:cycle', controller.findOneFMS);
 router.get('/:id', controller.show);
 router.post('/search', controller.search);
 router.post('/', controller.create);
