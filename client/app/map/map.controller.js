@@ -152,6 +152,7 @@
                     var rtpLineLayer = new google.maps.Data();
                     $.getJSON("/assets/js/rtpLines.json")
                         .done(function(data) {
+                            console.log('lines topojson', data);
                             var geoJsonObject;
                             geoJsonObject = topojson.feature(data, data.objects.rtpLines);
                             //Check for projects selected in data view. Otherwise load all projects

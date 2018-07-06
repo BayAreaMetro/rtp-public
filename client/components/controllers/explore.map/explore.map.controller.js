@@ -206,10 +206,11 @@ angular.module('rtpApp')
             var getLineLayer = function() {
 
                 var rtpLineLayer = new google.maps.Data();
-                $.getJSON("/assets/js/rtpLines.json")
+                $.getJSON("/assets/js/rtpLines_updated.json")
                     .done(function(data) {
+                        console.log(data);
                         var geoJsonObjectLN;
-                        geoJsonObjectLN = topojson.feature(data, data.objects.linesRTP);
+                        geoJsonObjectLN = topojson.feature(data, data.objects.rtpLines_updated);
                         //Check for projects selected in data view. Otherwise load all projects
                         if (rtpIdList.length > 0) {
                             _.remove(geoJsonObjectLN.features, function(n) {
