@@ -120,7 +120,7 @@ export function destroy(req, res) {
 export function rtpIds(req, res) {
     var ids = [];
     var request = new sql.Request(config.mssql.connection);
-    var query = "Select rtpId From [RTP].[dbo].[project]";
+    var query = "Select rtpId From [RTP].[dbo].[project] order by rtpId";
     console.log(query);
     request.query(query, function(err, data) {
         console.log(data);

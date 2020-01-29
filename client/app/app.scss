@@ -42,12 +42,8 @@ body {
 // Component styles are injected through grunt
 
 /* inject:scss */
-@import 'data/data.scss';
 @import 'explore/explore.scss';
-@import 'hybrid/hybrid.scss';
 @import 'main/main.scss';
-@import 'map/map.scss';
-@import 'search/search.scss';
 @import '../components/directives/eyebrow/eyebrow.scss';
 @import '../components/directives/header/header.scss';
 @import '../components/footer/footer.scss';

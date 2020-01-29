@@ -1,22 +1,22 @@
  <div class="col-sm-2 col-sm-offset-2">
                     <ul>
                         <!-- first row -->
-                        <a href="http://planbayarea.org/the-plan.html" class="head">The Plan</a>
-                        <li><a href="http://planbayarea.org/the-plan/the-context.html">The Context</a></li>
-                        <li><a href="http://planbayarea.org/the-plan/Timeline.html">Timeline</a></li>
-                        <li><a href="http://planbayarea.org/the-plan/plan-details.html">Plan Details</a></li>
-                        <li><a href="http://planbayarea.org/the-plan/Draft-Preferred-Scenario.html">Draft Preferred Scenario</a></li>
-                        <li><a href="http://planbayarea.org/the-plan/environmental-impact-report.html">Environmental Impact Report</a></li>
-                        <li><a href="http://planbayarea.org/the-plan/quick-facts.html">Quick Facts</a></li>
-                        <li><a href="http://planbayarea.org/the-plan/adopted-plan-bay-area-2013.html">Adopted Plan Bay Area 2013</a></li>
-                        <li><a href="http://planbayarea.org/the-plan/Document-Archive-2013-PBA.html">Document Archive: Plan Bay Area 2013</a></li>
-                        <a href="http://planbayarea.org/your-part.html" class="head">Your Part</a>
-                        <li><a href="http://planbayarea.org/your-part/get-involved.html">Get Involved</a></li>
-                        <li><a href="http://planbayarea.org/your-part/Language-Assistance.html">Language Assistance</a></li>
-                        <li><a href="http://planbayarea.org/your-part/meetings-events.html">Meetings &amp; Events</a></li>
-                        <li><a href="http://planbayarea.org/your-part/PlanBayArea2040-2016-Meeting-Materials.html">Open House and Meeting Materials</a></li>
-                        <li><a href="http://planbayarea.org/your-part/open-forum.html">Plan Bay Area Open Forum</a></li>
-                        <li><a href="http://planbayarea.org/your-part/your-comments.html">Your Comments</a></li>
+                        <a href="https://planbayarea.org/the-plan.html" class="head">The Plan</a>
+                        <li><a href="https://planbayarea.org/the-plan/the-context.html">The Context</a></li>
+                        <li><a href="https://planbayarea.org/the-plan/Timeline.html">Timeline</a></li>
+                        <li><a href="https://planbayarea.org/the-plan/plan-details.html">Plan Details</a></li>
+                        <li><a href="https://planbayarea.org/the-plan/Draft-Preferred-Scenario.html">Draft Preferred Scenario</a></li>
+                        <li><a href="https://planbayarea.org/the-plan/environmental-impact-report.html">Environmental Impact Report</a></li>
+                        <li><a href="https://planbayarea.org/the-plan/quick-facts.html">Quick Facts</a></li>
+                        <li><a href="https://planbayarea.org/the-plan/adopted-plan-bay-area-2013.html">Adopted Plan Bay Area 2013</a></li>
+                        <li><a href="https://planbayarea.org/the-plan/Document-Archive-2013-PBA.html">Document Archive: Plan Bay Area 2013</a></li>
+                        <a href="https://planbayarea.org/your-part.html" class="head">Your Part</a>
+                        <li><a href="https://planbayarea.org/your-part/get-involved.html">Get Involved</a></li>
+                        <li><a href="https://planbayarea.org/your-part/Language-Assistance.html">Language Assistance</a></li>
+                        <li><a href="https://planbayarea.org/your-part/meetings-events.html">Meetings &amp; Events</a></li>
+                        <li><a href="https://planbayarea.org/your-part/PlanBayArea2040-2016-Meeting-Materials.html">Open House and Meeting Materials</a></li>
+                        <li><a href="https://planbayarea.org/your-part/open-forum.html">Plan Bay Area Open Forum</a></li>
+                        <li><a href="https://planbayarea.org/your-part/your-comments.html">Your Comments</a></li>
                     </ul>
                     <!-- first row -->
                 </div>
@@ -24,16 +24,16 @@
                 <div class="col-sm-2">
                     <ul>
                         <!-- second row -->
-                        <a href="http://planbayarea.org/the-counties.html" class="head">The Counties</a>
-                        <li><a href="http://planbayarea.org/the-counties/alameda-county.html">Alameda County</a></li>
-                        <li><a href="http://planbayarea.org/the-counties/contra-costa-county.html">Contra Costa County</a></li>
-                        <li><a href="http://planbayarea.org/the-counties/marin-county.html">Marin County</a></li>
-                        <li><a href="http://planbayarea.org/the-counties/napa-county.html">Napa County</a></li>
-                        <li><a href="http://planbayarea.org/the-counties/san-francisco-county.html">San Francisco County</a></li>
-                        <li><a href="http://planbayarea.org/the-counties/san-mateo-county.html">San Mateo County</a></li>
-                        <li><a href="http://planbayarea.org/the-counties/santa-clara-county.html">Santa Clara County</a></li>
-                        <li><a href="http://planbayarea.org/the-counties/solano-county.html">Solano County</a></li>
-                        <li><a href="http://planbayarea.org/the-counties/sonoma-county.html">Sonoma County</a></li>
+                        <a href="https://planbayarea.org/the-counties.html" class="head">The Counties</a>
+                        <li><a href="https://planbayarea.org/the-counties/alameda-county.html">Alameda County</a></li>
+                        <li><a href="https://planbayarea.org/the-counties/contra-costa-county.html">Contra Costa County</a></li>
+                        <li><a href="https://planbayarea.org/the-counties/marin-county.html">Marin County</a></li>
+                        <li><a href="https://planbayarea.org/the-counties/napa-county.html">Napa County</a></li>
+                        <li><a href="https://planbayarea.org/the-counties/san-francisco-county.html">San Francisco County</a></li>
+                        <li><a href="https://planbayarea.org/the-counties/san-mateo-county.html">San Mateo County</a></li>
+                        <li><a href="https://planbayarea.org/the-counties/santa-clara-county.html">Santa Clara County</a></li>
+                        <li><a href="https://planbayarea.org/the-counties/solano-county.html">Solano County</a></li>
+                        <li><a href="https://planbayarea.org/the-counties/sonoma-county.html">Sonoma County</a></li>
                     </ul>
                     <!-- second row -->
                 </div>
@@ -41,20 +41,20 @@
                 <div class="col-sm-2 hidden-xs">
                     <ul>
                         <!-- third row -->
-                        <a href="http://planbayarea.org/news-main.html" class="head">News</a>
-                        <li><a href="http://planbayarea.org/news/news-features.html">News Features</a></li>
-                        <li><a href="http://planbayarea.org/news/in-the-news.html">In the Media</a></li>
-                        <li><a href="http://planbayarea.org/news/news-releases.html">News Releases</a></li>
-                        <li><a href="http://planbayarea.org/news/Video-Index.html">Video Index</a></li>
-                        <li><a href="http://planbayarea.org/news/plan-bay-area-e-newsletters.html">Plan Bay Area eNewsletter</a></li>
-                        <a href="http://planbayarea.org/resources.html" class="head">Resources</a>
-                        <li><a href="http://planbayarea.org/resources/CEQA-Streamlining-Opportunities.html">CEQA Streamlining Opportunities</a></li>
-                        <li><a href="http://planbayarea.org/resources/vital-signs.html">Vital Signs</a></li>
-                        <li><a href="http://planbayarea.org/resources/Bay-Area-tranportation-project-mapper.html">Project Mapper</a></li>
-                        <li><a href="http://planbayarea.org/resources/state-of-the-region-2015-report.html">State of the Region 2015 Report</a></li>
-                        <li><a href="http://planbayarea.org/resources/Bay-Area-Travel-Map.html">Bay Area Travel Map</a></li>
-                        <li><a href="http://planbayarea.org/resources/Bay-Area-Prosperity-Plan.html">Bay Area Prosperity Plan</a></li>
-                        <li><a href="http://planbayarea.org/resources/PDA-Assessment-Update.html">PDA Assessment Update</a></li>
+                        <a href="https://planbayarea.org/news-main.html" class="head">News</a>
+                        <li><a href="https://planbayarea.org/news/news-features.html">News Features</a></li>
+                        <li><a href="https://planbayarea.org/news/in-the-news.html">In the Media</a></li>
+                        <li><a href="https://planbayarea.org/news/news-releases.html">News Releases</a></li>
+                        <li><a href="https://planbayarea.org/news/Video-Index.html">Video Index</a></li>
+                        <li><a href="https://planbayarea.org/news/plan-bay-area-e-newsletters.html">Plan Bay Area eNewsletter</a></li>
+                        <a href="https://planbayarea.org/resources.html" class="head">Resources</a>
+                        <li><a href="https://planbayarea.org/resources/CEQA-Streamlining-Opportunities.html">CEQA Streamlining Opportunities</a></li>
+                        <li><a href="https://planbayarea.org/resources/vital-signs.html">Vital Signs</a></li>
+                        <li><a href="https://planbayarea.org/resources/Bay-Area-tranportation-project-mapper.html">Project Mapper</a></li>
+                        <li><a href="https://planbayarea.org/resources/state-of-the-region-2015-report.html">State of the Region 2015 Report</a></li>
+                        <li><a href="https://planbayarea.org/resources/Bay-Area-Travel-Map.html">Bay Area Travel Map</a></li>
+                        <li><a href="https://planbayarea.org/resources/Bay-Area-Prosperity-Plan.html">Bay Area Prosperity Plan</a></li>
+                        <li><a href="https://planbayarea.org/resources/PDA-Assessment-Update.html">PDA Assessment Update</a></li>
                     </ul>
                     <!-- third row -->
                 </div>
@@ -62,10 +62,10 @@
                 <div class="col-sm-2 hidden-xs">
                     <ul>
                         <!-- fourth row -->
-                        <a href="http://planbayarea.org/contact.html" class="head">Contact Us</a>
-                        <li><a href="http://planbayarea.orgmailto:info@planbayarea.org">info@planbayarea.org</a></li>
+                        <a href="https://planbayarea.org/contact.html" class="head">Contact Us</a>
+                        <li><a href="https://planbayarea.orgmailto:info@planbayarea.org">info@planbayarea.org</a></li>
                         <li>Phone: (415) 778-6757</li>
-                        <a href="http://planbayarea.org/index.php" class="head">Home</a>
+                        <a href="https://planbayarea.org/index.php" class="head">Home</a>
                     </ul>
                     <!-- fourth row -->
 
